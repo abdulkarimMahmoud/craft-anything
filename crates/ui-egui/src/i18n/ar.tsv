@@ -900,3 +900,153 @@ Read inline comment	اقرأ التعليق المضمّن
 Read its tools	اقرأ أدواته
 Read pinned builds	اقرأ عمليات البناء المثبتة
 Read projects	اقرأ المشاريع
+Read the journal	اقرأ اليومية
+Read the plugin's tools	اقرأ أدوات الملحق
+Read the project	اقرأ المشروع
+Reading what's inside…	جارٍ قراءة ما في الداخل…
+Ready	جاهز
+Ready: {what} is on this computer.	جاهز: {what} على هذا الحاسوب.
+Reasoning	الاستدلال
+Rebuild status	حالة إعادة البناء
+Record a finding	سجّل نتيجة
+Record a hypothesis	سجّل فرضية
+Record an open question	سجّل سؤالاً مفتوحاً
+Recover readable sources	استعِد المصادر المقروءة
+Recreate it with darker colours	أعد إنشاءه بألوان داكنة
+Recreate just its main feature	أعد إنشاء ميزته الرئيسية فقط
+Recreate this website	أعد إنشاء هذا الموقع
+Recreated games are built with the original's own engine when it's here (Unity, Unreal or Godot), else Unity, and Rust as the last resort.	تُبنى الألعاب المُعاد إنشاؤها بمحرك الأصل نفسه عند وجوده (Unity أو Unreal أو Godot)، وإلا بـ Unity، وRust كملاذ أخير.
+References to a name	مراجع لاسم
+Refining rounds	جولات الصقل
+Refresh plugins	حدّث الملحقات
+Regions of a program file, each with one purpose: code, text, pictures, settings.	مناطق من ملف برنامج، لكل منها غرض واحد: شيفرة أو نص أو صور أو إعدادات.
+Reload	إعادة التحميل
+Remember permission	تذكّر الإذن
+Remove	إزالة
+Remove a pin	أزِل تثبيتاً
+Remove a pinned build	أزِل بناءً مثبتاً
+Remove a plugin	أزِل ملحقاً
+Remove an AI	أزِل ذكاءً اصطناعياً
+Remove an app	أزِل تطبيقاً
+Remove an asset key	أزِل مفتاح أصول
+Remove bookmark	أزِل العلامة المرجعية
+Remove it	أزِله
+Remove it and its key	أزِله ومفتاحه
+Remove {name}	أزِل {name}
+Remove {name}?	هل تُزيل {name}؟
+Remove…	إزالة…
+Rename	إعادة التسمية
+Rename a pinned build	أعد تسمية بناء مثبت
+Rename a project	أعد تسمية مشروع
+Rename the pin	أعد تسمية التثبيت
+Rename the project	أعد تسمية المشروع
+Rename…	إعادة التسمية…
+Reset	إعادة الضبط
+Resolve a call	حدّد هدف استدعاء
+Resolved	محلول
+Resources	الموارد
+Restart	إعادة التشغيل
+Restore	استعادة
+Result	النتيجة
+Resume a Frida session	استأنِف جلسة Frida
+Rizin command	أمر Rizin
+Rizin debug command	أمر تنقيح Rizin
+Rizin debug session status	حالة جلسة تنقيح Rizin
+Rough guide:	دليل تقريبي:
+Run	تشغيل
+Run a Frida script	شغّل سكربت Frida
+Run a build command	شغّل أمر بناء
+Run a scripted Electron session	شغّل جلسة Electron مُبرمجة
+Run a scripted web session	شغّل جلسة ويب مُبرمجة
+Run a tool from the command palette (Ctrl/⌘ K), or pick a finding in the Evidence panel.	شغّل أداة من لوحة الأوامر (Ctrl/⌘ K)، أو اختر نتيجة في لوحة الأدلة.
+Run and watch a program	شغّل برنامجاً وراقبه
+Run to study	شغّل للدراسة
+Running	قيد التشغيل
+Running processes	العمليات العاملة
+Running programs	البرامج العاملة
+Running {id}	جارٍ تشغيل {id}
+Runs its tools without asking	يشغّل أدواته دون سؤال
+Runs the first-run steps next time.	يشغّل خطوات التشغيل الأول في المرة التالية.
+Rust program details	تفاصيل برنامج Rust
+SHA-256	SHA-256
+SQLite database contents	محتويات قاعدة بيانات SQLite
+Safety	الأمان
+Save	حفظ
+Save a picture	احفظ صورة
+Save a report	احفظ تقريراً
+Save an asset key	احفظ مفتاح أصول
+Save picture	حفظ الصورة
+Save settings	حفظ الإعدادات
+Save the key	احفظ المفتاح
+Save the picture	احفظ الصورة
+Save the report	احفظ التقرير
+Saved	محفوظ
+Saved in	محفوظ في
+Saves space: copies the program and code, and shares dependencies and media with the project. A shared file rewritten in place changes here too.	يوفّر المساحة: ينسخ البرنامج والشيفرة، ويتشارك الاعتماديات والوسائط مع المشروع. والملف المشترك المُعاد كتابته في مكانه يتغير هنا أيضاً.
+Say what you want	قل ما تريد
+Say what you want first.	قل ما تريد أولاً.
+Say what you want to make, or drop an app or file on the window to look inside it. Everything runs in Clean room mode unless you switch on Deep.	قل ما تريد صنعه، أو أسقط تطبيقاً أو ملفاً على النافذة للنظر داخله. كل شيء يعمل في وضع الغرفة النظيفة ما لم تفعّل العميق.
+Screenshot	لقطة شاشة
+Screenshot a page	خذ لقطة شاشة لصفحة
+Screenshots of how it should look. The builder opens each one and matches it.	لقطات شاشة للشكل المطلوب. يفتح الباني كل واحدة ويطابقها.
+Search for bytes	ابحث عن بايتات
+Search functions	ابحث في الدوال
+Search strings	ابحث في النصوص
+Sections	الأقسام
+Security research on software I'm allowed to examine.	بحث أمني في برامج يُسمح لي بفحصها.
+See how a page is built: its layout, styles, scripts and the requests it makes.	انظر كيف تُبنى الصفحة: تخطيطها وأنماطها وسكربتاتها والطلبات التي ترسلها.
+See how a program works: what it does, what it talks to, what's inside.	انظر كيف يعمل البرنامج: ماذا يفعل، ومع ماذا يتحادث، وماذا في داخله.
+See what a game packs and save its pictures as PNG files. Only for games you made, or whose owner lets you.	انظر ما تحزمه لعبة واحفظ صورها كملفات PNG. فقط للألعاب التي صنعتها أو سمح مالكها بذلك.
+See what a game packs, and save its pictures as PNG files.	انظر ما تحزمه لعبة، واحفظ صورها كملفات PNG.
+See what a stand-in was asked	انظر ما سُئله البديل
+See which servers an app talks to, and what it says.	انظر أي الخوادم يتحادث معها تطبيق، وماذا يقول.
+Seen it	رأيناه
+Seen it: read directly from the file, page or capture.	رأيناه: قُرئ مباشرة من الملف أو الصفحة أو اللقطة.
+Selected	محدد
+Selection	التحديد
+Send	إرسال
+Send (Enter)	إرسال (Enter)
+Send now	أرسِل الآن
+Server address	عنوان الخادم
+Session status	حالة الجلسة
+Set a project's asset budget	عيّن ميزانية أصول مشروع
+Set an AI's folder	عيّن مجلد ذكاء اصطناعي
+Set an AI's program	عيّن برنامج ذكاء اصطناعي
+Set model options	عيّن خيارات النموذج
+Set one up	أعِدَّ واحداً
+Set up a brain…	أعِدَّ عقلاً اصطناعياً…
+Set up a builder	أعِدَّ بانياً
+Settings	الإعدادات
+Show a build's activity	اعرض نشاط بناء
+Show a project	اعرض مشروعاً
+Show folder	إظهار المجلد
+Show me everything	أرني كل شيء
+Show me the proof	أرني البرهان
+Show model options	اعرض خيارات النموذج
+Show pinned builds	اعرض عمليات البناء المثبتة
+Show settings	اعرض الإعدادات
+Show the answer	اعرض الإجابة
+Show the console	اعرض وحدة التحكم
+Show the folder	اعرض المجلد
+Show the ones that are met	اعرض المستوفاة
+Show the sidebar	اعرض الشريط الجانبي
+Show the welcome again	اعرض الترحيب مجدداً
+Showing	معروض
+Sign in and add the Unity Editor	سجّل الدخول وأضف Unity Editor
+Sign in and install Unreal Engine	سجّل الدخول وثبّت Unreal Engine
+Simple	بسيط
+Simple: say what you want and it's handled for you. Advanced: every tool, the evidence and the logs.	البسيط: قل ما تريد فيُتكفّل به عنك. المتقدم: كل الأدوات والأدلة والسجلات.
+Since Craft Anything opened.	منذ فُتحت Craft Anything.
+Size	الحجم
+Skip setup	تخطَّ الإعداد
+Smart contract interface	واجهة العقد الذكي
+Software I made, bought, or have permission to examine.	برامج صنعتها أو اشتريتها أو لديّ إذن بفحصها.
+Solana program (sBPF)	برنامج Solana (sBPF)
+Some plugins couldn't be read:	تعذّرت قراءة بعض الملحقات:
+Something a program borrows from the operating system or a library, like "open a file".	شيء يستعيره برنامج من نظام التشغيل أو مكتبة، مثل «فتح ملف».
+Something a program or library offers for other programs to use.	شيء يقدمه برنامج أو مكتبة للبرامج الأخرى لاستخدامه.
+Source	المصدر
+Standard	قياسي
+Start	Start
+Start a Frida session	ابدأ جلسة Frida
+Start a GDB session	ابدأ جلسة GDB
