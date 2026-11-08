@@ -1,0 +1,47 @@
+# One-shot Windows snapshot builder for the Arabic RTL branch. Dispatch it by hand
+# (Actions -> windows-snapshot -> Run workflow) and it uploads a portable .zip plus,
+# when WiX cooperates, a real MSI to the given release tag. No signing secrets needed.
+name: windows-snapshot
+
+on:
+  workflow_dispatch:
+    inputs:
+      upload_tag:
+        description: 'Release tag to upload the artifacts to'
+        required: true
+        default: 'v0.4.0-ar1'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    env:
+      CRAFT_ANYTHING_VERSION: 0.4.0-ar1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Build
+        run: cargo build --release -p craft-anything -p craft-anything-cli
+      - name: Portable zip (always built)
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force dist/release | Out-Null
+          $st = 'dist/stage-portable'
+          New-Item -ItemType Directory -Force $st | Out-Null
+          Copy-Item target/release/craft-anything.exe, target/release/craft-anything-cli.exe, packaging/windows/portable.txt, LICENSE-MIT, LICENSE-APACHE, NOTICE $st/
+          Compress-Archive -Path $st/* -DestinationPath "dist/release/craft-anything-$env:CRAFT_ANYTHING_VERSION-windows-x64-portable.zip" -Force
+      - name: MSI via the repo script (best effort)
+        shell: pwsh
+        continue-on-error: true
+        run: |
+          dotnet tool install --global wix --version 5.0.2
+          wix extension add -g WixToolset.UI.wixext/5.0.2 WixToolset.Util.wixext/5.0.2
+          pwsh packaging/windows/package.ps1 -Arch x64 -SkipBuild
+      - name: Upload to the release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.upload_tag }}
+          files: dist/release/*
