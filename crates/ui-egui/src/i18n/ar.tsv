@@ -243,7 +243,7 @@ Choose a folder…	اختر مجلداً…
 Choose a function, string or section to see it here.	اختر دالة أو نصاً أو قسماً لتراه هنا.
 Choose an AI's job	اختر مهمة الذكاء الاصطناعي
 Choose the folder Ghidra is installed in.	اختر المجلد المثبت فيه Ghidra.
-Choose what the builder's questions get	اختر من يجيب عن أسئلة الباني
+Choose what the builder's questions get	اختر ما تحصل عليه أسئلة الباني
 Choose what to recreate, say what you want, then press Start.	اختر ما تريد إعادة إنشائه، وقل ما تريد، ثم اضغط Start.
 Choose…	اختر…
 Classes	أصناف
@@ -1350,3 +1350,115 @@ your files there are the app, edited in place	ملفاتك هناك هي الت�
 {backend}: {input_tokens} in / {output_tokens} out{cost}	{backend}: {input_tokens} إدخال / {output_tokens} إخراج{cost}
 {cost} (estimate)	{cost} (تقديري)
 {c} · {size}	{c} · {size}
+{done} of {all} done	أُنجز {done} من {all}.
+{gb} GB for bigger ones	{gb} GB للأكبر
+{gb} GB for programs up to {size}	{gb} GB للبرامج حتى {size}
+{gb} GB up to {size}	{gb} GB حتى {size}
+{held} of {n} requirements met	استُوفي {held} من {n} من المتطلبات.
+{id} · {summary}	{id} · {summary}
+{in} in, {out} out.	{in} إدخال، و{out} إخراج.
+{k}: {s}	{k}: {s}
+{lbl}  {}	{lbl}  {}
+{line}, and {n} more	{line}، و{n} أخرى
+{mb} MB	{mb} MB
+{name} builds what you make.	{name} يبني ما تصنعه.
+{name} builds what you make; answers come from {brain}.	{name} يبني ما تصنعه، والإجابات تأتي من {brain}.
+{name} can't be attached: a message takes pictures up to 20 MB.	تعذّر إرفاق {name}: فالرسالة تأخذ صوراً حتى 20 MB.
+{name} can't be attached: it isn't a PNG, JPEG, GIF or WebP picture.	تعذّر إرفاق {name}: فليست صورة PNG أو JPEG أو GIF أو WebP.
+{name} is ready	{name} جاهز
+{name} is ready.	{name} جاهز.
+{name} isn't available yet in this build.	{name} ليس متاحاً بعد في هذا البناء.
+{name} isn't on this computer yet.	{name} ليس على هذا الحاسوب بعد.
+{name} key	مفتاح {name}
+{n} actions done so far	أُنجز {n} من الإجراءات حتى الآن
+{n} days ago	قبل {n} من الأيام
+{n} h ago	قبل {n} من الساعات
+{n} item(s)	{n} من العناصر
+{n} job(s) running	{n} من المهام قيد التشغيل
+{n} min ago	قبل {n} من الدقائق
+{n} picture(s) to match.	{n} من الصور للمطابقة.
+{n} step(s) didn't work and were retried or skipped.	{n} من الخطوات لم تنجح فأُعيدت أو تُخطيت.
+{n} tokens	{n} من الرموز
+{n} · ${spent:.2} of ${budget:.2}	{n} · ${spent:.2} من ${budget:.2}
+{n} · ${spent} of ${budget}	{n} · ${spent} من ${budget}
+{scenes} {}	{scenes} {}
+{text}, {}	{text}, {}
+{title} hit a bug and stopped safely. ({what})	أصاب {title} خلل فتوقف بأمان. ({what})
+{title} {id}	{title} {id}
+{title} · {:.0}%	{title} · {:.0}%
+{tool} finished	انتهى {tool}
+{tool}: {}	{tool}: {}
+{what} panicked: {msg}	تعطل {what}: {msg}
+{} GB	{} GB
+{} isn't available yet in this build.	{} ليس متاحاً بعد في هذا البناء.
+{} item(s)	{} من العناصر
+{} key	مفتاح {}
+{} report.md	{} report.md
+{} {name}	{} {name}
+{} {said}	{} {said}
+{} {then}	{} {then}
+{} {v}	{} {v}
+{} {why}	{} {why}
+{} {} · {}{cost}	{} {} · {}{cost}
+{} · {mode}	{} · {mode}
+{}: {e}	{}: {e}
+{}: {some}{more}.	{}: {some}{more}.
+{}: {state}	{}: {state}
+{}h {:02}m	{}h {:02}m
+{}m {:02}s	{}m {:02}s
+— use the filter to find the rest.	— استخدم المرشّح لإيجاد الباقي.
+… {n} more	… {n} أخرى
+… {n} older	… {n} أقدم
+… {} more	… {} أخرى
+… {} older	… {} أقدم
+← Back	→ رجوع
+↑↓ to move · Enter to run · Esc to close	↑↓ للتنقل · Enter للتشغيل · Esc للإغلاق
+Providers	مقدّمو الخدمة
+Harnesses	الوكلاء
+Nothing of this kind was found.	لم يُعثر على شيء من هذا النوع.
+Another model	نموذج آخر
+Fold a project's plan	اطوِ خطة مشروع
+Fold the plan	اطوِ الخطة
+The Claude desktop app is installed, but building needs Claude Code, its separate command-line tool. Install Claude Code, sign in to it once in a terminal, then look again.	تطبيق Claude المكتبي مثبت، لكن البناء يحتاج Claude Code، أداة سطر الأوامر المنفصلة الخاصة به. ثبّت Claude Code وسجّل دخولك فيه مرة واحدة في طرفية، ثم انظر مجدداً.
+Unreal is here, but its bundled Clang C++ toolchain wasn't found.	Unreal موجود هنا، لكن سلسلة أدوات Clang C++‎ المرفقة به لم تُعثر.
+Add Unreal's Linux C++ toolchain	أضف سلسلة أدوات Linux C++‎ الخاصة بـ Unreal
+Run Engine/Build/BatchFiles/Linux/SetupToolchain.sh in the engine folder to install its bundled Clang toolchain. If you built Unreal from source, Setup.sh downloads the native toolchain instead. A system Clang may not match the engine's version.	شغّل Engine/Build/BatchFiles/Linux/SetupToolchain.sh في مجلد المحرك لتثبيت سلسلة أدوات Clang المرفقة به. وإذا بنيت Unreal من المصدر، فإن Setup.sh ينزّل سلسلة الأدوات الأصلية بدلاً منها. وقد لا يتوافق Clang النظام مع نسخة المحرك.
+Unreal is here, but it also needs Xcode.	Unreal موجود هنا، لكنه يحتاج Xcode أيضاً.
+About 60 GB, an Epic Games account, and Xcode.	حوالي 60 GB وحساب Epic Games وXcode.
+File	ملف
+View	العرض
+Window	نافذة
+Help	مساعدة
+Command palette	لوحة الأوامر
+Craft Anything on GitHub	Craft Anything على GitHub
+Report a problem…	أبلغ عن مشكلة…
+Quit Craft Anything	إنهاء Craft Anything
+About Craft Anything	حول Craft Anything
+Services	الخدمات
+Hide Craft Anything	إخفاء Craft Anything
+Hide others	إخفاء الآخرين
+Show all	إظهار الكل
+Close window	إغلاق النافذة
+Full screen	ملء الشاشة
+Zoom	تكبير
+Bring all to front	إحضار الكل إلى المقدمة
+Drag to give the plan more or less room; double-click to reset	اسحب لمنح الخطة مساحة أكبر أو أقل، وانقر نقراً مزدوجاً لإعادة الضبط
+Copy the message	انسخ الرسالة
+Choose what the builder's approvals get	اختر ما تحصل عليه موافقات الباني
+Reading the web	قراءة الويب
+Other commands	أوامر أخرى
+Files outside the project	ملفات خارج المشروع
+Pushing and publishing	الدفع والنشر
+Deleting outside the project	الحذف خارج المشروع
+System changes	تغييرات النظام
+Other tools	أدوات أخرى
+Allow	السماح
+Ask	السؤال
+Refuse	الرفض
+After /approvals, type a kind and allow, ask, refuse or default, like /approvals publish ask. Kinds: {kinds}.	بعد /approvals، اكتب نوعاً و allow أو ask أو refuse أو default، مثل /approvals publish ask. الأنواع: {kinds}.
+There's no kind called {name}. Kinds: {kinds}.	لا يوجد نوع باسم {name}. الأنواع: {kinds}.
+Approvals	الموافقات
+In this project, {kind}: {choice}.	في هذا المشروع، {kind}: {choice}.
+Couldn't change the approvals:	تعذّر تغيير الموافقات:
+What the builder may do without asking you, in this project.	ما يجوز للباني فعله دون سؤالك في هذا المشروع.
+Default follows Auto mode: with it on, what can be undone goes ahead and the rest is refused; with it off, the builder asks.	يتبع الافتراضي الوضع التلقائي: عند تشغيله يمضي ما يمكن التراجع عنه ويُرفض الباقي، وعند إيقافه يسأل الباني.
