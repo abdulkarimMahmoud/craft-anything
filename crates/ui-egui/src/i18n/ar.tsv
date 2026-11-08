@@ -1050,3 +1050,153 @@ Standard	قياسي
 Start	Start
 Start a Frida session	ابدأ جلسة Frida
 Start a GDB session	ابدأ جلسة GDB
+Start a Rizin debug session	ابدأ جلسة تنقيح Rizin
+Start a rebuild	ابدأ إعادة بناء
+Start a stand-in backend	ابدأ خلفية بديلة
+Start an activity	ابدأ نشاطاً
+Start building	ابدأ البناء
+Start from them	ابدأ منها
+Start it	ابدأه
+Start with Simple mode; you can set up AI later in Settings.	ابدأ بالوضع البسيط، ويمكنك إعداد الذكاء الاصطناعي لاحقاً في الإعدادات.
+Starting…	جارٍ البدء…
+Starting… it opens in its own window.	جارٍ البدء… يُفتح في نافذته الخاصة.
+Still working. Bigger jobs can take a few minutes.	لا يزال يعمل. قد تستغرق المهام الكبيرة بضع دقائق.
+Stop	إيقاف
+Stop a pinned build	أوقِف بناءً مثبتاً
+Stop a rebuild	أوقِف إعادة بناء
+Stop a stand-in backend	أوقِف خلفية بديلة
+Stop generated assets	أوقِف الأصول المولّدة
+Stop listing {folder}	توقف عن إدراج {folder}
+Stopped here	توقف هنا
+Stops the current step and sends your notes straight away.	يوقِف الخطوة الحالية ويرسل ملاحظاتك فوراً.
+Strings	النصوص
+Studio	Studio
+Studio (dark)	Studio (داكن)
+Studio Light	Studio فاتح
+Study	دراسة
+Study apps by running them	ادرس التطبيقات بتشغيلها
+Studying	قيد الدراسة
+Studying software to understand it.	دراسة البرامج لفهمها.
+Summarise what changed	لخّص ما تغير
+Swift types	أنواع Swift
+Switch Beginner / Experienced	بدّل بين المبتدئ والخبير
+Switch Clean room / Deep	بدّل بين الغرفة النظيفة والعميق
+Switch light / dark theme	بدّل بين المظهر الفاتح والداكن
+Switch target	بدّل الهدف
+System	النظام
+System services	خدمات النظام
+Take a texture out of an Unreal game	استخرج خامة من لعبة Unreal
+Take an asset out of a Unity game	استخرج أصلاً من لعبة Unity
+Take back a note	استعِد ملاحظة
+Take back: puts it in the box again	استعادة: يعيدها إلى الصندوق
+Take files out of an Unreal pak	استخرج الملفات من حزمة Unreal pak
+Take out packed files	استخرج الملفات المحزّمة
+Target	الهدف
+Targets	الأهداف
+That folder already has {names}, where Craft Anything keeps its own files. Pick another folder, or move those out first.	يوجد في ذلك المجلد بالفعل {names}، حيث تحفظ Craft Anything ملفاتها الخاصة. اختر مجلداً آخر أو انقل تلك أولاً.
+That folder is already a project, so it's open now.	ذلك المجلد مشروع بالفعل، لذا فهو مفتوح الآن.
+The Rust toolchain (rustup.rs).	سلسلة أدوات Rust ‏(rustup.rs).
+The builder answers its own questions and says what it chose ("I decided: …"), so you can change it.	يجيب الباني عن أسئلته بنفسه ويخبرك بما اختاره («قررت: …») لتتمكن من تغييره.
+The builder makes the game's 3D models and textures from descriptions of original designs, paid from your fal.ai account. Models are low-poly so the game runs fast. A textured model costs {model} and a picture {picture}. Each project has a {budget} budget, and you're asked before it goes over. The key is kept in your system keychain.	يصنع الباني النماذج ثلاثية الأبعاد للعبة وخاماتها من أوصاف تصاميم أصلية، مدفوعة من حسابك في fal.ai. النماذج منخفضة المضلعات لتعمل اللعبة بسرعة. تكلفة النموذج المُخام {model} والصورة {picture}، ولكل مشروع ميزانية {budget}، وتُسأل قبل تجاوزها. يُحفظ المفتاح في سلسلة مفاتيح نظامك.
+The builder reads them (code, notes, pictures) and builds the app in a new app folder beside them. Your files stay as they are.	يقرؤها الباني (الشيفرة والملاحظات والصور) ويبني التطبيق في مجلد تطبيق جديد بجانبها، وتبقى ملفاتك كما هي.
+The builder will decide its questions and tell you what it chose.	سيبتّ الباني في أسئلته ويخبرك بما اختاره.
+The builder works on these files directly and keeps what works. Craft Anything adds a few records of its own beside them.	يعمل الباني على هذه الملفات مباشرة ويُبقي ما يصلح، وتضيف Craft Anything بضعة سجلات خاصة بها بجانبها.
+The builder's questions	أسئلة الباني
+The builder's questions come to you as cards, and it waits for your answer.	تأتيك أسئلة الباني كبطاقات، وينتظر إجابتك.
+The builder's questions will come to you.	ستصلك أسئلة الباني.
+The built-in engines still show you everything they find.	لا تزال المحركات المدمجة تُريك كل ما تجده.
+The clipboard can't be read:	تعذّرت قراءة الحافظة:
+The code	الشيفرة
+The code format Android apps use.	صيغة الشيفرة التي تستخدمها تطبيقات Android.
+The coding agent's estimate at API prices, not your bill. A subscription isn't charged this.	تقدير وكيل البرمجة بأسعار API، وليس فاتورتك. فالاشتراك لا يُحاسَب بهذا.
+The download keeps going in the background.	يستمر التنزيل في الخلفية.
+The first instruction a program runs when it starts.	أول تعليمة ينفذها البرنامج عند بدئه.
+The full toolset, evidence and logs.	كامل مجموعة الأدوات والأدلة والسجلات.
+The installer is open. Follow its steps, then come back here.	المثبّت مفتوح. اتبع خطواته ثم عُد إلى هنا.
+The lowest-level human-readable form of machine code: one small instruction per line.	أدنى صورة مقروءة للبشر من شيفرة الآلة: تعليمة صغيرة واحدة في كل سطر.
+The names were removed from the program before it was shipped, so we have to work them out.	أُزيلت الأسماء من البرنامج قبل شحنه، فعلينا استنتاجها.
+The packed contents of an Electron app (a website inside a desktop app)	المحتويات المحزّمة لتطبيق Electron (موقع ويب داخل تطبيق سطح مكتب)
+The pasted picture wasn't attached: another screen was opened meanwhile.	الصورة الملصقة لم تُرفق: فُتحت شاشة أخرى في الأثناء.
+The picture on the clipboard is too large.	الصورة في الحافظة كبيرة جداً.
+The program's machine code written out as one tiny instruction per line.	شيفرة آلة البرنامج مكتوبة كتعليمة صغيرة واحدة في كل سطر.
+The project's name and round	اسم المشروع وجولته
+The raw result	النتيجة الخام
+The smallest unit of data in a file: a number from 0 to 255.	أصغر وحدة بيانات في ملف: رقم من 0 إلى 255.
+The smallest units of data in a file: numbers from 0 to 255.	أصغر وحدات البيانات في ملف: أرقام من 0 إلى 255.
+The {name} view isn't available yet in this build.	عرض {name} غير متاح بعد في هذا البناء.
+The {} view isn't available yet in this build.	العرض {} غير متاح بعد في هذا البناء.
+Theme	المظهر
+There's no /{name} command. You can use {commands}.	لا يوجد أمر /{name}. يمكنك استخدام {commands}.
+There's no AI brain set up yet, so here's what the built-in engines found:	لم يُعدّ أي عقل اصطناعي بعد، فإليك ما وجدته المحركات المدمجة:
+There's no picture on the clipboard to paste.	لا توجد صورة في الحافظة للصقها.
+They're my app: edit them in place	إنها تطبيقي: حرّرها في مكانها
+Things a program borrows from the operating system or libraries, like "open a file" or "draw a window".	أشياء يستعيرها برنامج من نظام التشغيل أو المكتبات، مثل «فتح ملف» أو «رسم نافذة».
+Things a program or library offers for other programs to use.	أشياء يقدمها برنامج أو مكتبة للبرامج الأخرى لاستخدامها.
+Things we couldn't establish yet are listed here, with what would settle them.	تُسرد هنا الأشياء التي لم نثبتها بعد، مع ما سيحسمها.
+This answer won't be there after a restart:	لن تكون هذه الإجابة موجودة بعد إعادة التشغيل:
+This build stopped part-way	توقف هذا البناء في منتصفه
+This can't be undone.	لا يمكن التراجع عن هذا.
+This folder already has files	يوجد في هذا المجلد ملفات بالفعل
+This is a big one. You can leave this open and come back later.	هذا كبير. يمكنك تركه مفتوحاً والعودة لاحقاً.
+This is outside what the builder may do on its own. Nothing happens until you say so.	هذا خارج ما يجوز للباني فعله وحده. لن يحدث شيء حتى تقول ذلك.
+This keeps going in the background, and each download is checked against its publisher's checksum before it's used.	يستمر هذا في الخلفية، ويُتحقق من كل تنزيل بمجموع ناشره قبل استخدامه.
+This project is waiting its turn. Send your message once it starts.	ينتظر هذا المشروع دوره. أرسل رسالتك حالما يبدأ.
+This runs code from the target or changes a device. Clicking Run is your OK.	هذا يشغّل شيفرة من الهدف أو يغيّر جهازاً. النقر على «تشغيل» يعني موافقتك.
+This runs code from the target or changes a device. Nothing runs until you say so.	هذا يشغّل شيفرة من الهدف أو يغيّر جهازاً. لن يُشغَّل شيء حتى تقول ذلك.
+This tool takes no settings.	هذه الأداة لا تأخذ إعدادات.
+This updates by itself when it's done.	يُحدَّث هذا تلقائياً عند انتهائه.
+This view arrives with the next engines. The Hex and Result views work today.	يصل هذا العرض مع المحركات التالية. ويعمل عرضا الست عشري والنتيجة اليوم.
+Those aren't pictures we can use (PNG, JPEG, WebP or GIF, up to 20 MB).	تلك ليست صوراً يمكننا استخدامها (PNG أو JPEG أو WebP أو GIF، حتى 20 MB).
+Time spent	الوقت المنقضي
+Tip: press Ctrl/⌘ K to run any tool.	تلميح: اضغط Ctrl/⌘ K لتشغيل أي أداة.
+Tokens	الرموز
+Tools may now run code from what you open without asking. Turn this back on unless you're sure.	يجوز للأدوات الآن تشغيل شيفرة مما تفتحه دون سؤال. أعِد تفعيل هذا ما لم تكن متأكداً.
+Tools that run code from a target or change a phone always ask first, unless you allowed them for a project.	الأدوات التي تشغّل شيفرة من هدف أو تغيّر هاتفاً تسأل دائماً أولاً، ما لم تسمح لها في مشروع.
+Trace a UI action	تتبّع إجراء واجهة
+Trace a feature	تتبّع ميزة
+Try again	حاوِل مجدداً
+Try asking	جرّب أن تسأل
+Try it out, then ask below for any changes.	جرّبه، ثم اطلب أدناه أي تغييرات.
+Turn a program's machine code back into something that reads like source code. It's a reconstruction, not the original.	أعِد شيفرة آلة البرنامج إلى ما يُقرأ كشيفرة مصدر. إنه إعادة بناء وليس الأصل.
+Turn off	إيقاف
+Turn off an AI	أوقِف ذكاءً اصطناعياً
+Turn on	تشغيل
+Turn on Deep mode	شغّل الوضع العميق
+Turn on an AI	شغّل ذكاءً اصطناعياً
+Turning a plugin on or off takes effect from the next start.	يسري تشغيل الملحق أو إيقافه بدءاً من التشغيل التالي.
+Type a command or tool…	اكتب أمراً أو أداة…
+Type the website's address:	اكتب عنوان موقع الويب:
+Type your question after /btw.	اكتب سؤالك بعد /btw.
+Unity assets	أصول Unity
+Unity bundle	حزمة Unity
+Unity's own installer. It only opens if Unity's signature checks out.	مثبّت Unity الرسمي، ولا يُفتح إلا إذا تحقق توقيع Unity.
+Unknown	مجهول
+Unknown: we couldn't establish this yet.	مجهول: لم نثبته بعد.
+Unknowns	المجاهيل
+Unload a Frida script	ألغِ تحميل سكربت Frida
+Unreal IoStore	Unreal IoStore
+Unreal builds games with Apple's Xcode, free in the App Store.	يبني Unreal الألعاب باستخدام Xcode من Apple، المجاني في App Store.
+Unreal is here, but it also needs Visual Studio's C++ tools.	Unreal موجود هنا، لكنه يحتاج أيضاً أدوات C++ من Visual Studio.
+Unreal pak	حزمة Unreal pak
+Update a finding	حدّث نتيجة
+Update a hypothesis	حدّث فرضية
+Update an open question	حدّث سؤالاً مفتوحاً
+Update the checklist	حدّث قائمة التحقق
+Update the plan	حدّث الخطة
+Use	استخدام
+Use an API key…	استخدِم مفتاح API…
+Use as a goal	استخدِمه كهدف
+Use the projects folder	استخدِم مجلد المشاريع
+Use this	استخدِم هذا
+Use {name}	استخدِم {name}
+Value flow	تدفق القيم
+Version	النسخة
+Waiting	ينتظر
+Waiting for another build to finish: this one starts next.	في انتظار انتهاء بناء آخر: يبدأ هذا تالياً.
+Waiting for other builds to finish: {n} in line.	في انتظار انتهاء عمليات بناء أخرى: {n} في الطابور.
+Waiting: the builder reads it at its next step. Up arrow to edit.	في الانتظار: يقرؤه الباني في خطوته التالية. السهم العلوي للتحرير.
+Waiting: the builder reads these at its next step. Up arrow to edit the last.	في الانتظار: يقرؤها الباني في خطوته التالية. السهم العلوي لتحرير الأخير.
+Want answers in plain words?	هل تريد إجابات بكلمات بسيطة؟
+Watch a Mac app's calls	راقب استدعاءات تطبيق Mac
+Watch a page over time	راقب صفحة عبر الزمن
+We didn't find an AI on this computer yet	لم نعثر على ذكاء اصطناعي في هذا الحاسوب بعد
