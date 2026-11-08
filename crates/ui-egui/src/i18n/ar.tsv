@@ -600,3 +600,153 @@ That folder is empty. Pick the folder your project's files are in.	ذلك الم
 Keep going without asking	واصِل دون سؤال
 Keep it	احتفظ به
 Keep it in the sidebar to open any time, whatever later builds change.	احتفظ به في الشريط الجانبي لتفتحه في أي وقت، مهما غيّرت عمليات البناء اللاحقة.
+Keep the build as it is and stop offering to carry on.	أبقِ البناء كما هو وتوقف عن عرض المتابعة.
+Keep this version in the sidebar to open any time.	احتفظ بهذه النسخة في الشريط الجانبي لتفتحها في أي وقت.
+Keeps this version exactly as it is now. Later builds can't change or break it, and anything it saves stays with the copy.	تُبقي هذه النسخة كما هي الآن تماماً، فلا تستطيع عمليات البناء اللاحقة تغييرها أو كسرها، ويبقى كل ما تحفظه مع النسخة.
+Key saved	حُفظ المفتاح
+Keyed archive	أرشيف Keyed
+Kind	النوع
+Language	اللغة
+Last: {what}	الأخير: {what}
+Launch an app	شغّل تطبيقاً
+Leave a few GB for the rest of your computer.	اترك بضعة GB لبقية حاسوبك.
+Leave a path empty to use the managed install. We never need environment variables.	اترك المسار فارغاً لاستخدام التثبيت المُدار، فنحن لا نحتاج متغيرات البيئة أبداً.
+Leave empty to use the one Craft Anything sets up.	اتركه فارغاً لاستخدام ما تُعده Craft Anything.
+Let a project generate assets	اسمح لمشروع بتوليد الأصول
+Let's go	هيا بنا
+Lets the builder make realistic 3D models and textures for games, {model} a model, with a {budget} budget per project.	يتيح للباني صنع نماذج ثلاثية الأبعاد وخامات واقعية للألعاب، بتكلفة {model} للنموذج، وبميزانية {budget} لكل مشروع.
+Library resolution	حل المكتبات
+Light copy: shares big files with the project	النسخة الخفيفة: تتشارك الملفات الكبيرة مع المشروع
+Likeness	التشابه
+Line up code and behaviour	طابق الشيفرة مع السلوك
+Line up source with the bundle	طابق المصدر مع الحزمة
+List Electron pages	اعرض صفحات Electron
+List JEB units	اعرض وحدات JEB
+List JS runtime targets	اعرض أهداف تشغيل JS
+List a Unity assets file	اعرض ملف أصول Unity
+List a Unity bundle	اعرض حزمة Unity
+List a game's archives	اعرض أرشيفات لعبة
+List a node's event listeners	اعرض مستمعي أحداث عقدة
+List an AI's models	اعرض نماذج ذكاء اصطناعي
+List an Unreal IoStore container	اعرض حاوية Unreal IoStore
+List an Unreal pak	اعرض حزمة Unreal pak
+List bookmarks	اعرض العلامات المرجعية
+List browser pages	اعرض صفحات المتصفح
+List documents	اعرض المستندات
+List engines	اعرض المحركات
+List functions	اعرض الدوال
+List names	اعرض الأسماء
+List open targets	اعرض الأهداف المفتوحة
+List pinned builds	اعرض عمليات البناء المثبتة
+List plugins	اعرض الملحقات
+List project files	اعرض ملفات المشروع
+List projects	اعرض المشاريع
+List questions about a build	اعرض الأسئلة عن بناء
+List radio decoders	اعرض مفككات الراديو
+List segments	اعرض المقاطع
+List shared Cutter sessions	اعرض جلسات Cutter المشتركة
+List strings	اعرض النصوص
+Live: the project's latest build	المباشر: أحدث بناء للمشروع
+Load a picture	حمّل صورة
+Load a screenshot	حمّل لقطة شاشة
+Load model options	حمّل خيارات النموذج
+Loading…	جارٍ التحميل…
+Log	السجل
+Look again	انظر مجدداً
+Look at a game	انظر إلى لعبة
+Look at a website	انظر إلى موقع ويب
+Look at the game	انظر إلى اللعبة
+Look for AI on this computer	ابحث عن ذكاء اصطناعي على هذا الحاسوب
+Look for game engines	ابحث عن محركات ألعاب
+Look for projects again	ابحث عن المشاريع مجدداً
+Looked at everything	تم فحص كل شيء
+Looked at part of it	تم فحص جزء منه
+Looked at {a} of {b}	تم فحص {a} من {b}
+Looking for AI on this computer…	جارٍ البحث عن ذكاء اصطناعي على هذا الحاسوب…
+Looking for game engines on this computer…	جارٍ البحث عن محركات ألعاب على هذا الحاسوب…
+Looking for the game's files…	جارٍ البحث عن ملفات اللعبة…
+Looking inside needs Deep mode	يتطلب النظر في الداخل الوضع العميق
+Looking inside software you own or are allowed to examine is normal and often protected (learning, compatibility, security). Saying why helps you keep to it; it stays on this computer.	النظر داخل برامج تملكها أو يُسمح لك بفحصها أمر طبيعي ومحمي غالباً (للتعلّم أو التوافق أو الأمان). ذكر السبب يعينك على الالتزام به، وهو يبقى على هذا الحاسوب.
+Looking on this computer…	جارٍ البحث على هذا الحاسوب…
+Low	منخفض
+Mach-O structure	بنية Mach-O
+Made a copy: {name}	صُنعت نسخة: {name}
+Made with fal.ai and paid from your account: {model} a 3D model, {picture} a picture. Off, the game is built without them.	تُصنع باستخدام fal.ai وتُدفع من حسابك: {model} للنموذج ثلاثي الأبعاد و{picture} للصورة، وعند إيقافها تُبنى اللعبة بدونهما.
+Made with {engine}	صُنع باستخدام {engine}
+Made without looking inside the original.	صُنع دون النظر داخل الأصل.
+Make a game that plays like this	اصنع لعبة تُلعب مثل هذه
+Make a simpler version of this game	اصنع نسخة أبسط من هذه اللعبة
+Make my own version	اصنع نسختي الخاصة
+Make my own version of this app	اصنع نسختي الخاصة من هذا التطبيق
+Making my own thing talk to something else.	أجعل شيئي الخاص يتحادث مع شيء آخر.
+Many source files packed into one big file so an app or web page loads faster.	ملفات مصدرية كثيرة حُزمت في ملف واحد كبير لتسريع تحميل التطبيق أو صفحة الويب.
+Map a HarmonyOS app	ارسم خريطة تطبيق HarmonyOS
+Map a page's module graph	ارسم مخطط وحدات صفحة
+Map an Android app	ارسم خريطة تطبيق Android
+Map an Apple app	ارسم خريطة تطبيق Apple
+Markdown	Markdown
+Match functions between two builds	طابق الدوال بين بناءين
+Match my pictures	طابق صوري
+Match static code to what ran	طابق الشيفرة الساكنة مع ما تم تشغيله
+Maximise	تكبير
+May I run "{title}"?	هل يجوز لي تشغيل «{title}»؟
+May I {action}?	هل يجوز لي {action}؟
+Measure which code ran	قِس الشيفرة التي تم تشغيلها
+Medium	متوسط
+Memory for Ghidra	ذاكرة Ghidra
+Minimise	تصغير
+Mode	الوضع
+Model	النموذج
+Model options	خيارات النموذج
+Model: {model}	النموذج: {model}
+Modules	الوحدات
+More detail	مزيد من التفاصيل
+More makes a big program's first look faster.	المزيد يجعل النظرة الأولى على برنامج كبير أسرع.
+More memory makes Ghidra's first look at a big program faster; leave some for the rest of the computer. Used from the next time Ghidra starts.	المزيد من الذاكرة يجعل نظرة Ghidra الأولى على برنامج كبير أسرع، فاترك بعضها لبقية الحاسوب. تُستخدم بدءاً من تشغيل Ghidra التالي.
+Name (optional)	الاسم (اختياري)
+Name an address	سمِّ عنواناً
+Name at address	الاسم عند العنوان
+Name many addresses	سمِّ عناوين كثيرة
+Names the program's author gave to functions or variables that survived in the file.	أسماء أطلقها مؤلف البرنامج على دوال أو متغيرات وبقيت في الملف.
+Needs a fal.ai key. Until then the game is built without them.	يلزم مفتاح fal.ai، وحتى ذلك الحين تُبنى اللعبة بدونهما.
+Needs you	يحتاجك
+Network	الشبكة
+New	جديد
+New project	مشروع جديد
+New projects go in	المشاريع الجديدة توضع في
+Next address	العنوان التالي
+No AI (built-in engines only)	لا ذكاء اصطناعي (المحركات المدمجة فقط)
+No AI brain is set up, so answers come straight from the built-in engines. Add one any time for plain-words explanations.	لم يُعدّ أي عقل اصطناعي، لذا تأتي الإجابات مباشرة من المحركات المدمجة. أضف واحداً في أي وقت للحصول على شروح بكلمات بسيطة.
+No AI for now	لا ذكاء اصطناعي الآن
+No AI is set up yet. The built-in engines still work; an AI adds plain-words answers.	لم يُعدّ أي ذكاء اصطناعي بعد. لا تزال المحركات المدمجة تعمل، ويضيف الذكاء الاصطناعي إجابات بكلمات بسيطة.
+No Unreal or Unity archives were found. Pick the folder the game is installed in.	لم يُعثر على أرشيفات Unreal أو Unity. اختر المجلد المثبتة فيه اللعبة.
+No coding agent was found on this computer yet.	لم يُعثر على وكيل برمجة في هذا الحاسوب بعد.
+No evidence yet	لا أدلة بعد
+No game files here	لا ملفات ألعاب هنا
+No jobs yet. Long tasks show their progress here, and you can cancel them.	لا مهام بعد. تعرض المهام الطويلة تقدمها هنا ويمكنك إلغاءها.
+No matches	لا مطابقات
+No open questions	لا أسئلة مفتوحة
+No plugins yet.	لا ملحقات بعد.
+No result yet	لا نتيجة بعد
+No targets	لا أهداف
+No tool named {tool}	لا توجد أداة باسم {tool}
+None	لا شيء
+None yet. Screenshots help it look right.	لا شيء بعد. لقطات الشاشة تساعده على مطابقة الشكل.
+Not allowed	غير مسموح
+Not allowed.	غير مسموح.
+Not available yet	غير متاح بعد
+Not compared yet: {what}	لم يُقارَن بعد: {what}
+Not installed	غير مثبت
+Not now	ليس الآن
+Nothing allowed yet.	لم يُسمح بشيء بعد.
+Nothing can build yet: install Claude Code (and sign in to it once), or add an AI with an API key below.	لا شيء يستطيع البناء بعد: ثبّت Claude Code (وسجّل دخولك فيه مرة واحدة)، أو أضف أدناه ذكاء اصطناعياً مع مفتاح API.
+Nothing found	لم يُعثر على شيء
+Nothing found yet. We look for API keys, local model servers (Ollama, LM Studio) and agent apps you already have. One on another port or computer can be added by its address below.	لم يُعثر على شيء بعد. نبحث عن مفاتيح API وخوادم النماذج المحلية (Ollama وLM Studio) وتطبيقات الوكلاء التي لديك. ويمكن إضافة ما هو على منفذ أو حاسوب آخر عبر عنوانه أدناه.
+Nothing inside it is read.	لا يُقرأ أي شيء من داخله.
+Nothing inside it is read; Craft Anything works from what you can see. Your version gets its own art.	لا يُقرأ أي شيء من داخله، بل تعمل Craft Anything انطلاقاً مما تراه، وتحصل نسختك على رسومها الخاصة.
+Nothing inside the original is read: not its code, files or page source. Craft Anything works from what you can see: pictures, the page as a visitor sees it, and watching it run.	لا يُقرأ أي شيء من داخل الأصل: لا شيفرته ولا ملفاته ولا مصدر صفحاته. تعمل Craft Anything انطلاقاً مما تراه: الصور، والصفحة كما يراها الزائر، ومراقبة تشغيله.
+Nothing made yet. What you make shows up here.	لم يُصنع شيء بعد. ما تصنعه يظهر هنا.
+Nothing matches the filter.	لا شيء يطابق المرشّح.
+Nothing matches.	لا شيء يطابق.
+Nothing new for {time}. Long steps can be quiet; if it stays like this, press Pause.	لا جديد منذ {time}. قد تصمت الخطوات الطويلة، فإن بقي الحال هكذا فاضغط «إيقاف مؤقت».
+Nothing open	لا شيء مفتوح
