@@ -750,3 +750,153 @@ Nothing matches the filter.	لا شيء يطابق المرشّح.
 Nothing matches.	لا شيء يطابق.
 Nothing new for {time}. Long steps can be quiet; if it stays like this, press Pause.	لا جديد منذ {time}. قد تصمت الخطوات الطويلة، فإن بقي الحال هكذا فاضغط «إيقاف مؤقت».
 Nothing open	لا شيء مفتوح
+Nothing open yet	لا شيء مفتوح بعد
+Nothing selected	لا شيء محدد
+Nothing to show	لا شيء للعرض
+Nothing uses it until it's on again; it keeps its key.	لا شيء يستخدمه حتى يُشغَّل مجدداً، ويحتفظ بمفتاحه.
+Nothing — start fresh	لا شيء: ابدأ من جديد
+Now	الآن
+Now: {what} ({time})	الآن: {what} ({time})
+Objective-C classes	أصناف Objective-C
+Objective-C protocols	بروتوكولات Objective-C
+Observe a JS runtime	راقب بيئة تشغيل JS
+Of this, {cost} was charged to an API key.	من ذلك، خُصم {cost} على مفتاح API.
+Off	إيقاف
+Ollama or LM Studio on another computer, or any service that speaks the OpenAI API.	Ollama أو LM Studio على حاسوب آخر، أو أي خدمة تتحدث API الخاصة بـ OpenAI.
+On	تشغيل
+One line, in plain words. It stays on this computer and is never sent anywhere.	سطر واحد بكلمات بسيطة. يبقى على هذا الحاسوب ولا يُرسل إلى أي مكان.
+One-shot instrumentation	تجهيز لمرة واحدة
+Only for Ghidra. Empty = managed.	لـ Ghidra فقط. فارغاً يعني مُداراً.
+Only its name changes; its folder stays where it is.	يتغير اسمه فقط، ويبقى مجلده في مكانه.
+Only take pictures out of games you made, or whose owner allows it. A game's art is usually protected by copyright and by the game's licence.	لا تأخذ صوراً إلا من ألعاب صنعتها أو سمح مالكها بذلك، ففن اللعبة محمي عادة بحقوق النشر ورخصة اللعبة.
+Only the pin goes; the project and its app stay as they are.	يذهب التثبيت وحده، ويبقى المشروع وتطبيقه كما هما.
+Open	فتح
+Open "Show me the proof" to see the exact code we found, and how sure we are.	افتح «أرني البرهان» لترى الشيفرة الدقيقة التي وجدناها ومدى تأكدنا.
+Open Ghidra's release page	افتح صفحة إصدارات Ghidra
+Open Unity Hub	افتح Unity Hub
+Open a calculator app and find the code behind one button.	افتح تطبيق آلة حاسبة وجِد الشيفرة وراء أحد الأزرار.
+Open a file in JEB	افتح ملفاً في JEB
+Open a file or drop one here.	افتح ملفاً أو أسقط واحداً هنا.
+Open a file…	افتح ملفاً…
+Open a folder or app bundle	افتح مجلداً أو حزمة تطبيق
+Open a folder or app bundle…	افتح مجلداً أو حزمة تطبيق…
+Open a folder…	افتح مجلداً…
+Open a pinned build	افتح بناءً مثبتاً
+Open a project's folder	افتح مجلد مشروع
+Open a website	افتح موقع ويب
+Open an app or file	افتح تطبيقاً أو ملفاً
+Open an engine's app	افتح تطبيق محرك
+Open another copy	افتح نسخة أخرى
+Open another target	افتح هدفاً آخر
+Open files, folders or apps; you can have several open at once.	افتح الملفات والمجلدات والتطبيقات، ويمكنك فتح عدة منها معاً.
+Open folder	فتح المجلد
+Open in the workbench	افتح في منضدة العمل
+Open it	افتحه
+Open log	فتح السجل
+Open one of the files inside it to see its bytes.	افتح أحد الملفات داخله لترى بايتاته.
+Open questions	أسئلة مفتوحة
+Open something	افتح شيئاً
+Open something first: drop a file or app here, or choose "Just look inside" on New project. Then I can look inside it.	افتح شيئاً أولاً: أسقط ملفاً أو تطبيقاً هنا، أو اختر «انظر داخله فحسب» في «مشروع جديد»، وحينها أستطيع النظر داخله.
+Open something to start	افتح شيئاً للبدء
+Open the Epic Games Launcher	افتح مشغّل Epic Games
+Open the app	افتح التطبيق
+Open the app you're curious about.	افتح التطبيق الذي يثير فضولك.
+Open the download page	افتح صفحة التنزيل
+Open the folder	افتح المجلد
+Open the installer app	افتح تطبيق المثبّت
+Open the website	افتح موقع الويب
+Open {name}	افتح {name}
+Opened {name}	فُتح {name}
+Opened {name}. Taking a first look…	فُتح {name}، وجارٍ إلقاء نظرة أولى…
+Opened {}	فُتح {}
+Opening {name}…	جارٍ فتح {name}…
+Open…	فتح…
+Or type your answer…	أو اكتب إجابتك…
+Original	الأصل
+Other pages of a website studied and compared besides the one you gave.	صفحات أخرى من موقع الويب دُرست وقُورنت غير التي أعطيتها.
+Overview	نظرة عامة
+Packet capture overview	نظرة عامة على التقاط الحزم
+Packet fields	حقول الحزم
+Page through evidence	تصفّح الأدلة صفحة صفحة
+Part of the app got stuck, so it was stopped and the rest carried on. Your work is kept.	علِق جزء من التطبيق فأُوقف وتابع الباقي. عملك محفوظ.
+Part of the app is stuck. Restarting clears it, and your work is kept.	جزء من التطبيق عالق. إعادة التشغيل تُصلحه وعملك محفوظ.
+Part of this screen hit a bug and was skipped. Your work is safe.	أصاب جزءاً من هذه الشاشة خلل فتم تخطيه. عملك في أمان.
+Paste pictures	الصق الصور
+Paste your API key (kept in your system keychain)	الصق مفتاح API الخاص بك (يُحفظ في سلسلة مفاتيح نظامك)
+Paste your {name} key	الصق مفتاح {name} الخاص بك
+Path	المسار
+Pause	إيقاف مؤقت
+Pausing…	جارٍ الإيقاف مؤقتاً…
+Pause the build first, then delete the project.	أوقِف البناء مؤقتاً أولاً ثم احذف المشروع.
+Pause the build first.	أوقِف البناء مؤقتاً أولاً.
+Paused	موقوف مؤقتاً
+Paused.	موقوف مؤقتاً.
+Pick a folder with projects in it	اختر مجلداً فيه مشاريع
+Pick a game's folder	اختر مجلد لعبة
+Pick another folder…	اختر مجلداً آخر…
+Pick another game	اختر لعبة أخرى
+Pick something on the left	اختر شيئاً على اليمين
+Pick the app or game folder	اختر مجلد التطبيق أو اللعبة
+Pick the app, game or file to rebuild	اختر التطبيق أو اللعبة أو الملف لإعادة بنائه
+Pick the folder for this project	اختر مجلد هذا المشروع
+Pick the game's folder	اختر مجلد اللعبة
+Picture a program's window	صوّر نافذة برنامج
+Picture model	نموذج الصور
+Pictures	الصور
+Pictures can't be saved from IoStore containers yet; you can see what's inside.	لا يمكن حفظ الصور من حاويات IoStore بعد، لكن يمكنك رؤية ما داخلها.
+Pictures of the original	صور من الأصل
+Pieces of text stored inside a program, like messages, web addresses or file names.	قطع نصية مخزنة داخل برنامج، مثل الرسائل وعناوين الويب وأسماء الملفات.
+Pin a build	ثبّت بناءً
+Pin a project's build	ثبّت بناء مشروع
+Pin it	ثبّته
+Pin name	اسم التثبيت
+Pin removed.	أُزيل التثبيت.
+Pin this build	ثبّت هذا البناء
+Pinned	مثبت
+Pinned builds	عمليات البناء المثبتة
+Pinned: {name}. Open it from the sidebar any time.	مُثبّت: {name}. افتحه من الشريط الجانبي في أي وقت.
+Plain words, big buttons, and I'll explain everything.	كلمات بسيطة وأزرار كبيرة، وسأشرح كل شيء.
+Plain words, short sentences, and every technical word explained.	كلمات بسيطة وجمل قصيرة، وكل كلمة تقنية مشروحة.
+Plan	الخطة
+Plan connecting agent apps	خطط لتوصيل تطبيقات الوكلاء
+Play a project's result	شغّل نتيجة مشروع
+Play the game	العب اللعبة
+Plugin added. Read its tools to start using them.	أُضيف الملحق. اقرأ أدواته لبدء استخدامها.
+Plugin arguments	وسائط الملحق
+Plugin command or address	أمر الملحق أو عنوانه
+Plugin id	معرّف الملحق
+Plugin removed.	أُزيل الملحق.
+Plugins	الملحقات
+Plugins add tools Craft Anything offers as its own: MCP servers (a command or an address; read their tools after adding) or WebAssembly components (a .wasm file, which can't touch your files or the network).	تضيف الملحقات أدوات تقدمها Craft Anything كأنها أدواتها: خوادم MCP (أمر أو عنوان؛ اقرأ أدواتها بعد الإضافة) أو مكونات WebAssembly (ملف .wasm لا يستطيع مس ملفاتك ولا الشبكة).
+Plugins added here always ask before each call.	الملحقات المضافة هنا تسأل دائماً قبل كل استدعاء.
+Plugins read. Their new tools are offered from the next start.	قُرئت الملحقات، وتُعرض أدواتها الجديدة بدءاً من التشغيل التالي.
+Preserving software that's no longer supported.	الحفاظ على برامج لم تعد مدعومة.
+Preview a project's website	عاين موقع مشروع
+Preview the website	عاين موقع الويب
+Previous address	العنوان السابق
+Program: found automatically	البرنامج: وُجد تلقائياً
+Program: {path}	البرنامج: {path}
+Programs (native code)	البرامج (شيفرة أصلية)
+Progress	التقدم
+Project details	تفاصيل المشروع
+Project name	اسم المشروع
+Projects	المشاريع
+Projects and builds	المشاريع وعمليات البناء
+Property list	قائمة الخصائص
+Pseudo-C	Pseudo-C
+Purpose	الغرض
+Raise the asset budget	ارفع ميزانية الأصول
+Raise the budget by {amount}	ارفع الميزانية بمقدار {amount}
+Raw machine code	شيفرة الآلة الخام
+Read AI settings	اقرأ إعدادات الذكاء الاصطناعي
+Read a Unity game's IL2CPP metadata	اقرأ بيانات IL2CPP الوصفية للعبة Unity
+Read a game's files	اقرأ ملفات لعبة
+Read a project file	اقرأ ملف مشروع
+Read a setting	اقرأ إعداداً
+Read an app's screen	اقرأ شاشة تطبيق
+Read bytes	اقرأ البايتات
+Read comment	اقرأ التعليق
+Read inline comment	اقرأ التعليق المضمّن
+Read its tools	اقرأ أدواته
+Read pinned builds	اقرأ عمليات البناء المثبتة
+Read projects	اقرأ المشاريع
