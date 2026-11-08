@@ -14,28 +14,30 @@ pub struct LangInfo {
     pub code: &'static str,
     /// The language's name in itself.
     pub name: &'static str,
+    /// Whether the interface reads right to left in this language.
+    pub rtl: bool,
     /// Catalog contents (empty for the built-in English).
     pub source: &'static str,
 }
 
 pub static LANGUAGES: &[LangInfo] = &[
-    LangInfo { code: "en", name: "English", source: "" },
-    LangInfo { code: "de", name: "Deutsch", source: include_str!("i18n/de.tsv") },
-    LangInfo { code: "ka", name: "ქართული", source: include_str!("i18n/ka.tsv") },
-    LangInfo { code: "fr", name: "Français", source: include_str!("fr.tsv") },
-    LangInfo { code: "it", name: "Italiano", source: include_str!("i18n/it.tsv") },
-    LangInfo { code: "ja", name: "日本語", source: include_str!("ja.tsv") },
-    LangInfo { code: "zh-hans", name: "简体中文", source: include_str!("i18n/zh-hans.tsv") },
-    LangInfo { code: "zh-hant", name: "繁體中文", source: include_str!("i18n/zh-hant.tsv") },
-    LangInfo { code: "ru", name: "Русский", source: include_str!("i18n/ru.tsv") },
-    LangInfo { code: "ko", name: "한국어", source: include_str!("i18n/ko.tsv") },
-    LangInfo { code: "cs", name: "Čeština", source: include_str!("i18n/cs.tsv") },
-    LangInfo { code: "es", name: "Español", source: include_str!("i18n/es.tsv") },
-    LangInfo { code: "vi", name: "Tiếng Việt", source: include_str!("i18n/vi.tsv") },
-    LangInfo { code: "pt-br", name: "Português (Brasil)", source: include_str!("i18n/pt-br.tsv") },
-    LangInfo { code: "tr", name: "Türkçe", source: include_str!("i18n/tr.tsv") },
-    LangInfo { code: "th", name: "ไทย", source: include_str!("i18n/th.tsv") },
-    LangInfo { code: "ar", name: "العربية", source: include_str!("i18n/ar.tsv") },
+    LangInfo { code: "en", name: "English", rtl: false, source: "" },
+    LangInfo { code: "de", name: "Deutsch", rtl: false, source: include_str!("i18n/de.tsv") },
+    LangInfo { code: "ka", name: "ქართული", rtl: false, source: include_str!("i18n/ka.tsv") },
+    LangInfo { code: "fr", name: "Français", rtl: false, source: include_str!("fr.tsv") },
+    LangInfo { code: "it", name: "Italiano", rtl: false, source: include_str!("i18n/it.tsv") },
+    LangInfo { code: "ja", name: "日本語", rtl: false, source: include_str!("ja.tsv") },
+    LangInfo { code: "zh-hans", name: "简体中文", rtl: false, source: include_str!("i18n/zh-hans.tsv") },
+    LangInfo { code: "zh-hant", name: "繁體中文", rtl: false, source: include_str!("i18n/zh-hant.tsv") },
+    LangInfo { code: "ru", name: "Русский", rtl: false, source: include_str!("i18n/ru.tsv") },
+    LangInfo { code: "ko", name: "한국어", rtl: false, source: include_str!("i18n/ko.tsv") },
+    LangInfo { code: "cs", name: "Čeština", rtl: false, source: include_str!("i18n/cs.tsv") },
+    LangInfo { code: "es", name: "Español", rtl: false, source: include_str!("i18n/es.tsv") },
+    LangInfo { code: "vi", name: "Tiếng Việt", rtl: false, source: include_str!("i18n/vi.tsv") },
+    LangInfo { code: "pt-br", name: "Português (Brasil)", rtl: false, source: include_str!("i18n/pt-br.tsv") },
+    LangInfo { code: "tr", name: "Türkçe", rtl: false, source: include_str!("i18n/tr.tsv") },
+    LangInfo { code: "th", name: "ไทย", rtl: false, source: include_str!("i18n/th.tsv") },
+    LangInfo { code: "ar", name: "العربية", rtl: true, source: include_str!("i18n/ar.tsv") },
 ];
 
 /// Match a locale to a registered UI language. An explicit script wins over the region.
@@ -109,6 +111,16 @@ pub fn language() -> String {
     current().read().map(|g| g.0.clone()).unwrap_or_else(|_| "en".into())
 }
 
+/// Whether the interface reads right to left in `code` (an exact registry code).
+pub fn is_rtl_code(code: &str) -> bool {
+    LANGUAGES.iter().find(|l| l.code == code).is_some_and(|l| l.rtl)
+}
+
+/// Whether the current interface language reads right to left.
+pub fn is_rtl() -> bool {
+    is_rtl_code(&language())
+}
+
 /// Translate a UI string.
 pub fn tr(s: &str) -> String {
     match current().read() {
@@ -137,6 +149,18 @@ mod tests {
         assert!(!m.contains_key("Empty"));
         assert_eq!(trf("Open {name}", &[("name", "a.exe")]), "Open a.exe");
         assert_eq!(tr("Untranslated"), "Untranslated");
+    }
+
+    /// Only Arabic reads right to left; every other registered language reads left to right.
+    /// (Pure registry flags only: this test never calls `set_language`, so it cannot disturb
+    /// the process-wide translator other tests read.)
+    #[test]
+    fn rtl_flags() {
+        assert!(is_rtl_code("ar"));
+        for lang in LANGUAGES.iter().filter(|l| l.code != "ar") {
+            assert!(!is_rtl_code(lang.code), "{}", lang.code);
+        }
+        assert!(!is_rtl_code("xx-unknown"));
     }
 
     /// Script and region matching: an explicit script wins over a region, a registered language
