@@ -1200,3 +1200,153 @@ Want answers in plain words?	هل تريد إجابات بكلمات بسيطة�
 Watch a Mac app's calls	راقب استدعاءات تطبيق Mac
 Watch a page over time	راقب صفحة عبر الزمن
 We didn't find an AI on this computer yet	لم نعثر على ذكاء اصطناعي في هذا الحاسوب بعد
+We list the web addresses and messages we can see inside it. Watching it live needs your OK first.	نسرد عناوين الويب والرسائل التي نراها داخله. ومشاهدته حياً تحتاج موافقتك أولاً.
+We only read it; nothing runs. Every answer shows how sure we are.	نقرؤه فقط ولا يُشغَّل شيء. وتوضح كل إجابة مدى تأكدنا.
+WebAssembly module	وحدة WebAssembly
+WebAssembly: fast compiled code that runs inside web browsers.	WebAssembly: شيفرة مترجمة سريعة تعمل داخل متصفحات الويب.
+Website address	عنوان موقع الويب
+Website pages	صفحات موقع الويب
+Websites	مواقع الويب
+Welcome	أهلاً بك
+What a new game may spend on generated pictures and 3D models before you're asked. Each project keeps its own.	ما يجوز أن تنفقه لعبة جديدة على الصور المولّدة والنماذج ثلاثية الأبعاد قبل أن تُسأل. لكل مشروع ميزانيته.
+What a program exports	ما يصدّره برنامج
+What a program imports	ما يستورده برنامج
+What are its main parts?	ما أجزاؤه الرئيسية؟
+What brings you here?	ما الذي جاء بك إلى هنا؟
+What can Craft Anything do?	ماذا تستطيع Craft Anything أن تفعل؟
+What data was sent?	ما البيانات التي أُرسلت؟
+What do you want to look inside?	ما الذي تريد النظر داخله؟
+What do you want to make?	ماذا تريد أن تصنع؟
+What do you want to recreate?	ماذا تريد أن تعيد إنشاءه؟
+What does it need from the page?	ماذا يحتاج من الصفحة؟
+What does it send over the internet?	ماذا يرسل عبر الإنترنت؟
+What does this app do?	ماذا يفعل هذا التطبيق؟
+What does this app store?	ماذا يخزّن هذا التطبيق؟
+What does this contract do?	ماذا يفعل هذا العقد؟
+What does this module do?	ماذا تفعل هذه الوحدة؟
+What does this program do?	ماذا يفعل هذا البرنامج؟
+What does {what} do?	ما وظيفة {what}؟
+What happened in this build	ماذا حدث في هذا البناء
+What is it	ما هو
+What is this?	ما هذا؟
+What it calls	ما يستدعيه
+What kind of file is this?	ما نوع هذا الملف؟
+What permissions does it ask for?	ما الأذونات التي يطلبها؟
+What pictures and textures are made with.	ما تُصنع به الصور والخامات.
+What settings are in here?	ما الإعدادات الموجودة هنا؟
+What tables are in here?	ما الجداول الموجودة هنا؟
+What we couldn't check	ما لم نستطع فحصه
+What would you like to find out?	ما الذي تود اكتشافه؟
+What would you like to know about {name}?	ما الذي تود معرفته عن {name}؟
+What's at this address	ما الموجود في هذا العنوان
+What's in this folder?	ماذا في هذا المجلد؟
+What's inside this archive?	ماذا داخل هذا الأرشيف؟
+Whatever Settings → AI builds with.	أيّاً يكن ما يبني به «الإعدادات ← الذكاء الاصطناعي».
+When a folder you pick has files	عندما يحتوي مجلد تختاره على ملفات
+When the builder needs a choice made: show it to you and wait, or let it decide and say what it chose. Each project can choose for itself under its prompt box.	عندما يحتاج الباني إلى بتّ خيار: اعرضه عليك وانتظر، أو دعه يقرر ويخبر بما اختاره. ويمكن لكل مشروع أن يختار لنفسه تحت حقل إدخاله.
+When you rebuild an app or game, start it once to picture its window and compare the rebuild with it. It runs that program.	عندما تعيد بناء تطبيق أو لعبة، شغّله مرة واحدة لتصوير نافذته ومقارنة إعادة البناء به. فهو يشغّل ذلك البرنامج.
+Where am I	أين أنا
+Where is Ghidra installed?	أين ثُبّت Ghidra؟
+Where is the program?	أين البرنامج؟
+Where should new projects go?	أين توضع المشاريع الجديدة؟
+Where we found it	أين وجدناه
+Whether they're the app to edit in place, or material the app starts from beside them.	أكانت هي التطبيق لتحريرها في مكانها، أم مادة يبدأ منها التطبيق بجانبها.
+Which AI answers your questions	أي ذكاء اصطناعي يجيب عن أسئلتك
+Which file is the main program?	أي ملف هو البرنامج الرئيسي؟
+Which files does it read or write?	أي الملفات يقرؤها أو يكتبها؟
+Which function is this in	في أي دالة يوجد هذا
+Which servers does it talk to?	أي الخوادم يتحادث معها؟
+Which servers were contacted?	أي الخوادم تم الاتصال بها؟
+Which websites does it load?	أي مواقع الويب يحمّلها؟
+Who builds what you make	من يبني ما تصنعه
+Who calls it	من يستدعيه
+Who can move funds?	من يستطيع تحريك الأموال؟
+Who signed this Windows program	من وقّع برنامج Windows هذا
+Who uses this Android class?	من يستخدم صنف Android هذا؟
+Who uses this Java class?	من يستخدم صنف Java هذا؟
+Why we ask	لماذا نسأل
+Window / focus info	معلومات النافذة / التركيز
+Windows resources	موارد Windows
+Wireshark tools check	فحص أدوات Wireshark
+Without it, Deep mode uses Craft Anything's own decompiler, which is rougher.	بدونه، يستخدم الوضع العميق مفكك Craft Anything الخاص، وهو أخشن.
+Work out a copy's size	احسب حجم نسخة
+Work out what an installed app is built on	اكتشف ما بُني عليه تطبيق مثبت
+Workbench	منضدة العمل
+Worked it out	استنتجناه
+Worked it out: computed step by step from things we saw.	استنتجناه: حُسب خطوة خطوة مما رأيناه.
+Worked through {n} steps	أنجز {n} من الخطوات
+Working on it	جارٍ العمل عليه
+Working on your answer	جارٍ العمل على إجابتك
+Working out how much space a copy takes…	جارٍ حساب المساحة التي تشغلها نسخة…
+Working…	جارٍ العمل…
+Working… ({n} steps so far)	جارٍ العمل… ({n} من الخطوات حتى الآن)
+Write a project file	اكتب ملف مشروع
+Write a readable report	اكتب تقريراً مقروءاً
+Write comment	اكتب تعليقاً
+Write inline comment	اكتب تعليقاً مضمّناً
+Write pseudo-C to a folder	اكتب Pseudo-C في مجلد
+Write the brief	اكتب الموجز
+Write the handoff	اكتب التسليم
+Wrote {what} to {}	كُتب {what} في {}
+You answered: {a}	أجبت: {a}
+You can add a Claude, ChatGPT or OpenRouter key, a local model (Ollama, LM Studio) or an agent you already use, later in Settings → AI.	يمكنك إضافة مفتاح Claude أو ChatGPT أو OpenRouter، أو نموذج محلي (Ollama أو LM Studio)، أو وكيل تستخدمه بالفعل، لاحقاً في الإعدادات ← الذكاء الاصطناعي.
+You chose:	اخترت:
+You're all set	كل شيء جاهز
+Your app is ready	تطبيقك جاهز
+Your brains	عقولك الاصطناعية
+Your fal.ai key	مفتاح fal.ai الخاص بك
+Your game is ready	لعبتك جاهزة
+Your message wasn't sent: another project was opened while its pictures were copied.	لم تُرسَل رسالتك: فُتح مشروع آخر أثناء نسخ صوره.
+Your own tool installs (optional)	تثبيتات أدواتك الخاصة (اختياري)
+Your project starts as soon as it's done.	يبدأ مشروعك حالما ينتهي.
+Your version	نسختك
+Your website is ready	موقعك جاهز
+a new folder in {dir}	مجلد جديد في {dir}
+a picture	صورة
+about ${n}	نحو ${n}
+address, e.g. http://192.168.1.20:11434/v1	العنوان، مثل http://192.168.1.20:11434/v1
+and {n} more	و{n} أخرى
+arguments (optional)	الوسائط (اختياري)
+call graph	مخطط الاستدعاءات
+clean room	الغرفة النظيفة
+command, https:// address or .wasm file	أمر أو عنوان https://‎ أو ملف .wasm
+deep mode	الوضع العميق
+entry point	نقطة الدخول
+files	الملفات
+findings	النتائج
+first run	التشغيل الأول
+found on this computer; set up when you start	وُجد على هذا الحاسوب؛ يُعدّ عندما تبدأ
+from the builder's own memory of the build	من ذاكرة الباني الخاصة بالبناء
+from the project's files	من ملفات المشروع
+id, e.g. docs	المعرف، مثل docs
+is required	مطلوب
+isn't available yet	ليس متاحاً بعد
+job result	نتيجة المهمة
+job {title} panicked: {what}	تعطلت المهمة {title}: {what}
+just now	الآن
+managed	مُدار
+model (optional)	النموذج (اختياري)
+must be a number	يجب أن يكون رقماً
+must be a whole number	يجب أن يكون عدداً صحيحاً
+name, e.g. Studio box	الاسم، مثل Studio box
+number	رقم
+objdump output	ناتج objdump
+or start with /btw to just ask	أو ابدأ بـ /btw لمجرد السؤال
+pinned builds couldn't be read: {}	تعذّرت قراءة عمليات البناء المثبتة: {}
+say how to use the files there	قُل كيف تُستخدم الملفات هناك
+scene	مشهد
+scenes	مشاهد
+source map	خريطة المصدر
+start page	صفحة البداية
+the app is built beside your files, starting from them	يُبنى التطبيق بجانب ملفاتك، انطلاقاً منها
+the built-in engines	المحركات المدمجة
+the prompt box changed height	حقل الإدخال غيّر ارتفاعه
+title bar	شريط العنوان
+under $0.01	أقل من $0.01
+yesterday	أمس
+your files there are the app, edited in place	ملفاتك هناك هي التطبيق، تُحرَّر في مكانها
+{:.1} GB	{:.1} GB
+{:.1}M	{:.1}M
+{backend}: {input_tokens} in / {output_tokens} out{cost}	{backend}: {input_tokens} إدخال / {output_tokens} إخراج{cost}
+{cost} (estimate)	{cost} (تقديري)
+{c} · {size}	{c} · {size}
