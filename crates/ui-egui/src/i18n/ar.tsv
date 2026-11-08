@@ -150,3 +150,153 @@ Approve an agent action	وافق على إجراء الوكيل
 Apps and games: keep refining until they look this alike to your pictures. Off, the likeness is only reported.	التطبيقات والألعاب: واصِل الصقل حتى تطابق صورك بهذا القدر. وعند إيقافه يُكتفى بالإبلاغ عن درجة التشابه.
 Architectures	المعماريات
 Archive	أرشيف
+Archives	أرشيفات
+Ask a question	اطرح سؤالاً
+Ask about a build	اسأل عن بناء
+Ask about the build	اسأل عن البناء
+Ask about the build, e.g. "where are the latest files?" Nothing changes and no build starts.	اسأل عن البناء، مثل: «أين أحدث الملفات؟». لا يتغير شيء ولا يبدأ أي بناء.
+Ask about this game	اسأل عن هذه اللعبة
+Ask anything, e.g. "What does this program do?"	اسأل عن أي شيء، مثل: «ماذا يفعل هذا البرنامج؟»
+Ask before running anything	اسأل قبل تشغيل أي شيء
+Ask each time	اسأل في كل مرة
+Ask first	اسأل أولاً
+Ask for a change	اطلب تغييراً
+Ask for a change, e.g. "bigger buttons" or "add a dark mode"	اطلب تغييراً، مثل: «أزرار أكبر» أو «أضف وضعاً داكناً»
+Ask for a change, e.g. "make it faster" or "add a high-score table"	اطلب تغييراً، مثل: «اجعله أسرع» أو «أضف جدول أعلى النتائج»
+Ask for a change, e.g. "make the header blue" or "add a contact form"	اطلب تغييراً، مثل: «اجعل الترويسة زرقاء» أو «أضف نموذج اتصال»
+Ask in your own words. Every answer shows how sure we are, and the proof.	اسأل بكلماتك. كل إجابة توضح مدى تأكدنا وتعرض البرهان.
+Ask me	اسألني
+Ask the agent about this	اسأل الوكيل عن هذا
+Ask the agent about this target. It cites evidence for every claim.	اسأل الوكيل عن هذا الهدف، فهو يستشهد بدليل على كل ادعاء.
+Ask the agent…	اسأل الوكيل…
+Ask the person	اسأل الشخص
+Ask: "How does the % key work?"	اسأل: «كيف يعمل مفتاح %؟»
+Ask: "Is it safe to run?"	اسأل: «هل تشغيله آمن؟»
+Ask: "What does it send over the internet?"	اسأل: «ماذا يرسل عبر الإنترنت؟»
+Asking for its models…	جارٍ طلب نماذجه…
+Asset catalog	فهرس الأصول
+At most this many rounds of fixes after the first build.	هذا هو الحد الأقصى لجولات الإصلاح بعد البناء الأول.
+Attach pictures	أرفق صوراً
+Attach pictures (or drop or paste them here)	أرفق صوراً (أو أسقطها أو الصقها هنا)
+Auto mode	الوضع التلقائي
+Automatic	تلقائي
+Automatic ({name})	تلقائي ({name})
+Back	رجوع
+Best guess	أفضل تخمين
+Best guess: a reasonable reading, but not proven.	أفضل تخمين: قراءة معقولة لكنها غير مثبتة.
+Binary layout	تخطيط الملف الثنائي
+Blocked	محظور
+Bookmark	علامة مرجعية
+Budget for a new project	ميزانية مشروع جديد
+Bug report	بلاغ عن خلل
+Build	بناء
+Build a rebuild ledger	أنشئ سجل إعادة البناء
+Build a stand-in backend	أنشئ خلفية بديلة
+Build with	البناء باستخدام
+Build with this	ابنِ بهذا
+Build with {name}	ابنِ باستخدام {name}
+Build with {name} instead	ابنِ باستخدام {name} بدلاً من ذلك
+Build without it	ابنِ بدونه
+Builder's questions:	أسئلة الباني:
+Building	جارٍ البناء
+Building needs a coding agent on this computer (Claude Code, Codex or Gemini CLI: install one and sign in to it once in its own window), or an AI with an API key. Craft Anything never sees your account.	يحتاج البناء إلى وكيل برمجة على هذا الحاسوب (Claude Code أو Codex أو Gemini CLI: ثبّت واحداً وسجّل دخولك فيه مرة واحدة في نافذته)، أو إلى ذكاء اصطناعي مع مفتاح API. لا ترى Craft Anything حسابك أبداً.
+Building needs a coding agent such as Claude Code, or an AI with an API key.	يحتاج البناء إلى وكيل برمجة مثل Claude Code، أو إلى ذكاء اصطناعي مع مفتاح API.
+Builds	عمليات البناء
+Builds and answers may use it again.	يجوز لعمليات البناء والإجابات استخدامه مجدداً.
+Builds at once	عمليات البناء المتزامنة
+Builds keep going without stopping to ask you before an action. The builder still never deletes outside its project, changes system settings or publishes anything, and stays within each project's asset budget.	تواصل عمليات البناء عملها دون التوقف لسؤالك قبل أي إجراء، لكن الباني لا يحذف خارج مشروعه أبداً ولا يغيّر إعدادات النظام ولا ينشر شيئاً، ويلتزم بميزانية الأصول لكل مشروع.
+Builds use this one. Click to choose automatically again.	تستخدمه عمليات البناء. انقر للعودة إلى الاختيار التلقائي.
+Built by	بُني بواسطة
+Built with	بُني باستخدام
+Built with {stack}, as you asked, so no game engine is needed.	بُني باستخدام {stack} كما طلبت، لذا لا يلزم محرك ألعاب.
+Call graph	مخطط الاستدعاءات
+Call path	مسار الاستدعاء
+Call the build done	أعلِن اكتمال البناء
+Called done. A new message carries on from here.	أُعلن اكتماله. تتابع رسالة جديدة من هنا.
+Cancel	إلغاء
+Cancel: don't use this folder	إلغاء: لا تستخدم هذا المجلد
+Capture a website for rebuilding	التقط موقع ويب لإعادة بنائه
+Capture inventories	التقط قوائم الجرد
+Capture menus, dialogs and tabs	التقط القوائم والحوارات والتبويبات
+Change	تغيير
+Change a setting	غيّر إعداداً
+Change an AI's model	غيّر نموذج الذكاء الاصطناعي
+Change how hard an AI thinks	غيّر مستوى تفكير الذكاء الاصطناعي
+Change it	غيّره
+Change…	تغيير…
+Check	فحص
+Check .NET native calls	افحص استدعاءات .NET الأصلية
+Check a rebuild claim	تحقق من ادعاء حول إعادة البناء
+Check a scripted web session	افحص جلسة ويب مُبرمجة
+Check an answer	تحقق من إجابة
+Check decompiled C#	افحص شيفرة C# المفككة
+Check my build	افحص بنائي
+Check the JEB connection	تحقق من اتصال JEB
+Check the asset keys	تحقق من مفاتيح الأصول
+Check the setup	تحقق من الإعداد
+Check {n}	الفحص {n}
+Check {n}: about {s}% like the original	الفحص {n}: يشبه الأصل بنحو {s}%
+Checked against Godot's official checksums before it's used.	يُتحقق منه بمجاميع Godot الرسمية قبل استخدامه.
+Checking	جارٍ الفحص
+Choose a file	اختر ملفاً
+Choose a folder…	اختر مجلداً…
+Choose a function, string or section to see it here.	اختر دالة أو نصاً أو قسماً لتراه هنا.
+Choose an AI's job	اختر مهمة الذكاء الاصطناعي
+Choose the folder Ghidra is installed in.	اختر المجلد المثبت فيه Ghidra.
+Choose what the builder's questions get	اختر من يجيب عن أسئلة الباني
+Choose what to recreate, say what you want, then press Start.	اختر ما تريد إعادة إنشائه، وقل ما تريد، ثم اضغط Start.
+Choose…	اختر…
+Classes	أصناف
+Claude Code folder (CLAUDE_CONFIG_DIR)	مجلد Claude Code (CLAUDE_CONFIG_DIR)
+Clean room	الغرفة النظيفة
+Clean room / Deep	الغرفة النظيفة / العميق
+Clean room never reads the original's code, files or page source. Deep mode reads them with every tool Craft Anything has.	لا تقرأ الغرفة النظيفة أبداً شيفرة الأصل ولا ملفاته ولا مصدر صفحاته، بينما يقرؤها الوضع العميق بكل أدوات Craft Anything.
+Clean room never reads the original's code, files or page source: it works from what you can see. Deep reads them with every tool, and with Ghidra when it's installed. Every finding records which was used.	لا تقرأ الغرفة النظيفة أبداً شيفرة الأصل ولا ملفاته ولا مصدر صفحاته، بل تعمل انطلاقاً مما تراه. أما الوضع العميق فيقرؤها بكل الأدوات، ومع Ghidra عند تثبيته، وتسجّل كل نتيجة أيهما استُخدم.
+Clean room on	الغرفة النظيفة مفعّلة
+Clean room or Deep	الغرفة النظيفة أم العميق
+Clean room: nothing inside the original is read. We work from what you can see: pictures, the page as a visitor sees it, and watching it run.	الغرفة النظيفة: لا يُقرأ أي شيء من داخل الأصل، بل نعمل انطلاقاً مما تراه: الصور، والصفحة كما يراها الزائر، ومراقبة تشغيله.
+Clear finished	امسح المنتهية
+Close	إغلاق
+Close a Frida session	أغلق جلسة Frida
+Close a GDB session	أغلق جلسة GDB
+Close a Rizin debug session	أغلق جلسة تنقيح Rizin
+Close a pinned build	أغلق بناءً مثبتاً
+Close it	أغلقه
+Close it first.	أغلقه أولاً.
+Close the website	أغلق موقع الويب
+Code reconstructed from a program that looks like the C language. Close to what the program does, but not its original source.	شيفرة أُعيد بناؤها من برنامج لتبدو مثل لغة C. قريبة مما يفعله البرنامج، لكنها ليست مصدره الأصلي.
+Code signature	توقيع الشيفرة
+Coding agent app	تطبيق وكيل البرمجة
+Command palette (Ctrl/⌘ K)	لوحة الأوامر (Ctrl/⌘ K)
+Commands:	الأوامر:
+Compare WebAssembly interfaces	قارن واجهات WebAssembly
+Compare module exports	قارن صادرات الوحدات
+Compare two .NET builds	قارن بين بناءين من .NET
+Compare two app versions	قارن بين نسختين من تطبيق
+Compare two artifacts	قارن بين مُخرَجين
+Compare two evidence bundles	قارن بين حزمتين من الأدلة
+Compare two functions	قارن بين دالتين
+Compare two page captures	قارن بين لقطتين لصفحة
+Compare two runs	قارن بين تشغيلين
+Compare two screenshots	قارن بين لقطتين للشاشة
+Comparing and rebuilding	المقارنة وإعادة البناء
+Compiled Python file	ملف Python مترجم
+Connect	اتصل
+Connect agent apps	صِل تطبيقات الوكلاء
+Connect to a browser	اتصل بمتصفح
+Connect {name}	صِل {name}
+Connected devices	الأجهزة المتصلة
+Connected phone	الهاتف المتصل
+Context window	نافذة السياق
+Continue	متابعة
+Contradicted	مدحوض
+Control-flow graph: a map of every path a function can take, like a flowchart.	مخطط تدفق التحكم: خريطة لكل مسار يمكن أن تسلكه الدالة، كالمخطط الانسيابي.
+Copies share the files it saves beside itself.	تتشارك النسخ الملفات التي يحفظها بجانبه.
+Copy a file off the phone	انسخ ملفاً من الهاتف
+Copy a file to the phone	انسخ ملفاً إلى الهاتف
+Copy an app off the phone	انسخ تطبيقاً من الهاتف
+Copy the command	انسخ الأمر
+Copy the evidence id	انسخ معرّف الدليل
+Couldn't add the pictures:	تعذّرت إضافة الصور:
+Couldn't answer:	تعذّرت الإجابة:
+Couldn't attach the pictures:	تعذّر إرفاق الصور:
