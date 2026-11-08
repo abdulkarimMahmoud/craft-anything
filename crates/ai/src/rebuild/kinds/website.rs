@@ -167,6 +167,17 @@ impl TargetKind for WebsiteKind {
             "網站",
             "网页",
             "網頁",
+            // Arabic: only web-qualified phrases. Bare "موقع" is also a file location
+            // ("غيّر موقع الحفظ") and bare "صفحة" is any screen, so neither counts alone.
+            "موقع ويب",
+            "موقع الويب",
+            "مواقع الويب",
+            "موقع إلكتروني",
+            "الموقع الإلكتروني",
+            "صفحة ويب",
+            "صفحة الويب",
+            "صفحات الويب",
+            "صفحة هبوط",
         ]) {
             Some(50)
         } else if matches!(cx.target, TargetRef::None) && stacks::get(cx.stack).is_some_and(|s| s.site) {

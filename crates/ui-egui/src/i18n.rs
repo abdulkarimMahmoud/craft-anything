@@ -165,6 +165,9 @@ mod tests {
         assert_eq!(language_from_tag("tr-TR"), Some("tr"));
         assert_eq!(language_from_tag("th-TH"), Some("th"));
         assert_eq!(language_from_tag("th_TH.UTF-8"), Some("th"));
+        assert_eq!(language_from_tag("ar"), Some("ar"));
+        assert_eq!(language_from_tag("ar-SA"), Some("ar"));
+        assert_eq!(language_from_tag("ar_EG.UTF-8"), Some("ar"));
         assert_eq!(preferred_language(["de-DE", "zh-HK"]), "de");
         assert_eq!(preferred_language(["sv-SE", "vi-VN", "en-US"]), "vi");
         assert_eq!(preferred_language(["en-US", "zh-CN"]), "en");
@@ -183,7 +186,7 @@ mod tests {
         }
         let mut catalogs = Vec::new();
         for lang in
-            LANGUAGES.iter().filter(|l| matches!(l.code, "zh-hans" | "zh-hant" | "ru" | "ko" | "cs" | "de" | "ka" | "es" | "it" | "vi" | "pt-br" | "tr" | "th"))
+            LANGUAGES.iter().filter(|l| matches!(l.code, "zh-hans" | "zh-hant" | "ru" | "ko" | "cs" | "de" | "ka" | "es" | "it" | "vi" | "pt-br" | "tr" | "th" | "ar"))
         {
             let mut keys = std::collections::BTreeSet::new();
             for (i, line) in lang.source.lines().enumerate() {

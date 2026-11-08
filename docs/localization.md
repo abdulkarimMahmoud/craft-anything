@@ -67,9 +67,43 @@ the title bar does. The glossary: *หลักฐาน* (Evidence), *สิ่
 It was drafted with an AI and not yet reviewed by a native speaker; corrections are welcome.
 Thai glyphs come from Noto Sans Thai in craft-fonts, which the script test in `theme.rs` checks.
 
+## Arabic
+
+**العربية** (`ar`) is selected by `ar` and every `ar-` region (`ar-SA`, `ar-EG`, …), as well as
+by the system language when it is Arabic. `crates/ui-egui/src/i18n/ar.tsv` has the same keys as
+the other catalogs, written from the English source strings in Modern Standard Arabic. It was
+drafted with an AI and not yet reviewed by a native speaker; corrections are welcome. Product,
+technology and engine names, tool ids and shortcuts keep their Latin spelling, and numbers stay
+Western digits.
+
+Unlike the other catalogs, Arabic translates everything, including the two mode names: the glossary
+is *الغرفة النظيفة* (Clean room), *الوضع العميق* and short *العميق* (Deep mode / Deep), *دراسة / بناء /
+فحص / جاهز* (Study / Build / Check / Ready), *الأدلة* (Evidence), *نتيجة* (finding), *مشروع*
+(Project), *هدف* (target), *أداة* (tool), *منضدة العمل* (Workbench), *الإعدادات* (Settings),
+*الباني* (builder), *عقل اصطناعي* (brain), *ملحق* (plugin) and *إعادة البناء* (rebuild).
+
+Counts use number-neutral phrasing, since the catalog has no plural forms: `{n} من الصور`
+(“{n} of the pictures”) rather than an inflected noun. Navigation breadcrumbs point left, the
+reading direction (*الإعدادات ← الذكاء الاصطناعي* for “Settings → AI”), and direction words
+assume the mirrored right-to-left layout: “Pick something on the left” reads “on the right” and
+“← Back” reads “→ رجوع”. The hardcoded `Start` button stays Latin, as in the other catalogs,
+and references to it (`press Start`) match.
+
+The kind detection that reads a request knows *لعبة*, *ألعاب* and *لعب* for a game, and the
+web-qualified phrases *موقع ويب*, *موقع الويب*, *مواقع الويب*, *موقع إلكتروني*, *الموقع
+الإلكتروني*, *صفحة ويب*, *صفحة الويب*, *صفحات الويب* and *صفحة هبوط* for a website, so a
+translated suggestion keeps its project kind. Bare *موقع* is deliberately not a signal (it is
+also a file location: “غيّر موقع الحفظ”), and neither are bare *ويب* or *صفحة* (a web app or a
+settings screen is an app, not a website).
+
+Arabic glyphs come from craft-fonts, which the script test in `theme.rs` checks (“مرحبا
+بالعالم”); a build without craft-fonts shows them as boxes. Proper Arabic shaping, bidirectional
+text and the mirrored layout arrive with the right-to-left interface work; until then the catalog
+renders left-to-right.
+
 ## Scope and format
 
-`crates/ui-egui/src/i18n/cs.tsv`, `de.tsv`, `es.tsv`, `it.tsv`, `ka.tsv`, `ko.tsv`, `pt-br.tsv`, `ru.tsv`, `th.tsv`, `tr.tsv`, `vi.tsv`, `zh-hans.tsv` and
+`crates/ui-egui/src/i18n/ar.tsv`, `cs.tsv`, `de.tsv`, `es.tsv`, `it.tsv`, `ka.tsv`, `ko.tsv`, `pt-br.tsv`, `ru.tsv`, `th.tsv`, `tr.tsv`, `vi.tsv`, `zh-hans.tsv` and
 `zh-hant.tsv` contain original
 translations under the repository's MIT OR Apache-2.0 licence. Each UTF-8 line
 has two columns: `English source<TAB>translation`. Comments begin with `#`;

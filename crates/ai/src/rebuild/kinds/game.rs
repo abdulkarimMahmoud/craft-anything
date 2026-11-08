@@ -98,6 +98,9 @@ impl TargetKind for GameKind {
                 " oyunun ",
                 " oyunlar",
                 "เกม",
+                "لعبة",
+                "ألعاب",
+                "لعب",
             ])
             || says_game_in_spanish(cx)
         {

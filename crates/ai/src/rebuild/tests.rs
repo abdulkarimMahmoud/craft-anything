@@ -185,6 +185,21 @@ fn thai_requests_keep_their_project_kind() {
 }
 
 #[test]
+fn arabic_requests_keep_their_project_kind() {
+    for request in ["لعبة ثعبان بسيطة", "اللعبة نفسها مع جدول أعلى النتائج"] {
+        assert_eq!(choose(request, &TargetRef::None), ("game", "Unity"), "{request}");
+    }
+    for request in ["موقع ويب لمخبزي", "أعد إنشاء موقع الويب هذا", "صفحة هبوط لمتجري"] {
+        assert_eq!(choose(request, &TargetRef::None), ("website", stacks::BUILDERS_CHOICE), "{request}");
+    }
+    // Bare "موقع" is also a file location and bare "ويب"/"صفحة" say nothing on their own:
+    // a web app, a settings screen and a save location are not websites.
+    for request in ["تطبيق ويب للملاحظات", "أضف صفحة إعدادات", "غيّر موقع حفظ الملفات"] {
+        assert_eq!(choose(request, &TargetRef::None).0, "app", "{request}");
+    }
+}
+
+#[test]
 fn chinese_requests_keep_their_project_kind() {
     for request in ["一个简单的贪吃蛇游戏", "簡單的貪食蛇遊戲", "复刻它的玩法"] {
         assert_eq!(choose(request, &TargetRef::None), ("game", "Unity"), "{request}");
