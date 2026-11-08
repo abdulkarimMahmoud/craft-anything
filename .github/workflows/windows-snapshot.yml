@@ -24,14 +24,14 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
       - name: Build
-        run: cargo build --release -p craft-anything -p craft-anything-cli
+        run: cargo build --release --target x86_64-pc-windows-msvc -p craft-anything -p craft-anything-cli
       - name: Portable zip (always built)
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force dist/release | Out-Null
           $st = 'dist/stage-portable'
           New-Item -ItemType Directory -Force $st | Out-Null
-          Copy-Item target/release/craft-anything.exe, target/release/craft-anything-cli.exe, packaging/windows/portable.txt, LICENSE-MIT, LICENSE-APACHE, NOTICE $st/
+          Copy-Item target/x86_64-pc-windows-msvc/release/craft-anything.exe, target/x86_64-pc-windows-msvc/release/craft-anything-cli.exe, packaging/windows/portable.txt, LICENSE-MIT, LICENSE-APACHE, NOTICE $st/
           Compress-Archive -Path $st/* -DestinationPath "dist/release/craft-anything-$env:CRAFT_ANYTHING_VERSION-windows-x64-portable.zip" -Force
       - name: MSI via the repo script (best effort)
         shell: pwsh
