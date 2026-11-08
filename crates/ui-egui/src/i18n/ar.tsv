@@ -450,3 +450,153 @@ Frida processes	عمليات Frida
 Frida session status	حالة جلسة Frida
 From	من
 Frozen copy	نسخة مجمّدة
+Function address	عنوان الدالة
+Function assembly	تفكيك الدالة
+Function dossier	ملف الدالة
+Function info	معلومات الدالة
+Function instructions	تعليمات الدالة
+Function references	مراجع الدالة
+Functions	الدوال
+GDB command	أمر GDB
+GDB session status	حالة جلسة GDB
+Game assets	أصول اللعبة
+Game engines	محركات الألعاب
+Game files	ملفات اللعبة
+General	عام
+Generate a 3D model	ولّد نموذجاً ثلاثي الأبعاد
+Generate a picture	ولّد صورة
+Generate custom pictures and models	ولّد صوراً ونماذج مخصصة
+Generated art (games)	رسوم مولّدة (ألعاب)
+Generated assets	أصول مولّدة
+Generated pictures and 3D models are made with fal.ai.	تُصنع الصور المولّدة والنماذج ثلاثية الأبعاد باستخدام fal.ai.
+Get Ghidra	احصل على Ghidra
+Get Ghidra for Deep mode	احصل على Ghidra للوضع العميق
+Get Unity Hub	احصل على Unity Hub
+Get a key at {name}	احصل على مفتاح من {name}
+Get the Epic Games Launcher	احصل على مشغّل Epic Games
+Get {name}	احصل على {name}
+Getting Ghidra	جارٍ الحصول على Ghidra
+Getting Godot	جارٍ الحصول على Godot
+Getting Unity Hub	جارٍ الحصول على Unity Hub
+Getting the Epic Games Launcher	جارٍ الحصول على مشغّل Epic Games
+Ghidra	Ghidra
+Ghidra folder	مجلد Ghidra
+Ghidra is ready	Ghidra جاهز
+Ghidra is ready. Deep mode uses it from now on.	Ghidra جاهز، وسيستخدمه الوضع العميق من الآن.
+Ghidra isn't installed, so the built-in decompiler stands in. Get it in Settings → Engines.	Ghidra غير مثبت، لذا يحل محله المفكك المدمج. احصل عليه من الإعدادات ← المحركات.
+Ghidra isn't on this computer yet, so the built-in decompiler stands in.	Ghidra ليس على هذا الحاسوب بعد، لذا يحل محله المفكك المدمج.
+Ghidra will use half of this computer's memory (up to {gb} GB).	سيستخدم Ghidra نصف ذاكرة هذا الحاسوب (بحد أقصى {gb} GB).
+Ghidra will use up to {gb} GB of memory.	سيستخدم Ghidra حتى {gb} GB من الذاكرة.
+Ghidra, a free reverse-engineering tool from the NSA, gives Deep mode richer decompiled code and types.	يمنح Ghidra، وهو أداة مجانية للهندسة العكسية من NSA، الوضع العميق شيفرة مفككة وأنواعاً أغنى.
+Go home	انتقل إلى الرئيسية
+Go program details	تفاصيل برنامج Go
+Go to address	انتقل إلى عنوان
+Go to offset (0x…)	انتقل إلى إزاحة (0x…)
+Go to the project	انتقل إلى المشروع
+Good enough	جيد بما يكفي
+Got it	فهمت
+Graph	مخطط
+Half of this computer's memory, up to {gb} GB.	نصف ذاكرة هذا الحاسوب، بحد أقصى {gb} GB.
+Here's a first look:	إليك نظرة أولى:
+Here's what I found on that page:	إليك ما وجدته في تلك الصفحة:
+Hex	الست عشري
+Hide pinned builds	أخفِ عمليات البناء المثبتة
+Hide the answer	أخفِ الإجابة
+Hide the console	أخفِ وحدة التحكم
+High	مرتفع
+Home	الرئيسية
+How alike a rebuild must look to the original before refining stops.	مدى التشابه المطلوب بين إعادة البناء والأصل قبل توقف الصقل.
+How closely may Craft Anything look at it?	إلى أي مدى يجوز لـ Craft Anything أن تنظر فيه؟
+How complete is the rebuild	ما مدى اكتمال إعادة البناء
+How do I open an app?	كيف أفتح تطبيقاً؟
+How do the window and the page talk to each other?	كيف تتحادث النافذة والصفحة؟
+How does the % key work?	كيف يعمل مفتاح %؟
+How is this app built?	كيف بُني هذا التطبيق؟
+How is this app put together?	كيف رُكّب هذا التطبيق؟
+How many projects may build at the same time. More wait their turn.	عدد المشاريع التي يجوز أن تُبنى في الوقت نفسه، وينتظر الباقي دوره.
+How should the builder use them?	كيف ينبغي للباني استخدامها؟
+I have Ghidra	لديّ Ghidra
+I have permission	لديّ الإذن
+I want to make things work together	أريد أن أجعل الأشياء تعمل معاً
+I'm checking whether it's safe	أتحقق مما إذا كان آمناً
+I'm keeping old software alive	أحافظ على برامج قديمة حيّة
+I'm learning how things work	أتعلّم كيف تعمل الأشياء
+I'm new to this	أنا جديد في هذا
+ILSpy decompile	فك الترجمة بـ ILSpy
+Ideas:	أفكار:
+Identify a Flutter build	تعرّف على بناء Flutter
+Import a source folder	استورِد مجلد مصدر
+Import evidence	استورِد أدلة
+Imports / Exports	الواردات / الصادرات
+In Deep mode this one takes a game's own files out after the study. Click to stop.	في الوضع العميق، يستبعد هذا ملفات اللعبة نفسها بعد الدراسة. انقر للإيقاف.
+In Unity Hub: sign in (or make a free account) and accept the free Personal licence. Then open Installs, press Install Editor and choose the recommended version. About 10 GB.	في Unity Hub: سجّل الدخول (أو أنشئ حساباً مجانياً) واقبل رخصة Personal المجانية، ثم افتح Installs واضغط Install Editor واختر النسخة المُوصى بها. حوالي 10 GB.
+In the launcher: sign in, open Unreal Engine, then Library, and press + next to Engine Versions to install one. About 60 GB.	في المشغّل: سجّل الدخول وافتح Unreal Engine ثم Library، واضغط + بجانب Engine Versions لتثبيت نسخة. حوالي 60 GB.
+In use	قيد الاستخدام
+Inside	الداخل
+Inspect a Dart AOT snapshot	افحص لقطة Dart AOT
+Inspect a network recording	افحص تسجيل شبكة
+Inspect a web page	افحص صفحة ويب
+Inspect an Electron page	افحص صفحة Electron
+Inspect data	افحص البيانات
+Inspect instruction	افحص التعليمة
+Inspector	الفاحص
+Install Rust	ثبّت Rust
+Install Unity Hub	ثبّت Unity Hub
+Install Visual Studio Community (free) and tick "Game development with C++".	ثبّت Visual Studio Community (مجاني) وعلّم «Game development with C++».
+Install Xcode	ثبّت Xcode
+Install an app	ثبّت تطبيقاً
+Install an engine	ثبّت محركاً
+Install the launcher	ثبّت المشغّل
+Installed	مثبّت
+Installed apps	التطبيقات المثبتة
+Inter-process communication: how two parts of an app (or two apps) send messages to each other.	الاتصال بين العمليات: طريقة تبادل الرسائل بين جزأين من تطبيق (أو بين تطبيقين).
+Interface Builder documents	مستندات Interface Builder
+Interrupted	مُقاطع
+Inventory an archive or app bundle	اجرد أرشيفاً أو حزمة تطبيق
+Investigating	جارٍ التحقيق
+Investigation so far	التحقيق حتى الآن
+Is Apktool available?	هل Apktool متاح؟
+Is adb available?	هل adb متاح؟
+Is an asset key set up?	هل مفتاح الأصول مُعدّ؟
+Is anything in here a program?	هل يوجد هنا أي برنامج؟
+Is anything sensitive saved in plain text?	هل يوجد شيء حساس محفوظ كنص صريح؟
+Is it safe to look inside programs?	هل النظر داخل البرامج آمن؟
+Is it safe to run?	هل تشغيله آمن؟
+Is there any readable text inside?	هل يوجد نص مقروء في الداخل؟
+Is this file safe to open?	هل فتح هذا الملف آمن؟
+It closed straight away.	أُغلق فوراً.
+It closed straight away. It said:	أُغلق فوراً، وقال:
+It isn't on this computer yet. Craft Anything can download Ghidra {version} and the Java runtime it needs (about {mb} MB), check both against their publishers' checksums, and set them up in its own folder. Nothing else on your computer changes.	ليس على هذا الحاسوب بعد. يمكن لـ Craft Anything تنزيل Ghidra {version} وبيئة Java التي يلزمها (حوالي {mb} MB)، والتحقق من كليهما بمجاميع ناشريهما، وإعدادهما في مجلدها الخاص، دون أن يتغير أي شيء آخر على حاسوبك.
+It isn't on this computer yet. Install Ghidra {version} from its release page, then choose its folder.	ليس على هذا الحاسوب بعد. ثبّت Ghidra {version} من صفحة إصداراته ثم اختر مجلده.
+It's already open.	إنه مفتوح بالفعل.
+It's already open. Right-click it to open another copy.	إنه مفتوح بالفعل. انقر عليه بالزر الأيمن لفتح نسخة أخرى.
+It's done	انتهى
+It's mine, or I'm allowed to look	إنه لي، أو يُسمح لي بالنظر فيه
+Its copy is deleted, with anything it saved there. The project itself stays as it is.	تُحذف نسخته مع كل ما حفظه هناك، ويبقى المشروع نفسه كما هو.
+Its folder is deleted with everything in it: what was built, the checks and the conversation.	يُحذف مجلده بكل ما فيه: ما بُني والفحوصات والمحادثة.
+Its own code	شيفرته الخاصة
+Its own sign-in, settings and conversations: another folder is another account. Empty: its usual folder.	تسجيل دخوله وإعداداته ومحادثاته الخاصة: كل مجلد آخر يعني حساباً آخر. فارغاً: مجلده المعتاد.
+Java archive overview	نظرة عامة على أرشيف Java
+Java class	صنف Java
+Java method bytecode and pseudo-Java	بايت كود دالة Java وشبه Java
+Java program code (one class)	شيفرة برنامج Java (صنف واحد)
+Java programs	برامج Java
+Java runtime	بيئة Java
+Jobs	المهام
+Jobs ({n_jobs})	المهام ({n_jobs})
+Jobs ({n})	المهام ({n})
+Just a question: nothing was changed. Answered by	مجرد سؤال: لم يتغير شيء. أجاب عنه
+Just ask	اسأل فحسب
+Just look inside	انظر داخله فحسب
+Work on my project	اعمل على مشروعي
+Work on a project you already have	اعمل على مشروع لديك بالفعل
+Pick its folder, say what you want, then press Start.	اختر مجلده، وقل ما تريد، ثم اضغط Start.
+Where is your project?	أين مشروعك؟
+Choose your project's folder…	اختر مجلد مشروعك…
+For example: add a dark mode	مثلاً: أضف وضعاً داكناً
+Pick your project's folder first.	اختر مجلد مشروعك أولاً.
+Pick your project's folder	اختر مجلد مشروعك
+That folder is empty. Pick the folder your project's files are in.	ذلك المجلد فارغ. اختر المجلد الذي فيه ملفات مشروعك.
+Keep going without asking	واصِل دون سؤال
+Keep it	احتفظ به
+Keep it in the sidebar to open any time, whatever later builds change.	احتفظ به في الشريط الجانبي لتفتحه في أي وقت، مهما غيّرت عمليات البناء اللاحقة.
