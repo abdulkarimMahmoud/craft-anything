@@ -95,20 +95,22 @@ fn row_text(v: &Value) -> String {
 
 pub fn show(app: &mut CraftApp, ui: &mut Ui) {
     let t = Tokens::get(ui.ctx());
-    egui::Panel::left("wb-rail-icons")
+    crate::direction::side_panel("wb-rail-icons", true)
         .exact_size(48.0)
         .resizable(false)
         .frame(egui::Frame::new().fill(t.chrome).inner_margin(Margin::symmetric(6, 10)))
         .show(ui, |ui| rail_icons(app, ui));
-    egui::Panel::left("wb-rail")
+    let (rail_l, rail_r) = if crate::direction::rtl() { (8, 4) } else { (4, 8) };
+    crate::direction::side_panel("wb-rail", true)
         .default_size(290.0)
         .size_range(200.0..=520.0)
-        .frame(egui::Frame::new().fill(t.chrome).inner_margin(Margin { left: 4, right: 8, top: 10, bottom: 8 }))
+        .frame(egui::Frame::new().fill(t.chrome).inner_margin(Margin { left: rail_l, right: rail_r, top: 10, bottom: 8 }))
         .show(ui, |ui| crate::guard_ui(ui, "rail", |ui| rail(app, ui)));
-    egui::Panel::right("wb-right")
+    let (insp_l, insp_r) = if crate::direction::rtl() { (10, 8) } else { (8, 10) };
+    crate::direction::side_panel("wb-right", false)
         .default_size(330.0)
         .size_range(240.0..=560.0)
-        .frame(egui::Frame::new().fill(t.chrome).inner_margin(Margin { left: 8, right: 10, top: 10, bottom: 8 }))
+        .frame(egui::Frame::new().fill(t.chrome).inner_margin(Margin { left: insp_l, right: insp_r, top: 10, bottom: 8 }))
         .show(ui, |ui| crate::guard_ui(ui, "inspector", |ui| right(app, ui)));
     let mut open = app.state.bottom_open;
     // A new id: nobody could resize the old one, so its saved sizes were never anyone's choice.

@@ -137,7 +137,11 @@ pub fn ask_screen(app: &mut CraftApp, ui: &mut Ui) {
     let t = Tokens::get(ui.ctx());
     let side_w = 300.0_f32.min(ui.available_width() * 0.3);
     // What's open sits on the right; the app's sidebar is on the left.
-    egui::Panel::right("ask-side").exact_size(side_w).resizable(false).frame(egui::Frame::new().fill(t.canvas).inner_margin(Margin::same(20))).show(ui, |ui| {
+    crate::direction::side_panel("ask-side", false)
+        .exact_size(side_w)
+        .resizable(false)
+        .frame(egui::Frame::new().fill(t.canvas).inner_margin(Margin::same(20)))
+        .show(ui, |ui| {
         target_card(app, ui);
     });
     egui::CentralPanel::default().frame(egui::Frame::new().fill(t.canvas).inner_margin(PANE_MARGIN)).show(ui, |ui| {

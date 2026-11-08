@@ -42,9 +42,10 @@ pub fn show(app: &mut CraftApp, ui: &mut Ui) {
         // Fold to icons, or open again (a narrow window keeps it folded).
         let narrow = ui.ctx().content_rect().width() < FOLD_BELOW;
         if !narrow {
-            let (icon, tip) = if fold { ("chevron-right", "Show the sidebar") } else { ("chevron-left", "Fold the sidebar") };
+            let icon = crate::direction::sidebar_fold(fold);
+            let tip = if fold { "Show the sidebar" } else { "Fold the sidebar" };
             // Over the row icons when folded, in the corner when open.
-            let layout = if fold { egui::Layout::top_down(egui::Align::Center) } else { egui::Layout::right_to_left(egui::Align::Min) };
+            let layout = if fold { egui::Layout::top_down(egui::Align::Center) } else { crate::direction::row_end(egui::Align::Min) };
             ui.with_layout(layout, |ui| {
                 if icons::button(ui, icon, 24.0, false, tip).clicked() {
                     app.state.sidebar_folded = !fold;
@@ -72,7 +73,7 @@ pub fn show(app: &mut CraftApp, ui: &mut Ui) {
             ui.horizontal(|ui| {
                 ui.add_space(12.0);
                 widgets::caption(ui, "Projects");
-                ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), refresh).inner
+                ui.with_layout(crate::direction::row_end(egui::Align::Center), refresh).inner
             })
             .inner
         };

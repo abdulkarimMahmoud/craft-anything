@@ -881,7 +881,7 @@ pub fn show(app: &mut CraftApp, ui: &mut Ui) {
     // feed; in a narrow window they fold into the top of the feed instead.
     let beside = ui.available_width() >= SIDE_BESIDE;
     if beside {
-        egui::Panel::right("project-side")
+        crate::direction::side_panel("project-side", false)
             .exact_size(SIDE_W)
             .resizable(false)
             .frame(egui::Frame::new().fill(t.canvas).inner_margin(Margin::same(20)))

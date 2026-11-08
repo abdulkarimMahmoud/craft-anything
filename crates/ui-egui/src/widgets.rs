@@ -67,7 +67,7 @@ pub fn combo_icon(ui: &Ui, rect: egui::Rect, _visuals: &egui::style::WidgetVisua
 pub fn disclosure_icon(ui: &mut Ui, openness: f32, resp: &Response) {
     let t = Tokens::get(ui.ctx());
     let r = egui::Rect::from_center_size(resp.rect.center(), Vec2::splat(12.0));
-    icons::paint(ui, r, if openness > 0.5 { "chevron-down" } else { "chevron-right" }, 12.0, t.text_faint);
+    icons::paint(ui, r, if openness > 0.5 { "chevron-down" } else { crate::direction::chevron_collapsed() }, 12.0, t.text_faint);
 }
 
 /// Give a field without a visible label a name for screen readers (WCAG 4.1.2); egui doesn't
@@ -532,7 +532,7 @@ pub fn working_since(ui: &mut Ui, title: &str, detail: Option<&str>, began: Opti
                     ui.add(egui::Label::new(RichText::new(sub).color(t.text_dim).size(theme::SMALL)).wrap());
                 }
             });
-            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+            ui.with_layout(crate::direction::row_end(egui::Align::Center), |ui| {
                 let clock = crate::usage::duration_words(std::time::Duration::from_secs(secs));
                 ui.label(RichText::new(clock).font(theme::mono(12.5)).color(t.text_faint));
             });

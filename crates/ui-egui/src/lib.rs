@@ -1784,7 +1784,7 @@ impl CraftApp {
         }
 
         if self.beginner() || self.state.screen != Screen::Workbench {
-            egui::Panel::left("app-sidebar")
+            crate::direction::side_panel("app-sidebar", true)
                 .exact_size(sidebar::width(self, &ctx))
                 .resizable(false)
                 .frame(egui::Frame::new().fill(t.chrome).inner_margin(egui::Margin::symmetric(8, 0)))
@@ -1849,7 +1849,7 @@ impl CraftApp {
                             let (icon, col) = if *error { ("triangle-alert", t.danger) } else { ("check", t.success) };
                             icons::show(ui, icon, 15.0, col);
                             ui.add(egui::Label::new(egui::RichText::new(text).color(if *error { t.text } else { t.text_dim })).wrap());
-                            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                            ui.with_layout(crate::direction::row_end(egui::Align::Center), |ui| {
                                 if icons::button(ui, "x", 28.0, false, "Dismiss").clicked() {
                                     dismiss = Some(i);
                                 }
