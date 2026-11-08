@@ -1,0 +1,152 @@
+# ar: original Arabic UI translations (Modern Standard Arabic). Licensed MIT OR Apache-2.0.
+# UTF-8: English source<TAB>translation. Keep placeholders and escapes intact.
+OpenCode default	الافتراضي في OpenCode
+Model default	النموذج الافتراضي
+Thinking depth	عمق التفكير
+OpenCode model	نموذج OpenCode
+Remote program	برنامج بعيد
+Reload models	أعِد تحميل النماذج
+Apply	تطبيق
+No chat models are visible in {agent}. Check its setup, then reload.	لا تظهر نماذج محادثة في {agent}. تحقق من إعداده ثم أعِد التحميل.
+The saved model is no longer visible. Choose another model or the {agent} default.	لم يعُد النموذج المحفوظ ظاهراً. اختر نموذجاً آخر أو النموذج الافتراضي في {agent}.
+OpenCode has no visible chat models. Connect a provider in OpenCode, then reload.	لا توجد نماذج محادثة ظاهرة في OpenCode. صِل مقدّم خدمة في OpenCode ثم أعِد التحميل.
+The saved model is no longer visible. Choose another model or the OpenCode default.	لم يعُد النموذج المحفوظ ظاهراً. اختر نموذجاً آخر أو النموذج الافتراضي في OpenCode.
+The saved thinking depth is unavailable for this model. Choose its default or an offered depth.	عمق التفكير المحفوظ غير متاح لهذا النموذج. اختر الافتراضي أو أحد الأعماق المعروضة.
+List an agent's models	اعرض نماذج الوكيل
+Choose an agent's model and thinking	اختر نموذج الوكيل وعمق تفكيره
+ GB	 GB
+ and {n} more	 و{n} أخرى
+ {ascii}	 {ascii}
+ · ${c:.2}	 · ${c:.2}
+ · ssh {h}	 · ssh {h}
+(1 picture attached)	(صورة واحدة مرفقة)
+({n} pictures attached)	(الصور المرفقة: {n})
+, ${c:.4}	, ${c:.4}
+.NET application graph	مخطط تطبيق .NET
+.NET apps	تطبيقات .NET
+.NET assembly overview	نظرة عامة على تجميع .NET
+.NET native calls	استدعاءات .NET الأصلية
+.NET types and methods	أنواع .NET والدوال
+/btw {}	/btw {}
+0x… or number	0x… أو رقم
+A .NET program (C#, F# or VB)	برنامج .NET (C# أو F# أو VB)
+A DOS program	برنامج DOS
+A Java program	برنامج Java
+A Linux (or Unix) program	برنامج Linux (أو Unix)
+A Mac or iPhone program	برنامج Mac أو iPhone
+A SQLite database (how an app stores its data)	قاعدة بيانات SQLite (طريقة التطبيق في تخزين بياناته)
+A WebAssembly module (code that runs in a browser)	وحدة WebAssembly (شيفرة تعمل في المتصفح)
+A Windows program	برنامج Windows
+A ZIP archive	أرشيف ZIP
+A bundle of ready-made code that many programs share.	حزمة من الشيفرات الجاهزة تشترك فيها برامج كثيرة.
+A coding agent such as Claude Code builds it, and an AI answers your questions in plain words. Change this any time in Settings → AI.	يبنيه وكيل برمجة مثل Claude Code، ويجيب ذكاء اصطناعي عن أسئلتك بكلمات بسيطة. يمكنك تغيير ذلك في أي وقت من الإعدادات ← الذكاء الاصطناعي.
+A command's output shows here when it finishes.	يظهر ناتج الأمر هنا عند اكتماله.
+A copy to try something else from here.	نسخة لتجربة شيء آخر انطلاقاً من هنا.
+A file of machine code that a computer can run directly, like an .exe or an app.	ملف من شيفرة الآلة يستطيع الحاسوب تشغيله مباشرة، مثل .exe أو تطبيق.
+A file that a computer can run as a program.	ملف يستطيع الحاسوب تشغيله كبرنامج.
+A file that links packed web code back to the original, readable source files.	ملف يربط شيفرة الويب المحزّمة بمصدرها الأصلي المقروء.
+A file we don't recognise yet	ملف لا نتعرف عليه بعد
+A first look at a file you're unsure about, without running it.	نظرة أولى على ملف لست متأكداً منه، دون تشغيله.
+A folder	مجلد
+A folder has no bytes of its own	المجلد لا يملك بايتات خاصة به
+A free reverse-engineering tool from the NSA. Deep mode uses it for extra detail; Clean room mode never does.	أداة مجانية للهندسة العكسية من وكالة الأمن القومي الأمريكية (NSA). يستخدمها الوضع العميق لتفاصيل إضافية، ولا يستخدمها وضع الغرفة النظيفة أبداً.
+A frozen copy (recommended)	نسخة مجمّدة (مُستحسنة)
+A frozen copy takes {size}. That's a lot of space: a light copy takes {light}.	تشغل النسخة المجمّدة {size}، وهي مساحة كبيرة، بينما تشغل النسخة الخفيفة {light}.
+A frozen copy takes {size}; a light copy takes {light}.	تشغل النسخة المجمّدة {size}، وتشغل النسخة الخفيفة {light}.
+A game	لعبة
+A game's files	ملفات اللعبة
+A light copy	نسخة خفيفة
+A locked room for running a program so it can't touch the rest of your computer.	غرفة مقفلة لتشغيل البرامج بحيث لا تمس بقية حاسوبك.
+A map of which functions call which other functions.	خريطة توضح أي الدوال تستدعي أي الدوال الأخرى.
+A name the program's author gave to a function or variable that survived in the file.	اسم أطلقه مؤلف البرنامج على دالة أو متغير وبقي في الملف.
+A named piece of a program that does one job, like "add two numbers" or "save the file".	جزء مسمّى من البرنامج يؤدي مهمة واحدة، مثل «جمع رقمين» أو «حفظ الملف».
+A number that says where something is in a program's memory, like a house number.	رقم يحدد مكان شيء ما في ذاكرة البرنامج، مثل رقم المنزل.
+A piece of text stored inside a program, like a message, a web address or a file name.	قطعة نصية مخزنة داخل البرنامج، مثل رسالة أو عنوان ويب أو اسم ملف.
+A program, an app bundle, an APK, a JavaScript bundle, a folder… or drop it on the window.	برنامج أو حزمة تطبيق أو APK أو حزمة JavaScript أو مجلد… أو أسقطه على النافذة.
+A recording of network traffic	تسجيل لحركة الشبكة
+A region of a program as it sits in memory while running.	منطقة من البرنامج كما يستقر في الذاكرة أثناء التشغيل.
+A region of a program file with one purpose: code, text, pictures, settings.	منطقة من ملف البرنامج لها غرض واحد: شيفرة أو نص أو صور أو إعدادات.
+A rule of thumb. Usually right, sometimes wrong, so we label the result as a best guess.	قاعدة تقريبية تصيب غالباً وتخطئ أحياناً، لذلك نصف النتيجة بأنها أفضل تخمين.
+A saved, checkable record of something we found, with how sure we are and where we found it.	سجل محفوظ وقابل للتحقق لشيء وجدناه، مع مدى تأكدنا ومكان العثور عليه.
+A script or web page	سكربت أو صفحة ويب
+A set of commands a program offers to other programs.	مجموعة أوامر يقدمها برنامج للبرامج الأخرى.
+A simple snake game	لعبة ثعبان بسيطة
+A small download (under 200 MB). Free, no account needed.	تنزيل صغير (أقل من 200 MB). مجاني ولا يلزم حساب.
+A small file that lists what an app is called, what it needs and what it's allowed to do.	ملف صغير يسرد اسم التطبيق وما يحتاجه وما يُسمح له به.
+A smart contract (EVM bytecode)	عقد ذكي (بايت كود EVM)
+A way of writing bytes as two-character codes (00 to FF). The rawest view of a file.	طريقة لكتابة البايتات برموز من حرفين (00 إلى FF)، وهي أدنى مستوى لعرض الملف.
+A way to build desktop apps out of web pages. The app is basically a website with its own browser.	طريقة لبناء تطبيقات سطح المكتب من صفحات الويب، فالتطبيق في الأساس موقع ويب له متصفحه الخاص.
+A website	موقع ويب
+A website for my bakery	موقع ويب لمخبزي
+AI	الذكاء الاصطناعي
+AI cost	تكلفة الذكاء الاصطناعي
+AI cost (estimate)	تكلفة الذكاء الاصطناعي (تقديرية)
+AI cost (part estimate)	تكلفة الذكاء الاصطناعي (تقدير جزئي)
+AI model file	ملف نموذج ذكاء اصطناعي
+AI name	اسم الذكاء الاصطناعي
+AI use this session	استهلاك الذكاء الاصطناعي في هذه الجلسة
+API boundary	حدود واجهة API
+API key	مفتاح API
+API key (stored in your system keychain)	مفتاح API (يُحفظ في سلسلة مفاتيح نظامك)
+API key, if it needs one	مفتاح API، إن كان يلزمه واحد
+About 10 GB. Free for personal use with a Unity account.	حوالي 10 GB. مجاني للاستخدام الشخصي مع حساب Unity.
+About 60 GB, an Epic Games account, and Visual Studio's C++ tools.	حوالي 60 GB، وحساب Epic Games، وأدوات C++ في Visual Studio.
+Add	إضافة
+Add Visual Studio's C++ tools	أضف أدوات C++ من Visual Studio
+Add a brain	أضف عقلاً اصطناعياً
+Add a fal.ai key	أضف مفتاح fal.ai
+Add a folder…	أضف مجلداً…
+Add a plugin	أضف ملحقاً
+Add an AI brain and I'll read this evidence for you, answer follow-up questions and point at the proof.	أضف عقلاً اصطناعياً وسأقرأ لك هذا الدليل وأجيب عن أسئلتك اللاحقة وأشير إلى البرهان.
+Add an AI by its address	أضف ذكاءً اصطناعياً عبر عنوانه
+Add another	أضف آخر
+Add it again, to choose another account's folder for it.	أضفه مجدداً لاختيار مجلد حساب آخر له.
+Add more info. The builder reads it at its next step.	أضف مزيداً من المعلومات، فالباني يقرؤها في خطوته التالية.
+Add pictures	أضف صوراً
+Add pictures of the original	أضف صوراً من الأصل
+Add pictures of the original (optional: screenshots help it look right)	أضف صوراً من الأصل (اختياري: لقطات الشاشة تساعده على مطابقة الشكل)
+Add to a running build	أضف إلى بناءٍ جارٍ
+Added	تمت الإضافة
+Added {n} picture(s). The builder uses them from your next change.	تمت إضافة الصور ({n}). يستخدمها الباني بدءاً من تغييرك التالي.
+Address to file offset	من العنوان إلى إزاحة الملف
+Adds its decompiler to Deep mode. Craft Anything can download and set it up for you.	يضيف مفككه إلى الوضع العميق، ويمكن لـ Craft Anything تنزيله وإعداده لك.
+Advanced	متقدم
+After installing one, look for it again.	بعد تثبيت واحد، ابحث عنه مجدداً.
+Agent	وكيل
+Allow generated assets	السماح بالأصول المولّدة
+Allow once	السماح مرة واحدة
+Allowed for this project	مسموح لهذا المشروع
+Allowed for this project.	مسموح لهذا المشروع.
+Allowed in	مسموح في
+Allowed once	مسموح مرة واحدة
+Allowed once.	مسموح مرة واحدة.
+Also list projects from	اعرض أيضاً المشاريع من
+Always for this project	دائماً لهذا المشروع
+An Android app	تطبيق Android
+An Android app package: the file you install on a phone.	حزمة تطبيق Android: الملف الذي تثبته على الهاتف.
+An Apple settings file (plist)	ملف إعدادات Apple (plist)
+An app	تطبيق
+An app or a file	تطبيق أو ملف
+Analyse a JavaScript app	حلّل تطبيق JavaScript
+Analyse a page's JavaScript	حلّل JavaScript الصفحة
+Android app code (DEX)	شيفرة تطبيق Android (DEX)
+Android app components	مكونات تطبيق Android
+Android app package	حزمة تطبيق Android
+Android apps	تطبيقات Android
+Android class	صنف Android
+Android method bytecode	بايت كود دالة Android
+Android resources	موارد Android
+Annotate function	أضف شرحاً للدالة
+Another build is working, so this one waits its turn.	ثمة بناء آخر يعمل، لذا ينتظر هذا دوره.
+Answer a project's question	أجب عن سؤال المشروع
+Answer any of them in a message below.	أجب عن أي منها في رسالة أدناه.
+Answered by {name}	أجاب عنه {name}
+Answers come from {brain}. To build, set up a coding agent in Settings → AI.	تأتي الإجابات من {brain}. وللبناء، أعِدَّ وكيل برمجة في الإعدادات ← الذكاء الاصطناعي.
+App	تطبيق
+App details on device	تفاصيل التطبيق على الجهاز
+Apple apps	تطبيقات Apple
+Apply model options	طبّق خيارات النموذج
+Approve an agent action	وافق على إجراء الوكيل
+Apps and games: keep refining until they look this alike to your pictures. Off, the likeness is only reported.	التطبيقات والألعاب: واصِل الصقل حتى تطابق صورك بهذا القدر. وعند إيقافه يُكتفى بالإبلاغ عن درجة التشابه.
+Architectures	المعماريات
+Archive	أرشيف

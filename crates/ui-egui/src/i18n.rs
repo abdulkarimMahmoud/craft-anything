@@ -35,6 +35,7 @@ pub static LANGUAGES: &[LangInfo] = &[
     LangInfo { code: "pt-br", name: "Português (Brasil)", source: include_str!("i18n/pt-br.tsv") },
     LangInfo { code: "tr", name: "Türkçe", source: include_str!("i18n/tr.tsv") },
     LangInfo { code: "th", name: "ไทย", source: include_str!("i18n/th.tsv") },
+    LangInfo { code: "ar", name: "العربية", source: include_str!("i18n/ar.tsv") },
 ];
 
 /// Match a locale to a registered UI language. An explicit script wins over the region.
