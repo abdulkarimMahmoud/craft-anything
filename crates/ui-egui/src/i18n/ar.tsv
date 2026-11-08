@@ -300,3 +300,153 @@ Copy the evidence id	انسخ معرّف الدليل
 Couldn't add the pictures:	تعذّرت إضافة الصور:
 Couldn't answer:	تعذّرت الإجابة:
 Couldn't attach the pictures:	تعذّر إرفاق الصور:
+Couldn't look through that folder.	تعذّر تصفح ذلك المجلد.
+Couldn't open it.	تعذّر فتحه.
+Couldn't open the folder.	تعذّر فتح المجلد.
+Couldn't open {}: {}	تعذّر فتح {}: {}
+Couldn't start a worker thread: {e}	تعذّر بدء خيط عامل: {e}
+Couldn't start it.	تعذّر بدؤه.
+Coverage unknown	التغطية مجهولة
+Craft Anything	Craft Anything
+Craft Anything can't build with {engine}, so Unity is the closest match.	لا تستطيع Craft Anything البناء باستخدام {engine}، لذا فإن Unity هي الأقرب.
+Craft Anything or the computer closed while it was working. Everything so far is kept; Continue picks up where it stopped.	أُغلقت Craft Anything أو الحاسوب أثناء العمل. كل ما أُنجز محفوظ، و«متابعة» تستأنف من حيث توقفت.
+Craft Anything reads its code and files with every tool it has. For your private use.	تقرأ Craft Anything شيفرته وملفاته بكل أدواتها. لاستخدامك الخاص.
+Craft Anything reads the original's code, files and page source with every tool it has, and with Ghidra when it's installed.	تقرأ Craft Anything شيفرة الأصل وملفاته ومصدر صفحاته بكل أدواتها، ومع Ghidra عند تثبيته.
+Craft Anything report.md	Craft Anything report.md
+Craft Anything's records, checks and anything it built in app/ are deleted. Your own files in the folder stay as they are.	تُحذف سجلات Craft Anything وفحوصاتها وكل ما بنته في app/، وتبقى ملفاتك الخاصة في المجلد كما هي.
+Crash dump	تفريغ التعطل
+Create the project	أنشئ المشروع
+Critical	حرج
+Cross-reference: a place in the program that uses or calls the thing you're looking at.	مرجع متقاطع: مكان في البرنامج يستخدم الشيء الذي تنظر إليه أو يستدعيه.
+Cross-references	مراجع متقاطعة
+Cross-references: the places in the program that use or call the thing you're looking at.	المراجع المتقاطعة: الأماكن في البرنامج التي تستخدم الشيء الذي تنظر إليه أو تستدعيه.
+Current document	المستند الحالي
+Cursor address	عنوان المؤشر
+Cursor function	دالة المؤشر
+Custom	مخصص
+Cutter command	أمر Cutter
+DOS load image	صورة تحميل DOS
+Databases	قواعد البيانات
+Decide yourself	قرّر بنفسك
+Decode a radio recording	فكّ ترميز تسجيل لاسلكي
+Decompile	فكّ الترجمة
+Decompile Java with Vineflower	فكّ ترجمة Java باستخدام Vineflower
+Decompile many	فكّ ترجمة العديد
+Decompile with JEB	فكّ ترجمة باستخدام JEB
+Deep	العميق
+Deep mode now decompiles with Ghidra. The first look at a large program can take several minutes.	صار الوضع العميق يفك الترجمة باستخدام Ghidra، وقد تستغرق النظرة الأولى على برنامج كبير عدة دقائق.
+Deep mode on	الوضع العميق مفعّل
+Deep: we read its code, files and page source with every tool we have, and with Ghidra when it's installed. Click to switch.	العميق: نقرأ شيفرته وملفاته ومصدر صفحاته بكل أدواتنا، ومع Ghidra عند تثبيته. انقر للتبديل.
+Default	الافتراضي
+Delete a project	احذف مشروعاً
+Delete it	احذفه
+Delete the project	احذف المشروع
+Delete {name}?	هل تحذف {name}؟
+Deleted.	حُذف.
+Deleted. Your own files are still in the folder.	حُذف، ولا تزال ملفاتك الخاصة في المجلد.
+Delete…	احذف…
+Deliberately scrambled to make it hard to read, without changing what it does.	مشوَّش عمداً لتصعيب قراءته دون تغيير ما يفعله.
+Demangle Swift symbols	فكّ تشويه رموز Swift
+Details	التفاصيل
+Details about the selected item appear here.	تظهر هنا تفاصيل العنصر المحدد.
+Detect	الاكتشاف
+Device details	تفاصيل الجهاز
+Device features	مزايا الجهاز
+Device folder	مجلد الجهاز
+Device log	سجل الجهاز
+Disassemble sBPF code	فكّك شيفرة sBPF
+Disassembly	التفكيك
+Disconnect agent apps	افصل تطبيقات الوكلاء
+Dismiss	تجاهل
+Dispatch metadata	بيانات Dispatch الوصفية
+Display info	معلومات العرض
+Do you have permission?	هل لديك الإذن؟
+Does it talk to the internet?	هل يتصل بالإنترنت؟
+Does it track me?	هل يتعقبني؟
+Don't allow	لا تسمح
+Don't ask again (you can change this in Settings)	لا تسأل مجدداً (يمكنك تغيير ذلك في الإعدادات)
+Done	تم
+Download	تنزيل
+Download Godot {v}	نزّل Godot {v}
+Download Unity Hub	نزّل Unity Hub
+Download and use Ghidra	نزّل Ghidra واستخدمه
+Download it from unity.com and install it.	نزّله من unity.com ثم ثبّته.
+Download it from unrealengine.com and install it.	نزّله من unrealengine.com ثم ثبّته.
+Download the Epic Games Launcher	نزّل مشغّل Epic Games
+Downloads keep going in the background.	تستمر التنزيلات في الخلفية.
+Drive an app's screen	تحكّم في شاشة تطبيق
+Drop a calculator app (or any small program) on the window.	أسقط تطبيق آلة حاسبة (أو أي برنامج صغير) على النافذة.
+Drop a file or app anywhere in this window.	أسقط ملفاً أو تطبيقاً في أي مكان من هذه النافذة.
+Drop the file on the window. We only read it; nothing runs.	أسقط الملف على النافذة. نقرؤه فقط ولا يُشغَّل شيء.
+Drop to attach	أسقط للإرفاق
+Drop to open it	أسقط لفتحه
+Duplicate	كرّر
+Duplicate a project	كرّر مشروعاً
+Duplicate the project	كرّر المشروع
+Each answer says how sure we are: Seen it, Worked it out or Best guess.	توضح كل إجابة مدى تأكدنا: رأيناه أو استنتجناه أو أفضل تخمين.
+Edit a project file	حرّر ملف مشروع
+Edit them in place	حرّرها في مكانها
+Effort:	الجهد:
+Electron and JavaScript	Electron وJavaScript
+Electron fuses	منصهرات Electron
+Engines	المحركات
+Engines and settings	المحركات والإعدادات
+Enter a full web address, like example.com or https://example.com/page.	أدخل عنوان ويب كاملاً، مثل example.com أو https://example.com/page.
+Enter to send · Shift+Enter for a new line	Enter للإرسال · Shift+Enter لسطر جديد
+Epic's own installer. It only opens if Epic's signature checks out.	مثبّت Epic الرسمي، ولا يُفتح إلا إذا تحقق توقيع Epic.
+Essentials	الأساسيات
+Every build of this project.	كل عمليات بناء هذا المشروع.
+Every finding is saved here with how sure we are.	تُحفظ هنا كل نتيجة مع مدى تأكدنا منها.
+Every tool as well: a workbench with functions, bytes, references and evidence.	وكل الأدوات أيضاً: منضدة عمل فيها الدوال والبايتات والمراجع والأدلة.
+Everything found so far, as a Markdown file.	كل ما وُجد حتى الآن، في ملف Markdown.
+Everything so far is kept. Continue picks up where it stopped.	كل ما أُنجز محفوظ، و«متابعة» تستأنف من حيث توقفت.
+Evidence	الأدلة
+Evidence ledger	سجل الأدلة
+Evidence so far	الأدلة حتى الآن
+Explain a function	اشرح دالة
+Explain like I'm new	اشرح لي كأني مبتدئ
+Export a report	صدّر تقريراً
+Export a report (Markdown)	صدّر تقريراً (Markdown)
+Export captured scripts	صدّر السكربتات الملتقطة
+Export evidence	صدّر الأدلة
+Export report	تصدير تقرير
+Extended	موسّع
+Extract an archive	استخرج أرشيفاً
+Extract firmware	استخرج البرنامج الثابت
+Extract with this	استخرج بهذا
+Extracts	مقتطفات
+File formats	صيغ الملفات
+Files packed inside a file	ملفات محزّمة داخل ملف
+Filter	تصفية
+Filter by name	صفِّ حسب الاسم
+Filter the files	صفِّ الملفات
+Filter…	تصفية…
+Find Android classes	اعثر على أصناف Android
+Find Java classes	اعثر على أصناف Java
+Find a call path	اعثر على مسار استدعاء
+Find a game's files	اعثر على ملفات لعبة
+Find an app	اعثر على تطبيق
+Find in-page MCP tools	اعثر على أدوات MCP داخل الصفحة
+Find it automatically	اعثر عليه تلقائياً
+Find out how any software works, then craft your own.	اكتشف كيف يعمل أي برنامج، ثم اصنع برنامجك.
+Find the original source line	اعثر على سطر المصدر الأصلي
+Firmware regions	مناطق البرنامج الثابت
+Fold the sidebar	اطوِ الشريط الجانبي
+Folders of projects, and projects started in a folder you picked. Removing one only takes it off the list.	مجلدات المشاريع، والمشاريع التي بدأت في مجلد اخترته. إزالة أحدها تُسقطه من القائمة فقط.
+Follow the installer that opened. Come back here when it's done.	تابع المثبّت الذي فُتح، وعُد إلى هنا عند انتهائه.
+Follow the steps on rustup.rs, then come back here.	اتبع الخطوات في rustup.rs ثم عُد إلى هنا.
+For everything you make, like the switch in the title bar.	لكل ما تصنعه، مثل المبدّل في شريط العنوان.
+For example: a website for my bakery	مثلاً: موقع ويب لمخبزي
+For example: recreate this website	مثلاً: أعد إنشاء هذا الموقع
+For example: the same app, but simpler	مثلاً: التطبيق نفسه لكن أبسط
+For example: the same game, with a high-score table	مثلاً: اللعبة نفسها مع جدول أعلى النتائج
+Force-stop an app	أوقِف تطبيقاً قسراً
+Forget the key	انسَ المفتاح
+Found on this computer	وُجد على هذا الحاسوب
+Found {} AI option(s) on this computer	عُثر على {} من خيارات الذكاء الاصطناعي على هذا الحاسوب
+Frida devices	أجهزة Frida
+Frida instrumentation	تجهيزات Frida
+Frida processes	عمليات Frida
+Frida session status	حالة جلسة Frida
+From	من
+Frozen copy	نسخة مجمّدة
