@@ -167,7 +167,7 @@ pub(crate) fn row(ui: &mut Ui, icon: &str, label: &str, status: Option<(egui::Co
         return resp.on_hover_text(name).on_hover_cursor(egui::CursorIcon::PointingHand);
     }
     // An urgent status is a small pill on the right; the name gives way to it.
-    let pill = status.filter(|s| s.2).map(|(color, s, _)| (color, ui.painter().layout_no_wrap(tr(s), theme::semibold(theme::CAPTION), color)));
+    let pill = status.filter(|s| s.2).map(|(color, s, _)| (color, crate::widgets::layout_directed_no_wrap(ui.painter(), tr(s), theme::semibold(theme::CAPTION), color)));
     let right = match (&pill, status) {
         (Some((_, g)), _) => g.size().x + 26.0,
         (None, Some(_)) => 26.0,
@@ -175,6 +175,7 @@ pub(crate) fn row(ui: &mut Ui, icon: &str, label: &str, status: Option<(egui::Co
     };
     let max_w = (rect.width() - 40.0 - right).max(20.0);
     let mut job = egui::text::LayoutJob::simple_singleline(text.clone(), egui::FontId::proportional(theme::SMALL), ink);
+    job.direction = crate::direction::text_direction();
     job.wrap = egui::text::TextWrapping::truncate_at_width(max_w);
     let g = ui.painter().layout_job(job);
     ui.painter().galley(egui::pos2(rect.left() + 38.0, rect.center().y - g.size().y / 2.0), g, ink);

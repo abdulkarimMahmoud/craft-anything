@@ -1,10 +1,8 @@
 //! Reading-direction helpers: one place that knows whether the interface runs left to
 //! right or right to left, so layout sites ask instead of hard-coding a side.
 //!
-//! Deliberately small on purpose: every helper here uses only egui APIs that have been
-//! stable for years, so this module compiles unchanged on stock egui 0.36 and on the
-//! patched 0.37 fork the full right-to-left work (PR-1 and later) moves to. Paragraph text
-//! direction (`LayoutJob::direction`) is a 0.37-fork API and lands separately in PR-2.
+//! The layout helpers use only long-stable egui APIs; `text_direction` needs the patched
+//! 0.37 fork PR-1 moved to (`TextDirection` does not exist on stock 0.36).
 //!
 //! Icons that must NOT mirror (kept identical in both directions): play, close, check,
 //! alerts, plus, search, and the up/down chevrons. Only sideways pointers flip.
@@ -12,6 +10,15 @@
 /// Whether the interface currently reads right to left (Arabic today).
 pub fn rtl() -> bool {
     crate::i18n::is_rtl()
+}
+
+/// The text base direction for painted interface chrome (labels, headings, pills): every
+/// paragraph reads right to left when mirrored, left to right otherwise. Editable and
+/// data content instead keeps the shaper's `Auto` default, which follows each paragraph's
+/// own first strong character.
+pub fn text_direction() -> egui::epaint::text::TextDirection {
+    use egui::epaint::text::TextDirection;
+    pick(rtl(), TextDirection::LeftToRight, TextDirection::RightToLeft)
 }
 
 /// Pick the left-to-right (`ltr`) or mirrored (`rtl`) variant.

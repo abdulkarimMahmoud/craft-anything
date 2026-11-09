@@ -316,9 +316,9 @@ pub fn heading(text: impl Into<String>, size: f32) -> egui::RichText {
     egui::RichText::new(text).font(semibold(size))
 }
 
-/// `heading` laid out for painting, wrapped at `wrap`.
+/// `heading` laid out for painting, wrapped at `wrap`, in the interface's text direction.
 pub fn heading_galley(painter: &egui::Painter, text: impl Into<String>, size: f32, color: Color32, wrap: f32) -> Arc<egui::Galley> {
-    painter.layout(text.into(), semibold(size), color, wrap)
+    crate::widgets::layout_directed(painter, text.into(), semibold(size), color, wrap)
 }
 pub fn mono(size: f32) -> FontId {
     FontId::monospace(size)

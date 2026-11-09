@@ -6,14 +6,24 @@ use crate::theme::{self, Tokens, confidence_color, confidence_label};
 use craft_anything_engine::evidence::Confidence;
 use egui::{Color32, Frame, Margin, Response, RichText, Sense, Stroke, Ui, Vec2};
 
+/// [`egui::Painter::layout`] with the interface's text direction: paragraphs read right to left
+/// when mirrored, so wrapped chrome text aligns to the reading edge.
+pub fn layout_directed(painter: &egui::Painter, text: String, font: egui::FontId, color: Color32, wrap: f32) -> std::sync::Arc<egui::Galley> {
+    let mut job = egui::text::LayoutJob::simple(text, font, color, wrap);
+    job.direction = crate::direction::text_direction();
+    painter.layout_job(job)
+}
+
+/// [`egui::Painter::layout_no_wrap`] with the interface's text direction.
+pub fn layout_directed_no_wrap(painter: &egui::Painter, text: String, font: egui::FontId, color: Color32) -> std::sync::Arc<egui::Galley> {
+    let mut job = egui::text::LayoutJob::simple_singleline(text, font, color);
+    job.direction = crate::direction::text_direction();
+    painter.layout_job(job)
+}
+
 /// Lay out `text` in the label style ([`theme::label_text`]) for painting.
 pub fn label_galley(ui: &Ui, text: &str, size: f32, color: Color32) -> std::sync::Arc<egui::Galley> {
-    egui::WidgetText::from(theme::label_text(text, size).color(color)).into_galley(
-        ui,
-        Some(egui::TextWrapMode::Extend),
-        f32::INFINITY,
-        egui::FontSelection::Default,
-    )
+    layout_directed_no_wrap(ui.painter(), text.to_owned(), theme::medium(size + 1.5), color)
 }
 
 /// 0..1 as the pointer rests on `resp` (a short ease, so hover states don't snap).
@@ -36,7 +46,7 @@ pub fn toggle(ui: &mut Ui, on: &mut bool, label: &str) -> Response {
     let t = Tokens::get(ui.ctx());
     // The label wraps to the room left, so a long one can't push a narrow panel wider.
     let wrap = (ui.available_width() - 42.0).max(80.0);
-    let g = (!label.is_empty()).then(|| ui.painter().layout(tr(label), egui::FontId::proportional(theme::SMALL), t.text, wrap));
+    let g = (!label.is_empty()).then(|| layout_directed(ui.painter(), tr(label), egui::FontId::proportional(theme::SMALL), t.text, wrap));
     let w = 32.0 + g.as_ref().map_or(0.0, |g| g.size().x + 10.0);
     let h = g.as_ref().map_or(24.0, |g| g.size().y.max(24.0));
     let (rect, mut resp) = ui.allocate_exact_size(Vec2::new(w, h), Sense::click());
@@ -82,7 +92,7 @@ pub fn named(resp: Response, name: &str) -> Response {
 pub fn suggestion(ui: &mut Ui, text: &str) -> Response {
     let t = Tokens::get(ui.ctx());
     let max_w = ui.available_width().max(60.0);
-    let g = ui.painter().layout(tr(text), egui::FontId::proportional(theme::SMALL), t.text, max_w - 26.0);
+    let g = layout_directed(ui.painter(), tr(text), egui::FontId::proportional(theme::SMALL), t.text, max_w - 26.0);
     let w = if ui.layout().horizontal_justify() { max_w } else { (g.size().x + 26.0).min(max_w) };
     let (rect, resp) = ui.allocate_exact_size(Vec2::new(w, (g.size().y + 14.0).max(32.0)), Sense::click());
     let h = hover_t(ui, &resp);
@@ -106,8 +116,8 @@ pub fn suggestion(ui: &mut Ui, text: &str) -> Response {
 pub fn choice_tile(ui: &mut Ui, size: Vec2, icon: &str, label: &str, blurb: &str, on: bool) -> Response {
     let t = Tokens::get(ui.ctx());
     let wrap = size.x - 84.0;
-    let g = ui.painter().layout(tr(label), theme::medium(theme::BODY), t.text, wrap);
-    let sub = (!blurb.is_empty()).then(|| ui.painter().layout(tr(blurb), egui::FontId::proportional(theme::SMALL), t.text_dim, wrap));
+    let g = layout_directed(ui.painter(), tr(label), theme::medium(theme::BODY), t.text, wrap);
+    let sub = (!blurb.is_empty()).then(|| layout_directed(ui.painter(), tr(blurb), egui::FontId::proportional(theme::SMALL), t.text_dim, wrap));
     let text_h = g.size().y + sub.as_ref().map_or(0.0, |s| s.size().y + 3.0);
     let (rect, resp) = ui.allocate_exact_size(Vec2::new(size.x, size.y.max(text_h + 24.0)), Sense::click());
     let h = hover_t(ui, &resp);
@@ -309,7 +319,7 @@ pub fn confidence_badge(ui: &mut Ui, c: Option<Confidence>) -> Response {
     let t = Tokens::get(ui.ctx());
     let col = confidence_color(c);
     let font = theme::medium(theme::CAPTION);
-    let g = ui.painter().layout_no_wrap(tr(confidence_label(c)), font, col);
+    let g = layout_directed_no_wrap(ui.painter(), tr(confidence_label(c)), font, col);
     let size = Vec2::new(g.size().x + 26.0, g.size().y + 7.0);
     let (rect, resp) = ui.allocate_exact_size(size, Sense::hover());
     let bg = Color32::from_rgba_unmultiplied(col.r(), col.g(), col.b(), 34);
@@ -363,7 +373,7 @@ pub fn big_card(ui: &mut Ui, size: Vec2, icon: &str, title: &str, blurb: &str, b
     ui.painter().rect_filled(icon_rect, t.radius, t.accent_soft);
     icons::paint(ui, icon_rect, icon, 28.0, t.accent_ink);
     if let Some(b) = badge {
-        let g = ui.painter().layout_no_wrap(tr(b), theme::medium(theme::TINY), t.text_dim);
+        let g = layout_directed_no_wrap(ui.painter(), tr(b), theme::medium(theme::TINY), t.text_dim);
         let br = egui::Rect::from_min_size(egui::pos2(rect.right() - g.size().x - 34.0, rect.top() + 22.0), g.size() + Vec2::new(16.0, 8.0));
         ui.painter().rect_filled(br, t.r_sm(), t.hover);
         ui.painter().galley_with_override_text_color(br.center() - g.size() / 2.0, g, t.text_dim);
@@ -373,7 +383,7 @@ pub fn big_card(ui: &mut Ui, size: Vec2, icon: &str, title: &str, blurb: &str, b
     let title_g = theme::heading_galley(ui.painter(), tr(title), theme::CARD, t.text, rect.width() - 44.0);
     let title_h = title_g.size().y;
     ui.painter().galley(title_pos, title_g, t.text);
-    let wrap = ui.painter().layout(tr(blurb), egui::FontId::proportional(theme::SMALL), t.text_dim, rect.width() - 44.0);
+    let wrap = layout_directed(ui.painter(), tr(blurb), egui::FontId::proportional(theme::SMALL), t.text_dim, rect.width() - 44.0);
     ui.painter().galley(title_pos + Vec2::new(0.0, title_h + 8.0), wrap, t.text_dim);
     focus_ring(ui, &resp, rect);
     resp.widget_info(|| egui::WidgetInfo::labeled(egui::Role::Button, true, tr(title)));
