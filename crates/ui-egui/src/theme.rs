@@ -412,6 +412,8 @@ pub fn apply(ctx: &egui::Context, kind: ThemeKind, roomy: bool) {
     // Simple mode is for anyone, including people who find small text hard to read.
     let body = if roomy { 16.0 } else { 13.0 };
     ctx.global_style_mut(|s| {
+        // Scroll bars, menus, popups, combo boxes and the resize grip mirror with this.
+        s.right_to_left = crate::direction::rtl();
         s.text_styles = [
             (TextStyle::Small, FontId::proportional(if roomy { 13.5 } else { 11.0 })),
             (TextStyle::Body, FontId::proportional(body)),

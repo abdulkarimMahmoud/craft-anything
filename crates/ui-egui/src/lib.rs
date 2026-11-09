@@ -1717,6 +1717,11 @@ impl CraftApp {
             theme::apply(ctx, want.0, want.1);
             self.applied_theme = Some(want);
         }
+        // The reading direction follows the language, which can change without the theme.
+        let rtl = crate::direction::rtl();
+        if ctx.global_style().right_to_left != rtl {
+            ctx.global_style_mut(|s| s.right_to_left = rtl);
+        }
         self.take_finished_jobs();
         if let Some(url) = self.open_url.take() {
             ctx.open_url(egui::OpenUrl::new_tab(url));
