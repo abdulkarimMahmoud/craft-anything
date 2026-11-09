@@ -103,11 +103,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: windows-x64
-          path: dist/release/craft-anything-*-windows-x64.*
+          path: dist/release/craft-anything-*-windows-x64*
 
       - name: Upload to release
         if: inputs.upload-tag != ''
         shell: pwsh
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release upload "${{ inputs.upload-tag }}" dist/release/craft-anything-*-windows-x64.* --clobber
+        run: gh release upload "${{ inputs.upload-tag }}" dist/release/craft-anything-*-windows-x64* --clobber
