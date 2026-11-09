@@ -45,9 +45,6 @@ VIAddVersionKey "ProductVersion" "${DISPLAYVERSION}"
 !define MUI_ICON "${ROOTDIR}\assets\app-icon\craft-anything.ico"
 !define MUI_UNICON "${ROOTDIR}\assets\app-icon\craft-anything.ico"
 
-LangString FinishRun ${LANG_ENGLISH} "Run Craft Anything"
-LangString FinishRun ${LANG_ARABIC} "تشغيل Craft Anything"
-
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
@@ -60,6 +57,9 @@ LangString FinishRun ${LANG_ARABIC} "تشغيل Craft Anything"
 
 !insertmacro MUI_LANGUAGE "English"
 !insertmacro MUI_LANGUAGE "Arabic"
+
+LangString FinishRun ${LANG_ENGLISH} "Run Craft Anything"
+LangString FinishRun ${LANG_ARABIC} "تشغيل Craft Anything"
 
 Function .onInit
   ${IfNot} ${RunningX64}

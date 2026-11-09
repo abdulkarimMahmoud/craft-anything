@@ -79,13 +79,13 @@ jobs:
         shell: pwsh
         run: |
           $Version = '${{ steps.version.outputs.version }}'
-          $Stage = 'target\windows-package\x64'
-          $Portable = "target\windows-package\craft-anything-$Version-windows-x64-portable"
+          $Stage = Join-Path $PWD 'target\windows-package\x64'
+          $Portable = Join-Path $PWD "target\windows-package\craft-anything-$Version-windows-x64-portable"
           Copy-Item "$Portable\OFL-*.txt" $Stage -ErrorAction SilentlyContinue
           $cli = if (Test-Path 'apps\craft-anything-cli\Cargo.toml') { '/DHASCLI=1' } else { '' }
-          makensis "/DVERSION=$Version" "/DDISPLAYVERSION=$Version" "/DBINDIR=$Stage" /DROOTDIR=. `
-            "/DOUTFILE=dist\release\craft-anything-$Version-windows-x64-setup.exe" `
-            $cli packaging\windows\craft-anything.nsi
+          $Setup = Join-Path $PWD "dist\release\craft-anything-$Version-windows-x64-setup.exe"
+          makensis "/DVERSION=$Version" "/DDISPLAYVERSION=$Version" "/DBINDIR=$Stage" "/DROOTDIR=$PWD" `
+            "/DOUTFILE=$Setup" $cli packaging\windows\craft-anything.nsi
 
       - name: Smoke-test the setup exe (silent install, run, uninstall)
         shell: pwsh
