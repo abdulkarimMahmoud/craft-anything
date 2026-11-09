@@ -1,0 +1,70 @@
+# Linux release snapshot for the Arabic RTL fork: a native x86_64 release build, then
+# the .deb, .rpm and .tar.gz via packaging/linux/package.sh, and finally the artifacts —
+# uploaded to a release when told to.
+#
+#   gh workflow run linux-release.yml --ref feature/ar-rtl -f upload-tag=v0.4.0-ar2
+#
+# The dispatched ref selects the code that runs, so pass the branch carrying the work.
+# Built on Ubuntu 22.04 (glibc 2.35) so the binaries run on newer distros too.
+name: Linux release (fork snapshot)
+
+on:
+  workflow_dispatch:
+    inputs:
+      upload-tag:
+        description: "Release tag to upload the packages to (empty = artifacts only)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    env:
+      CARGO_INCREMENTAL: 0
+    steps:
+      - name: Check out ${{ github.ref_name }}
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Check out craft-fonts (embedded Noto Sans Arabic)
+        uses: actions/checkout@v4
+        with:
+          repository: storytold/craft-fonts
+          ref: b076417b5880bd4154bd22f00695b1d28c6bea83
+          path: craft-fonts
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libxkbcommon-dev libwayland-dev libx11-dev libxrandr-dev \
+            libxi-dev libgl1-mesa-dev libgtk-3-dev
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install nfpm
+        run: |
+          curl -sL https://github.com/goreleaser/nfpm/releases/download/v2.48.0/nfpm_2.48.0_Linux_x86_64.tar.gz \
+            | sudo tar -xz -C /usr/local/bin nfpm
+
+      - name: Build and package (deb, rpm, tar.gz)
+        env:
+          CRAFT_FONTS_DIR: ${{ github.workspace }}/craft-fonts
+          DIST: ${{ github.workspace }}/dist/release
+        run: bash packaging/linux/package.sh --formats "deb rpm tar"
+
+      - name: Upload packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-x86_64
+          path: dist/release/craft-anything-*-linux-x86_64.*
+
+      - name: Upload to release
+        if: inputs.upload-tag != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ inputs.upload-tag }}" dist/release/craft-anything-*-linux-x86_64.* --clobber
