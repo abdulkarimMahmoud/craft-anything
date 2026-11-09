@@ -29,12 +29,12 @@ pub fn make_line(app: &mut CraftApp, ui: &mut Ui) {
     };
     let picked = d.folder.is_some();
     // Where it goes (and what the files there are), then what can be changed, each on its own line.
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         crate::icons::show(ui, "folder", 14.0, t.text_faint);
         ui.label(RichText::new(tr("Saved in")).size(theme::SMALL).color(t.text_dim));
         ui.add(egui::Label::new(RichText::new(&place).size(theme::SMALL).color(t.text)).truncate()).on_hover_text(&place);
     });
-    ui.horizontal_wrapped(|ui| {
+    crate::direction::show_row_wrapped(ui, |ui| {
         ui.add_space(22.0);
         if let Some(how) = how {
             ui.label(RichText::new(how).size(theme::SMALL).color(t.text_dim));
@@ -162,7 +162,7 @@ pub fn existing_modal(app: &mut CraftApp, ui: &mut Ui, close: &mut bool) {
     let current = app.state.make.existing;
     let size = Vec2::new(268.0, 168.0);
     let mut chosen = None;
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         let edit = widgets::choice_tile(
             ui,
             size,

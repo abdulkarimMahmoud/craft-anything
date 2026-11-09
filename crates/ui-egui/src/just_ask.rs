@@ -144,9 +144,9 @@ pub fn card(ui: &mut Ui, a: &mut Asked, glossary: bool) {
     let shown = widgets::card(&t).show(ui, |ui| {
         ui.set_width(ui.available_width());
         let mut toggle = false;
-        ui.horizontal(|ui| {
+        crate::direction::show_row(ui, egui::Align::Center, |ui| {
             let name = if a.collapsed { "Show the answer" } else { "Hide the answer" };
-            toggle |= icons::button(ui, if a.collapsed { "chevron-right" } else { "chevron-down" }, 22.0, false, name).clicked();
+            toggle |= icons::button(ui, if a.collapsed { crate::direction::chevron_collapsed() } else { "chevron-down" }, 22.0, false, name).clicked();
             let (icon, _) = ui.allocate_exact_size(egui::vec2(16.0, 16.0), egui::Sense::hover());
             icons::paint(ui, icon, "circle-help", 16.0, t.icon);
             let line = egui::Label::new(RichText::new(&a.question).strong()).sense(egui::Sense::click()).selectable(false);

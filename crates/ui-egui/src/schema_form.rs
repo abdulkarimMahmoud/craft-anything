@@ -133,7 +133,7 @@ pub fn show(ui: &mut Ui, fields: &[Field], values: &mut BTreeMap<String, String>
     egui::Grid::new("schema-form").num_columns(2).spacing([12.0, 8.0]).show(ui, |ui| {
         for f in fields {
             ui.vertical(|ui| {
-                ui.horizontal(|ui| {
+                crate::direction::show_row(ui, egui::Align::Center, |ui| {
                     ui.label(RichText::new(&f.name).font(theme::mono(12.5)));
                     if f.required {
                         ui.label(RichText::new("*").color(t.accent));

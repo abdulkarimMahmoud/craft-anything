@@ -1041,7 +1041,7 @@ impl CraftApp {
             _ => "Part of the app is stuck. Restarting clears it, and your work is kept.",
         };
         egui::Panel::top("stuck-banner").frame(egui::Frame::new().fill(t.card).inner_margin(egui::Margin::symmetric(14, 8))).show(ui, |ui| {
-            ui.horizontal_wrapped(|ui| {
+            crate::direction::show_row_wrapped(ui, |ui| {
                 icons::show(ui, "triangle-alert", 16.0, t.danger);
                 ui.label(egui::RichText::new(i18n::tr(text)).color(t.text)).on_hover_text(problem.summary.clone());
                 if let Some(path) = &problem.log
@@ -1850,7 +1850,7 @@ impl CraftApp {
                     .inner_margin(egui::Margin::symmetric(14, 8))
                     .show(ui, |ui| {
                         ui.set_width(width - 28.0);
-                        ui.horizontal(|ui| {
+                        crate::direction::show_row(ui, egui::Align::Center, |ui| {
                             let (icon, col) = if *error { ("triangle-alert", t.danger) } else { ("check", t.success) };
                             icons::show(ui, icon, 15.0, col);
                             ui.add(egui::Label::new(egui::RichText::new(text).color(if *error { t.text } else { t.text_dim })).wrap());

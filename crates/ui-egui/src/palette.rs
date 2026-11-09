@@ -119,7 +119,7 @@ pub fn show(app: &mut CraftApp, ctx: &egui::Context) {
             .inner_margin(Margin::same(10))
             .show(ui, |ui| {
                 ui.set_width(width);
-                ui.horizontal(|ui| {
+                crate::direction::show_row(ui, egui::Align::Center, |ui| {
                     icons::show(ui, "search", 18.0, t.text_faint);
                     let r = ui.add(
                         egui::TextEdit::singleline(&mut app.state.palette.query)
@@ -265,7 +265,7 @@ fn form(app: &mut CraftApp, ctx: &egui::Context, tool: &str) {
             ui.label(RichText::new(spec.summary).color(t.text_dim));
             ui.label(RichText::new(spec.id).font(theme::mono(theme::CAPTION)).color(t.text_faint));
             if spec.effects.needs_consent() {
-                ui.horizontal(|ui| {
+                crate::direction::show_row(ui, egui::Align::Center, |ui| {
                     icons::show(ui, "shield", 14.0, t.warning);
                     ui.label(RichText::new(tr("This runs code from the target or changes a device. Clicking Run is your OK.")).color(t.warning));
                 });
@@ -276,7 +276,7 @@ fn form(app: &mut CraftApp, ctx: &egui::Context, tool: &str) {
                 ui.colored_label(t.danger, e);
             }
             ui.add_space(10.0);
-            ui.horizontal(|ui| {
+            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 if widgets::primary_icon(ui, Some("play"), "Run", true).clicked() {
                     run = true;
                 }

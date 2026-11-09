@@ -32,7 +32,7 @@ pub fn show(app: &mut CraftApp, ui: &mut Ui) {
         let w = full_w.min(1000.0) - 48.0;
         let pad = ((full_w - w) / 2.0).max(24.0);
         ui.add_space(40.0);
-        ui.horizontal(|ui| {
+        crate::direction::show_row(ui, egui::Align::Center, |ui| {
             ui.add_space(pad);
             ui.vertical(|ui| {
                 ui.set_width(w);
@@ -49,7 +49,7 @@ pub fn show(app: &mut CraftApp, ui: &mut Ui) {
                     crate::engine_ui::deep_needed(app, ui);
                     return;
                 }
-                ui.horizontal(|ui| {
+                crate::direction::show_row(ui, egui::Align::Center, |ui| {
                     let label = if app.state.game.folder.is_some() { "Pick another game" } else { "Pick a game's folder" };
                     if widgets::primary_icon(ui, Some("folder-open"), label, true).clicked() {
                         app.pick(Pick::GameFolder);
@@ -81,10 +81,10 @@ fn about(app: &mut CraftApp, ui: &mut Ui, w: f32) {
     let mut ask = false;
     widgets::card(&t).show(ui, |ui| {
         ui.set_width(w - 34.0);
-        ui.horizontal(|ui| {
+        crate::direction::show_row(ui, egui::Align::Center, |ui| {
             icons::show(ui, "puzzle", 20.0, t.accent_ink);
             ui.label(theme::heading(g["engine"].as_str().unwrap_or_default(), theme::CARD));
-            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+            ui.with_layout(crate::direction::row_end(egui::Align::Center), |ui| {
                 ask = widgets::primary_icon(ui, Some("message-square"), "Ask about this game", true).clicked();
             });
         });
@@ -96,7 +96,7 @@ fn about(app: &mut CraftApp, ui: &mut Ui, w: f32) {
         if !stack.is_empty() {
             ui.add_space(10.0);
             widgets::caption(ui, "Built with");
-            ui.horizontal_wrapped(|ui| {
+            crate::direction::show_row_wrapped(ui, |ui| {
                 for s in &stack {
                     widgets::pill(ui, s["name"].as_str().unwrap_or_default(), t.text, t.raised).on_hover_text(s["what"].as_str().unwrap_or_default());
                 }
@@ -226,9 +226,9 @@ fn contents(app: &mut CraftApp, ui: &mut Ui) {
     }
     let mut save = None;
     for r in &rows {
-        ui.horizontal(|ui| {
+        crate::direction::show_row(ui, egui::Align::Center, |ui| {
             ui.label(RichText::new(row_name(r)).size(theme::SMALL));
-            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+            ui.with_layout(crate::direction::row_end(egui::Align::Center), |ui| {
                 if saves && widgets::secondary(ui, Some("download"), "Save picture").clicked() {
                     save = Some(r.clone());
                 }
@@ -292,7 +292,7 @@ pub fn permission_modal(app: &mut CraftApp, ui: &mut Ui, close: &mut bool) {
         .color(t.text_dim),
     );
     ui.add_space(16.0);
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         if widgets::primary_icon(ui, Some("shield-check"), "I have permission", true).clicked() {
             app.state.game.permitted.clone_from(&app.state.game.folder);
             *close = true;

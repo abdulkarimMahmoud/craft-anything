@@ -394,7 +394,7 @@ pub fn built_by(app: &mut CraftApp, ui: &mut Ui) {
 pub fn need_builder_modal(app: &mut CraftApp, ui: &mut Ui, start: bool, close: &mut bool) {
     let t = Tokens::get(ui.ctx());
     ui.set_width(520.0);
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         let (rect, _) = ui.allocate_exact_size(Vec2::splat(48.0), egui::Sense::hover());
         ui.painter().rect_filled(rect, t.radius, t.accent_soft);
         icons::paint(ui, rect, "bot", 24.0, t.accent_ink);
@@ -414,7 +414,7 @@ pub fn need_builder_modal(app: &mut CraftApp, ui: &mut Ui, start: bool, close: &
     ui.add_space(14.0);
     let found: Vec<BackendConfig> = app.found_agents().cloned().collect();
     if app.detecting {
-        ui.horizontal(|ui| {
+        crate::direction::show_row(ui, egui::Align::Center, |ui| {
             ui.add(crate::widgets::Spinner::new().color(t.accent));
             ui.label(RichText::new(tr("Looking on this computer…")).color(t.text_dim));
         });
@@ -439,13 +439,13 @@ pub fn need_builder_modal(app: &mut CraftApp, ui: &mut Ui, start: bool, close: &
     for b in found {
         widgets::panel(&t).show(ui, |ui| {
             ui.set_width(ui.available_width());
-            ui.horizontal(|ui| {
+            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 icons::show(ui, "bot", 18.0, t.accent);
                 ui.vertical(|ui| {
                     ui.label(RichText::new(&b.name).font(theme::semibold(theme::SMALL)));
                     ui.label(RichText::new(tr("Found on this computer")).color(t.text_faint).size(theme::CAPTION));
                 });
-                ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                ui.with_layout(crate::direction::row_end(egui::Align::Center), |ui| {
                     let label = if start { trf("Build with {name}", &[("name", &b.name)]) } else { trf("Use {name}", &[("name", &b.name)]) };
                     if widgets::primary(ui, &label).clicked() {
                         *close = true;
@@ -462,7 +462,7 @@ pub fn need_builder_modal(app: &mut CraftApp, ui: &mut Ui, start: bool, close: &
         ui.add_space(6.0);
     }
     ui.add_space(10.0);
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         if !app.detecting && widgets::secondary(ui, Some("radar"), "Look again").on_hover_text(tr("After installing one, look for it again.")).clicked() {
             app.detect_backends();
         }
@@ -471,7 +471,7 @@ pub fn need_builder_modal(app: &mut CraftApp, ui: &mut Ui, start: bool, close: &
             app.state.settings_open = true;
             app.state.settings_tab = crate::state::SettingsTab::Ai;
         }
-        ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+        ui.with_layout(crate::direction::row_end(egui::Align::Center), |ui| {
             if widgets::secondary(ui, None, "Cancel").clicked() {
                 *close = true;
             }

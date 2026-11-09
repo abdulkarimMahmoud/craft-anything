@@ -145,10 +145,10 @@ pub fn show(ui: &mut Ui, text: &mut String, attachments: &[PathBuf], b: PromptBo
         .inner_margin(Margin { left: 16, right: 10, top: 14, bottom: 10 });
     // Stacked top to bottom whatever the caller's layout (it's often placed in a row).
     frame.show(ui, |ui| {
-        ui.with_layout(egui::Layout::top_down(egui::Align::Min), |ui| {
+        ui.with_layout(crate::direction::column(), |ui| {
             ui.set_width(ui.available_width());
             if !attachments.is_empty() {
-                ui.horizontal_wrapped(|ui| {
+                crate::direction::show_row_wrapped(ui, |ui| {
                     for (i, p) in attachments.iter().enumerate() {
                         let name = p.file_name().map(|n| n.to_string_lossy().into_owned()).unwrap_or_default();
                         let remove = trf("Remove {name}", &[("name", &name)]);
@@ -179,7 +179,7 @@ pub fn show(ui: &mut Ui, text: &mut String, attachments: &[PathBuf], b: PromptBo
                                     .corner_radius(t.r_sm())
                                     .inner_margin(Margin { left: 8, right: 2, top: 2, bottom: 2 })
                                     .show(ui, |ui| {
-                                        ui.horizontal(|ui| {
+                                        crate::direction::show_row(ui, egui::Align::Center, |ui| {
                                             icons::show(ui, "paperclip", 13.0, t.icon);
                                             ui.add(egui::Label::new(RichText::new(&name).size(theme::SMALL)).truncate()).on_hover_text(p.display().to_string());
                                             if icons::button(ui, "x", 24.0, false, &remove).clicked() {
@@ -256,14 +256,14 @@ pub fn show(ui: &mut Ui, text: &mut String, attachments: &[PathBuf], b: PromptBo
                 ui.label(RichText::new(format!("{} {}", tr("Commands:"), crate::slash::names())).size(theme::CAPTION).color(t.text_faint));
             }
             ui.add_space(4.0);
-            ui.horizontal(|ui| {
+            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 if let Some(tip) = b.attach
                     && icons::button(ui, "paperclip", 30.0, false, tip).clicked()
                 {
                     out.attach = true;
                 }
                 ui.label(RichText::new(tr("Enter to send · Shift+Enter for a new line")).size(theme::CAPTION).color(t.text_faint));
-                ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                ui.with_layout(crate::direction::row_end(egui::Align::Center), |ui| {
                     if b.send {
                         let ready = !text.trim().is_empty();
                         if send_button(ui, ready).clicked() && ready {

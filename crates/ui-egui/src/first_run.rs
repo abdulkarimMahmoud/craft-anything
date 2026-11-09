@@ -63,7 +63,7 @@ fn welcome(app: &mut CraftApp, ui: &mut Ui) {
     ui.label(RichText::new(tr("Find out how any software works, then craft your own.")).size(theme::LEAD).color(t.text_dim));
     ui.add_space(36.0);
     let w = 270.0;
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         ui.add_space(((ui.available_width() - (w * 2.0 + 16.0)) / 2.0).max(0.0));
         if choice_card(ui, w, "graduation-cap", "I'm new to this", "Plain words, big buttons, and I'll explain everything.").clicked() {
             app.settings.mode = Mode::Beginner;
@@ -103,13 +103,13 @@ fn brain(app: &mut CraftApp, ui: &mut Ui, width: f32) {
     // Whether something can build yet, in one line: the same rule Make and Start use.
     match app.default_builder() {
         Some(b) => {
-            ui.horizontal(|ui| {
+            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 icons::show(ui, "check", 16.0, t.success);
                 ui.label(RichText::new(crate::i18n::trf("{name} builds what you make.", &[("name", &b)])).color(t.text_dim));
             });
         }
         None => {
-            ui.horizontal_wrapped(|ui| {
+            crate::direction::show_row_wrapped(ui, |ui| {
                 icons::show(ui, "triangle-alert", 16.0, t.warning);
                 ui.label(
                     RichText::new(tr("Nothing can build yet: install Claude Code (and sign in to it once), or add an AI with an API key below."))
@@ -125,7 +125,7 @@ fn brain(app: &mut CraftApp, ui: &mut Ui, width: f32) {
     egui::ScrollArea::vertical().max_height(list_h).show(ui, |ui| {
         ui.set_width(width);
         if app.detecting {
-            ui.horizontal(|ui| {
+            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 ui.add(crate::widgets::Spinner::new().color(t.accent));
                 ui.label(RichText::new(tr("Looking for AI on this computer…")).color(t.text_dim));
             });
@@ -145,7 +145,7 @@ fn brain(app: &mut CraftApp, ui: &mut Ui, width: f32) {
         if !app.detecting && detected.is_empty() && app.backends.is_empty() {
             widgets::card(&t).show(ui, |ui| {
                 ui.set_width(ui.available_width());
-                ui.horizontal(|ui| {
+                crate::direction::show_row(ui, egui::Align::Center, |ui| {
                     icons::show(ui, "radar", 22.0, t.text_faint);
                     ui.vertical(|ui| {
                         ui.label(RichText::new(tr("We didn't find an AI on this computer yet")).font(theme::medium(theme::BODY)));
@@ -167,7 +167,7 @@ fn brain(app: &mut CraftApp, ui: &mut Ui, width: f32) {
         }
     });
     ui.add_space(16.0);
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         ui.add_space(((ui.available_width() - 240.0) / 2.0).max(0.0));
         if widgets::secondary(ui, Some("refresh-cw"), "Look again").clicked() {
             app.detect_backends();
@@ -198,7 +198,7 @@ fn brain_card(app: &mut CraftApp, ui: &mut Ui, d: &Detected) {
         .inner_margin(egui::Margin::same(14));
     frame.show(ui, |ui| {
         ui.set_width(ui.available_width());
-        ui.horizontal(|ui| {
+        crate::direction::show_row(ui, egui::Align::Center, |ui| {
             let (rect, _) = ui.allocate_exact_size(Vec2::splat(40.0), egui::Sense::hover());
             ui.painter().rect_filled(rect, t.radius, t.raised);
             icons::paint(ui, rect, kind_icon(d.suggestion.kind), 20.0, t.accent_ink);
@@ -206,7 +206,7 @@ fn brain_card(app: &mut CraftApp, ui: &mut Ui, d: &Detected) {
                 ui.label(theme::heading(&name, theme::CARD));
                 ui.label(RichText::new(&d.reason).color(t.text_dim).size(theme::SMALL));
             });
-            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+            ui.with_layout(crate::direction::row_end(egui::Align::Center), |ui| {
                 if on {
                     widgets::pill(ui, "Selected", t.on_accent, t.accent);
                 } else if configured {
@@ -223,7 +223,7 @@ fn brain_card(app: &mut CraftApp, ui: &mut Ui, d: &Detected) {
         let pastable = d.needs_key || d.suggestion.base_url.as_deref().is_some_and(craft_anything_ai::openai::is_opencode_go);
         if pastable && !configured {
             ui.add_space(6.0);
-            ui.horizontal(|ui| {
+            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 let key = app.key_inputs.entry(name.clone()).or_default();
                 ui.add(
                     egui::TextEdit::singleline(key)

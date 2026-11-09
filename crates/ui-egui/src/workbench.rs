@@ -125,7 +125,7 @@ pub fn show(app: &mut CraftApp, ui: &mut Ui) {
         egui::Panel::bottom("wb-bottom-closed").exact_size(30.0).frame(egui::Frame::new().fill(t.chrome).inner_margin(Margin::symmetric(10, 4))).show(
             ui,
             |ui| {
-                ui.horizontal(|ui| {
+                crate::direction::show_row(ui, egui::Align::Center, |ui| {
                     if icons::button(ui, "chevron-up", 22.0, false, "Show the console").clicked() {
                         app.state.bottom_open = true;
                     }
@@ -169,7 +169,7 @@ fn rail_icons(app: &mut CraftApp, ui: &mut Ui) {
 
 fn panel_title(ui: &mut Ui, title: &str, count: Option<usize>) {
     let t = Tokens::get(ui.ctx());
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         ui.label(theme::label_text(&tr(title), 11.5).color(t.text));
         if let Some(n) = count {
             widgets::pill(ui, &n.to_string(), t.text_dim, t.raised);
@@ -197,9 +197,9 @@ fn rail_list(app: &mut CraftApp, ui: &mut Ui, kind: RailKind, fill: &Fill) {
         Fill::Value(v) => rows(v).iter().take(MAX_ROWS).collect(),
         _ => Vec::new(),
     };
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         panel_title(ui, kind.title(), matches!(fill, Fill::Ready(_) | Fill::Value(_)).then_some(all.len()));
-        ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+        ui.with_layout(crate::direction::row_end(egui::Align::Center), |ui| {
             if icons::button(ui, "refresh-cw", 24.0, false, "Reload").clicked() {
                 app.load_rail(kind);
             }
@@ -231,7 +231,7 @@ fn rail_list(app: &mut CraftApp, ui: &mut Ui, kind: RailKind, fill: &Fill) {
             ui.add(crate::widgets::Spinner::new().color(t.accent));
         }
         Fill::Loading => {
-            ui.horizontal(|ui| {
+            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 ui.add(crate::widgets::Spinner::new().color(t.accent));
                 ui.label(RichText::new(tr("Loading…")).color(t.text_dim));
             });
@@ -311,9 +311,9 @@ fn select_row(app: &mut CraftApp, r: Value) {
 
 fn targets_list(app: &mut CraftApp, ui: &mut Ui) {
     let t = Tokens::get(ui.ctx());
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         panel_title(ui, "Targets", Some(app.view.targets.len()));
-        ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+        ui.with_layout(crate::direction::row_end(egui::Align::Center), |ui| {
             if icons::button(ui, "plus", 24.0, false, "Open another target").clicked() {
                 app.pick(Pick::OpenFile);
             }
@@ -360,7 +360,7 @@ fn targets_list(app: &mut CraftApp, ui: &mut Ui) {
 fn tab_strip(ui: &mut Ui, tabs: &[(&str, &str)], selected: usize) -> Option<usize> {
     let t = Tokens::get(ui.ctx());
     let mut picked = None;
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         ui.spacing_mut().item_spacing.x = 2.0;
         for (i, (icon, title)) in tabs.iter().enumerate() {
             let on = i == selected;
@@ -437,7 +437,7 @@ fn no_target(app: &mut CraftApp, ui: &mut Ui) {
         "A program, an app bundle, an APK, a JavaScript bundle, a folder… or drop it on the window.",
     );
     ui.vertical_centered(|ui| {
-        ui.horizontal(|ui| {
+        crate::direction::show_row(ui, egui::Align::Center, |ui| {
             ui.add_space((ui.available_width() - 300.0).max(0.0) / 2.0);
             if widgets::primary_icon(ui, Some("folder-open"), "Open a file…", true).clicked() {
                 app.pick(Pick::OpenFile);
@@ -470,7 +470,7 @@ fn tool_view(app: &mut CraftApp, ui: &mut Ui, tab: CenterTab) {
             }
         }
         Fill::Loading => {
-            ui.horizontal(|ui| {
+            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 ui.add(crate::widgets::Spinner::new().color(Tokens::get(ui.ctx()).accent));
                 ui.label(tr("Working…"));
             });
@@ -480,7 +480,7 @@ fn tool_view(app: &mut CraftApp, ui: &mut Ui, tab: CenterTab) {
         Fill::DeepNeeded => crate::engine_ui::deep_needed(app, ui),
         Fill::Error(msg, rem) => widgets::empty_state(ui, "triangle-alert", &msg, rem.as_deref().unwrap_or("")),
         Fill::Ready(e) => {
-            ui.horizontal(|ui| {
+            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 widgets::confidence_badge(ui, Some(e.confidence));
                 ui.label(RichText::new(&e.summary).color(Tokens::get(ui.ctx()).text_dim));
             });
@@ -524,7 +524,7 @@ fn code_view(ui: &mut Ui, code: &str, t: &Tokens) {
         egui::ScrollArea::both().auto_shrink([false, false]).show_rows(ui, row_h, lines.len(), |ui, range| {
             for i in range {
                 let Some(line) = lines.get(i) else { continue };
-                ui.horizontal(|ui| {
+                crate::direction::show_row(ui, egui::Align::Center, |ui| {
                     ui.spacing_mut().item_spacing.x = 12.0;
                     ui.add_sized(Vec2::new(38.0, row_h), egui::Label::new(RichText::new(format!("{:>4}", i + 1)).font(theme::mono(12.0)).color(t.text_faint)));
                     ui.label(highlight(line, t));
@@ -599,7 +599,7 @@ fn highlight(line: &str, t: &Tokens) -> egui::text::LayoutJob {
 fn table(ui: &mut Ui, rows: &[Value], t: &Tokens) {
     let cols: Vec<String> = rows.first().and_then(Value::as_object).map(|m| m.keys().take(6).cloned().collect()).unwrap_or_else(|| vec!["value".into()]);
     let row_h = 20.0;
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         for c in &cols {
             ui.add_sized(Vec2::new(150.0, 18.0), egui::Label::new(theme::label_text(c, 11.0).color(t.text_faint)));
         }
@@ -607,7 +607,7 @@ fn table(ui: &mut Ui, rows: &[Value], t: &Tokens) {
     egui::ScrollArea::both().auto_shrink([false, false]).show_rows(ui, row_h, rows.len().min(MAX_ROWS), |ui, range| {
         for i in range {
             let Some(r) = rows.get(i) else { continue };
-            ui.horizontal(|ui| {
+            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 for c in &cols {
                     let v = match r {
                         Value::Object(m) => m.get(c).map(|v| scalar(v).unwrap_or_else(|| v.to_string())).unwrap_or_default(),
@@ -632,9 +632,9 @@ fn hex_view(app: &mut CraftApp, ui: &mut Ui) {
     let goto_id = ui.scope_id().with("hex-goto");
     let mut goto: String = ui.data_mut(|d| d.get_temp::<String>(goto_id).unwrap_or_default());
     let mut scroll_to: Option<usize> = None;
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         ui.label(RichText::new(format!("{} · {}", target.name, crate::human_bytes(bytes.len()))).font(theme::medium(theme::CAPTION)));
-        ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+        ui.with_layout(crate::direction::row_end(egui::Align::Center), |ui| {
             let r = ui.add(
                 egui::TextEdit::singleline(&mut goto)
                     .hint_text(tr("Go to offset (0x…)"))
@@ -694,7 +694,7 @@ fn result_view(app: &mut CraftApp, ui: &mut Ui) {
     let selected = app.state.selected_evidence.as_ref().and_then(|id| app.view.ledger.iter().find(|e| &e.id == id)).cloned();
     match (fill, selected) {
         (Some(Fill::Loading), _) => {
-            ui.horizontal(|ui| {
+            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 ui.add(crate::widgets::Spinner::new().color(t.accent));
                 ui.label(tr("Working…"));
             });
@@ -783,7 +783,7 @@ fn inspector(app: &mut CraftApp, ui: &mut Ui) {
                 widgets::panel(&t).show(ui, |ui| {
                     ui.set_width(ui.available_width());
                     widgets::caption(ui, "Target");
-                    ui.horizontal(|ui| {
+                    crate::direction::show_row(ui, egui::Align::Center, |ui| {
                         icons::show(ui, crate::kind_icon(tgt.kind), 16.0, t.accent);
                         ui.label(RichText::new(&tgt.name).font(theme::semibold(theme::SMALL)));
                     });
@@ -805,7 +805,7 @@ fn inspector(app: &mut CraftApp, ui: &mut Ui) {
 
 fn ledger(app: &mut CraftApp, ui: &mut Ui) {
     let t = Tokens::get(ui.ctx());
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         panel_title(ui, "Evidence ledger", Some(app.view.ledger_len));
     });
     ui.add_space(4.0);
@@ -860,7 +860,7 @@ fn unknowns(app: &mut CraftApp, ui: &mut Ui) {
         for u in &app.view.unknowns {
             widgets::panel(&t).show(ui, |ui| {
                 ui.set_width(ui.available_width());
-                ui.horizontal(|ui| {
+                crate::direction::show_row(ui, egui::Align::Center, |ui| {
                     let sev = format!("{:?}", u.severity);
                     let col = match u.severity {
                         craft_anything_engine::evidence::Severity::Critical | craft_anything_engine::evidence::Severity::High => t.danger,
@@ -893,7 +893,7 @@ fn status_line(app: &CraftApp, ui: &mut Ui) {
 
 fn bottom(app: &mut CraftApp, ui: &mut Ui) {
     let t = Tokens::get(ui.ctx());
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         let n_jobs = app.jobs.running().filter(|j| j.visible).count();
         let jobs_title = if n_jobs > 0 { crate::i18n::trf("Jobs ({n})", &[("n", &n_jobs.to_string())]) } else { tr("Jobs") };
         let tabs = [("bot", "Agent"), ("activity", jobs_title.as_str()), ("terminal", "Log")];
@@ -905,7 +905,7 @@ fn bottom(app: &mut CraftApp, ui: &mut Ui) {
         if let Some(i) = tab_strip(ui, &tabs, sel) {
             app.state.bottom = [BottomTab::Agent, BottomTab::Jobs, BottomTab::Log].get(i).copied().unwrap_or_default();
         }
-        ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+        ui.with_layout(crate::direction::row_end(egui::Align::Center), |ui| {
             if icons::button(ui, "chevron-down", 24.0, false, "Hide the console").clicked() {
                 app.state.bottom_open = false;
             }
@@ -932,7 +932,7 @@ fn jobs(app: &mut CraftApp, ui: &mut Ui) {
     let mut clear = false;
     egui::ScrollArea::vertical().auto_shrink([false, false]).show(ui, |ui| {
         for j in visible.iter().rev() {
-            ui.horizontal(|ui| {
+            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 let (icon, col) = match &j.outcome {
                     None => ("loader", t.accent),
                     Some(Ok(())) => ("check", t.success),
@@ -981,7 +981,7 @@ fn log_view(app: &CraftApp, ui: &mut Ui) {
     egui::ScrollArea::vertical().auto_shrink([false, false]).stick_to_bottom(true).show(ui, |ui| {
         for l in &app.log {
             let secs = start.map(|s| l.at.duration_since(s).as_secs_f32()).unwrap_or(0.0);
-            ui.horizontal(|ui| {
+            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 ui.label(RichText::new(format!("{secs:>8.2}")).font(theme::mono(11.5)).color(t.text_faint));
                 ui.label(RichText::new(&l.text).font(theme::mono(11.5)).color(if l.error { t.danger } else { t.text_dim }));
             });

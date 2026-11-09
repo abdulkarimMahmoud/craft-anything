@@ -55,7 +55,7 @@ pub fn show(app: &mut CraftApp, ui: &mut Ui) {
         let pad = ((full_w - w) / 2.0).max(24.0);
         // Tight enough that Start is in view at 900 px with every choice showing (tested).
         ui.add_space(24.0);
-        ui.horizontal(|ui| {
+        crate::direction::show_row(ui, egui::Align::Center, |ui| {
             ui.add_space(pad);
             ui.vertical(|ui| {
                 ui.set_width(w);
@@ -111,7 +111,7 @@ pub fn modals(app: &mut CraftApp, ctx: &egui::Context) {
                     }
                     let enter = r.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter));
                     ui.add_space(12.0);
-                    ui.horizontal(|ui| {
+                    crate::direction::show_row(ui, egui::Align::Center, |ui| {
                         let ok = !app.state.url_input.trim().is_empty();
                         if (widgets::primary_icon(ui, Some("globe"), "Open it", ok).clicked() || enter)
                             && ok
@@ -139,7 +139,7 @@ pub fn modals(app: &mut CraftApp, ctx: &egui::Context) {
                         ui.label(RichText::new(tr(blurb)).color(t.text_dim));
                         ui.add_space(12.0);
                         for (n, s) in steps.iter().enumerate() {
-                            ui.horizontal(|ui| {
+                            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                                 let (rect, _) = ui.allocate_exact_size(Vec2::splat(24.0), egui::Sense::hover());
                                 ui.painter().circle_filled(rect.center(), 12.0, t.accent_soft);
                                 ui.painter().text(
@@ -154,7 +154,7 @@ pub fn modals(app: &mut CraftApp, ctx: &egui::Context) {
                             ui.add_space(4.0);
                         }
                         ui.add_space(12.0);
-                        ui.horizontal(|ui| {
+                        crate::direction::show_row(ui, egui::Align::Center, |ui| {
                             if widgets::primary_icon(ui, Some("folder-open"), "Open something", true).clicked() {
                                 app.pick(Pick::OpenFile);
                                 close = true;

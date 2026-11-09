@@ -150,7 +150,7 @@ pub fn section(app: &mut CraftApp, ui: &mut Ui, fold: bool) {
     let r = if fold {
         crate::sidebar::centred_row(ui, 18.0, arrow)
     } else {
-        ui.horizontal(|ui| {
+        crate::direction::show_row(ui, egui::Align::Center, |ui| {
             ui.add_space(12.0);
             widgets::caption(ui, "Pinned");
             arrow(ui)
@@ -243,7 +243,7 @@ pub fn pin_modal(app: &mut CraftApp, ui: &mut Ui, close: &mut bool) {
     ui.add_space(12.0);
     let size = Vec2::new(268.0, 150.0);
     let mode = app.state.pin_draft.mode;
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         let frozen = widgets::choice_tile(
             ui,
             size,
@@ -294,7 +294,7 @@ pub fn pin_modal(app: &mut CraftApp, ui: &mut Ui, close: &mut bool) {
     ui.add_space(12.0);
     // A build with nothing to start can't be pinned; the estimate says so first.
     let ok = matches!(app.state.pin_draft.size, Some(Ok(_)));
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         if widgets::primary_icon(ui, Some("pin"), "Pin it", ok).clicked() && ok {
             let d = app.state.pin_draft.clone();
             let name = Some(d.name.trim()).filter(|n| !n.is_empty());
@@ -319,7 +319,7 @@ pub fn rename_modal(app: &mut CraftApp, ui: &mut Ui, project: &Path, id: u32, cl
     let ok = !app.state.rename_input.trim().is_empty();
     let enter = r.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter));
     ui.add_space(12.0);
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         if (widgets::primary_icon(ui, None, "Rename", ok).clicked() || enter) && ok {
             let name = app.state.rename_input.trim().to_string();
             app.act("project_pin_rename", json!({"project": project, "pin": id, "name": name}), tr("Rename the pin"));
@@ -351,7 +351,7 @@ pub fn delete_modal(app: &mut CraftApp, ui: &mut Ui, project: &Path, id: u32, cl
         ui.label(RichText::new(tr("This can't be undone.")).color(t.danger).size(theme::SMALL));
     }
     ui.add_space(12.0);
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         if widgets::secondary(ui, Some("trash-2"), "Remove it").clicked() {
             app.act("project_pin_delete", json!({"project": project, "pin": id, "confirm": true}), tr("Remove a pin"));
             *close = true;

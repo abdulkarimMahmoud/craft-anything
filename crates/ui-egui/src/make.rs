@@ -141,9 +141,9 @@ pub fn hero(app: &mut CraftApp, ui: &mut Ui, w: f32) {
         }
         engine_choices(app, ui);
         ui.add_space(16.0);
-        ui.horizontal(|ui| {
+        crate::direction::show_row(ui, egui::Align::Center, |ui| {
             crate::builders::built_by(app, ui);
-            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+            ui.with_layout(crate::direction::row_end(egui::Align::Center), |ui| {
                 let ready = !app.state.make.request.trim().is_empty() && url_problem(&app.state.make.url).is_none() && app.creating.is_none();
                 let start = widgets::primary_sized(ui, Some("sparkles"), "Start", ready, 50.0, 14.0);
                 let start = if ready { start } else { start.on_disabled_hover_text(tr("Say what you want first.")) };
@@ -182,11 +182,11 @@ fn mine(app: &mut CraftApp, ui: &mut Ui, w: f32) {
             }
             Some(f) => {
                 let place = f.display().to_string();
-                ui.horizontal(|ui| {
+                crate::direction::show_row(ui, egui::Align::Center, |ui| {
                     icons::show(ui, "folder", 16.0, t.icon);
                     ui.add(egui::Label::new(RichText::new(&place).font(theme::semibold(theme::BODY))).truncate()).on_hover_text(&place);
                 });
-                ui.horizontal_wrapped(|ui| {
+                crate::direction::show_row_wrapped(ui, |ui| {
                     ui.add_space(24.0);
                     ui.label(RichText::new(tr("your files there are the app, edited in place")).size(theme::SMALL).color(t.text_dim));
                     ui.label(RichText::new("·").size(theme::SMALL).color(t.text_faint));
@@ -202,9 +202,9 @@ fn mine(app: &mut CraftApp, ui: &mut Ui, w: f32) {
         let submit = request_box(app, ui, "For example: add a dark mode", Some("Attach pictures (or drop or paste them here)"));
         engine_choices(app, ui);
         ui.add_space(16.0);
-        ui.horizontal(|ui| {
+        crate::direction::show_row(ui, egui::Align::Center, |ui| {
             crate::builders::built_by(app, ui);
-            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+            ui.with_layout(crate::direction::row_end(egui::Align::Center), |ui| {
                 let said = !app.state.make.request.trim().is_empty();
                 let ready = folder.is_some() && said && app.creating.is_none();
                 let start = widgets::primary_sized(ui, Some("sparkles"), "Start", ready, 50.0, 14.0);
@@ -301,7 +301,7 @@ fn look(app: &mut CraftApp, ui: &mut Ui, w: f32) {
 /// "1  What do you want to recreate?" — a numbered circle and a plain question.
 fn step_title(ui: &mut Ui, n: u32, text: &str) {
     let t = Tokens::get(ui.ctx());
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         let (r, _) = ui.allocate_exact_size(Vec2::splat(28.0), Sense::hover());
         ui.painter().rect(r, r.width() / 2.0, t.raised, egui::Stroke::new(1.0, t.card_border), egui::StrokeKind::Inside);
         let g = widgets::label_galley(ui, &n.to_string(), 13.0, t.text);
@@ -322,7 +322,7 @@ fn choose_target(app: &mut CraftApp, ui: &mut Ui) {
     let tile_w = ((ui.available_width() - gap * (cols as f32 - 1.0)) / cols as f32).floor();
     let size = Vec2::new(tile_w, 60.0);
     let mut pick = None;
-    ui.horizontal_wrapped(|ui| {
+    crate::direction::show_row_wrapped(ui, |ui| {
         ui.spacing_mut().item_spacing = Vec2::splat(gap);
         for (i, (icon, label, on)) in [
             ("globe", "A website", website),
@@ -363,7 +363,7 @@ fn choose_target(app: &mut CraftApp, ui: &mut Ui) {
     let website = !matches!(m.target, TargetRef::Local { .. }) && (m.editing_url || !m.url.is_empty());
     if let TargetRef::Local { path } = m.target.clone() {
         ui.add_space(14.0);
-        ui.horizontal(|ui| {
+        crate::direction::show_row(ui, egui::Align::Center, |ui| {
             ui.label(RichText::new(tr("You chose:")).size(theme::BODY).color(t.text_dim));
             // A long name (an APK from a mirror) is cut short, whole on hover, so the row never widens the page.
             let name = m.target.label();
@@ -387,7 +387,7 @@ fn choose_target(app: &mut CraftApp, ui: &mut Ui) {
         // Say what's wrong right under the field, once something has been typed.
         if let Some(problem) = url_problem(&m.url) {
             ui.add_space(4.0);
-            ui.horizontal(|ui| {
+            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 icons::show(ui, "triangle-alert", 16.0, t.danger);
                 ui.label(RichText::new(tr(problem)).color(t.danger).size(theme::BODY));
             });
@@ -399,7 +399,7 @@ fn choose_target(app: &mut CraftApp, ui: &mut Ui) {
 fn look_inside(app: &mut CraftApp, ui: &mut Ui) {
     let t = Tokens::get(ui.ctx());
     // The app's one setting (the title bar's switch), not this project's: said where it's chosen.
-    ui.horizontal_wrapped(|ui| {
+    crate::direction::show_row_wrapped(ui, |ui| {
         ui.label(RichText::new(tr("How closely may Craft Anything look at it?")).size(theme::BODY).color(t.text_dim));
         ui.label(RichText::new(tr("For everything you make, like the switch in the title bar.")).size(theme::SMALL).color(t.text_faint));
     });
@@ -408,7 +408,7 @@ fn look_inside(app: &mut CraftApp, ui: &mut Ui) {
     let gap = 10.0;
     let size = Vec2::new(((ui.available_width() - gap) / 2.0).floor(), 72.0);
     let mut pick = None;
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         ui.spacing_mut().item_spacing.x = gap;
         for (on, icon, label, blurb) in [
             (false, "shield-check", "Clean room", "Nothing inside it is read; Craft Anything works from what you can see. Your version gets its own art."),
@@ -428,7 +428,7 @@ fn look_inside(app: &mut CraftApp, ui: &mut Ui) {
     }
     if app.settings.deep_mode && !app.ghidra_missing() {
         ui.add_space(8.0);
-        ui.horizontal_wrapped(|ui| {
+        crate::direction::show_row_wrapped(ui, |ui| {
             icons::show(ui, "cpu", 16.0, t.icon);
             let line = format!("{} {}", crate::engine_ui::ghidra_memory_words(app), tr("More makes a big program's first look faster."));
             ui.label(RichText::new(line).size(theme::SMALL).color(t.text_dim)).on_hover_text(crate::engine_ui::ghidra_memory_guide());
@@ -440,7 +440,7 @@ fn look_inside(app: &mut CraftApp, ui: &mut Ui) {
     }
     if app.settings.deep_mode && app.ghidra_missing() {
         ui.add_space(8.0);
-        ui.horizontal(|ui| {
+        crate::direction::show_row(ui, egui::Align::Center, |ui| {
             icons::show(ui, "triangle-alert", 16.0, t.warning);
             ui.label(RichText::new(tr("Ghidra isn't on this computer yet, so the built-in decompiler stands in.")).size(theme::SMALL).color(t.text_dim));
             if app.ghidra.job.is_none() && widgets::secondary(ui, Some("download"), "Get Ghidra").clicked() {
@@ -458,7 +458,7 @@ fn suggestions(app: &mut CraftApp, ui: &mut Ui) {
         TargetRef::Local { .. } => SUGGESTIONS_APP,
         TargetRef::None => SUGGESTIONS_NONE,
     };
-    ui.horizontal_wrapped(|ui| {
+    crate::direction::show_row_wrapped(ui, |ui| {
         ui.spacing_mut().item_spacing = Vec2::new(8.0, 8.0);
         ui.label(RichText::new(tr("Ideas:")).size(theme::BODY).color(t.text_dim));
         for s in list.iter().take(2) {

@@ -527,7 +527,7 @@ pub fn working_since(ui: &mut Ui, title: &str, detail: Option<&str>, began: Opti
     let sub = [detail.map(str::to_string), note].into_iter().flatten().collect::<Vec<_>>().join("  ·  ");
     card(&t).inner_margin(Margin::symmetric(16, 12)).show(ui, |ui| {
         ui.set_width(ui.available_width());
-        ui.horizontal(|ui| {
+        crate::direction::show_row(ui, egui::Align::Center, |ui| {
             let (r, _) = ui.allocate_exact_size(Vec2::splat(24.0), Sense::hover());
             let (c, radius) = (r.center(), 9.0);
             ui.painter().circle_stroke(c, radius, Stroke::new(2.5, t.separator));

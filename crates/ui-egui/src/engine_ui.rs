@@ -206,7 +206,7 @@ pub fn ghidra_modal(app: &mut CraftApp, ui: &mut Ui, close: &mut bool) {
     ui.set_width(520.0);
     let ready = app.ghidra_ready();
     let downloading = app.ghidra_download();
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         let (rect, _) = ui.allocate_exact_size(Vec2::splat(48.0), egui::Sense::hover());
         ui.painter().rect_filled(rect, t.radius, t.accent_soft);
         icons::paint(ui, rect, if ready { "check" } else { "microscope" }, 24.0, t.accent_ink);
@@ -254,7 +254,7 @@ pub fn ghidra_modal(app: &mut CraftApp, ui: &mut Ui, close: &mut bool) {
         body(ui, tr("Without it, Deep mode uses Craft Anything's own decompiler, which is rougher."));
     }
     ui.add_space(14.0);
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         if ready {
             let start = app.ghidra.start_after.is_some();
             if widgets::primary_icon(ui, Some(if start { "sparkles" } else { "check" }), if start { "Start building" } else { "Done" }, true).clicked() {
@@ -367,7 +367,7 @@ pub fn ghidra_status(app: &mut CraftApp, ui: &mut Ui) {
         let at = app.settings.ghidra_launcher().map(|p| p.display().to_string()).unwrap_or_default();
         widgets::pill(ui, "Installed", t.success, t.raised).on_hover_text(at);
     } else {
-        ui.horizontal(|ui| {
+        crate::direction::show_row(ui, egui::Align::Center, |ui| {
             widgets::pill(ui, "Not installed", t.warning, t.raised);
             if widgets::secondary(ui, Some("download"), "Get Ghidra").clicked() {
                 app.state.modal = Some(Modal::Ghidra);
@@ -438,7 +438,7 @@ impl CraftApp {
 fn key_field(app: &mut CraftApp, ui: &mut Ui, provider: &dyn AssetProvider, save: &str) -> Option<String> {
     let t = Tokens::get(ui.ctx());
     let mut out = None;
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         let key = app.key_inputs.entry(provider.id().into()).or_default();
         let r = ui.add(
             egui::TextEdit::singleline(key)
@@ -474,7 +474,7 @@ pub fn assets_toggle(app: &mut CraftApp, ui: &mut Ui, mut on: bool) {
             &[("model", &p.model), ("picture", &p.picture)],
         )
     };
-    ui.horizontal_wrapped(|ui| {
+    crate::direction::show_row_wrapped(ui, |ui| {
         ui.label(RichText::new(note).color(if no_key { t.warning } else { t.text_dim }).size(theme::SMALL));
         if no_key && widgets::link(ui, "Add a fal.ai key").clicked() {
             app.state.modal = Some(Modal::Assets);
@@ -486,7 +486,7 @@ pub fn assets_toggle(app: &mut CraftApp, ui: &mut Ui, mut on: bool) {
 pub fn assets_modal(app: &mut CraftApp, ui: &mut Ui, close: &mut bool) {
     let t = Tokens::get(ui.ctx());
     ui.set_width(520.0);
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         let (rect, _) = ui.allocate_exact_size(Vec2::splat(48.0), egui::Sense::hover());
         ui.painter().rect_filled(rect, t.radius, t.accent_soft);
         icons::paint(ui, rect, "boxes", 24.0, t.accent_ink);
@@ -580,7 +580,7 @@ pub fn assets_settings(app: &mut CraftApp, ui: &mut Ui) {
         let stored = app.asset_keys.as_ref().and_then(|k| k.get(provider.id()).copied());
         ui.push_id(provider.id(), |ui| {
             if stored == Some(true) {
-                ui.horizontal(|ui| {
+                crate::direction::show_row(ui, egui::Align::Center, |ui| {
                     widgets::pill(ui, "Key saved", t.success, t.raised);
                     if widgets::secondary(ui, None, "Remove").clicked() {
                         app.remove_asset_key(provider.id().into());
@@ -617,7 +617,7 @@ pub fn build_with(app: &mut CraftApp, ui: &mut Ui) {
     let t = Tokens::get(ui.ctx());
     let b = chosen(&app.kinds, &app.state.make);
     if let Some(f) = app.state.make.found.clone() {
-        ui.horizontal_wrapped(|ui| {
+        crate::direction::show_row_wrapped(ui, |ui| {
             icons::show(ui, "puzzle", 16.0, t.accent_ink);
             ui.label(RichText::new(trf("Made with {engine}", &[("engine", &f.label())])).font(theme::semibold(theme::BODY)));
         });
@@ -630,7 +630,7 @@ pub fn build_with(app: &mut CraftApp, ui: &mut Ui) {
         }
         ui.add_space(8.0);
     }
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         ui.label(RichText::new(tr("Build with")).size(theme::BODY).color(t.text_dim));
         let names: Vec<&str> = Builder::ALL.iter().map(|b| b.name()).collect();
         // Nothing is selected while the request names another way to build.
@@ -644,7 +644,7 @@ pub fn build_with(app: &mut CraftApp, ui: &mut Ui) {
         Some(b) => status_line(app, ui, b, true),
         None => {
             let named = app.kinds.named(&app.state.make.request, &crate::make::resolve_target(&app.state.make)).unwrap_or_default();
-            ui.horizontal_wrapped(|ui| {
+            crate::direction::show_row_wrapped(ui, |ui| {
                 icons::show(ui, "check", 16.0, t.success);
                 ui.label(
                     RichText::new(trf("Built with {stack}, as you asked, so no game engine is needed.", &[("stack", named)]))
@@ -686,7 +686,7 @@ fn cpp_step(os: &str) -> (&'static str, &'static str, Option<&'static str>) {
 fn status_line(app: &mut CraftApp, ui: &mut Ui, b: Builder, offer: bool) {
     let t = Tokens::get(ui.ctx());
     let inv = app.game_engines.clone();
-    ui.horizontal_wrapped(|ui| match &inv {
+    crate::direction::show_row_wrapped(ui, |ui| match &inv {
         None => {
             ui.add(crate::widgets::Spinner::new().size(14.0).color(t.accent));
             ui.label(RichText::new(tr("Looking for game engines on this computer…")).color(t.text_dim).size(theme::SMALL));
@@ -801,7 +801,7 @@ pub fn modal(app: &mut CraftApp, ui: &mut Ui, b: Builder, close: &mut bool) {
     let t = Tokens::get(ui.ctx());
     ui.set_width(520.0);
     let Some(inv) = app.game_engines.clone() else {
-        ui.horizontal(|ui| {
+        crate::direction::show_row(ui, egui::Align::Center, |ui| {
             ui.add(crate::widgets::Spinner::new().size(16.0).color(t.accent));
             ui.label(tr("Looking for game engines on this computer…"));
         });
@@ -815,7 +815,7 @@ pub fn modal(app: &mut CraftApp, ui: &mut Ui, b: Builder, close: &mut bool) {
     }
     ui.ctx().request_repaint_after(Duration::from_secs(1));
 
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         let (rect, _) = ui.allocate_exact_size(Vec2::splat(48.0), egui::Sense::hover());
         ui.painter().rect_filled(rect, t.radius, t.accent_soft);
         icons::paint(ui, rect, if ready { "check" } else { "download" }, 24.0, t.accent_ink);
@@ -832,7 +832,7 @@ pub fn modal(app: &mut CraftApp, ui: &mut Ui, b: Builder, close: &mut bool) {
     let mut act = None;
     for (i, s) in list.iter().enumerate() {
         let now = Some(i) == current;
-        ui.horizontal_top(|ui| {
+        crate::direction::show_row(ui, egui::Align::Min, |ui| {
             let (r, _) = ui.allocate_exact_size(Vec2::splat(28.0), egui::Sense::hover());
             if s.done {
                 ui.painter().rect_filled(r, r.width() / 2.0, t.success);
@@ -890,7 +890,7 @@ pub fn modal(app: &mut CraftApp, ui: &mut Ui, b: Builder, close: &mut bool) {
     }
 
     ui.add_space(4.0);
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         if ready {
             let label = if app.engine_flow.start_after { "Start building" } else { "Done" };
             if widgets::primary_icon(ui, Some(if app.engine_flow.start_after { "sparkles" } else { "check" }), label, true).clicked() {

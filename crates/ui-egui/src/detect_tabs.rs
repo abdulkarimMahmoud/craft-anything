@@ -42,7 +42,7 @@ pub fn resolve(chosen: Option<DetectTab>, providers: usize, harnesses: usize) ->
 pub fn bar(ui: &mut egui::Ui, chosen: &mut Option<DetectTab>, detected: &[Detected]) -> DetectTab {
     let (providers, harnesses) = counts(detected);
     let showing = resolve(*chosen, providers, harnesses);
-    ui.horizontal_wrapped(|ui| {
+    crate::direction::show_row_wrapped(ui, |ui| {
         for (tab, label, count) in [(DetectTab::Providers, "Providers", providers), (DetectTab::Harnesses, "Harnesses", harnesses)] {
             let mut text = egui::RichText::new(format!("{} ({count})", crate::i18n::tr(label)));
             if count == 0 {

@@ -23,9 +23,9 @@ pub fn show(app: &mut CraftApp, ctx: &egui::Context) {
         .frame(egui::Frame::new().fill(t.card).corner_radius(t.r_lg()).inner_margin(egui::Margin::same(20)).stroke(egui::Stroke::new(1.0, t.card_border)))
         .show(ctx, |ui| {
             ui.set_width(680.0);
-            ui.horizontal(|ui| {
+            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 ui.label(theme::heading(tr("Settings"), theme::SECTION));
-                ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                ui.with_layout(crate::direction::row_end(egui::Align::Center), |ui| {
                     if icons::button(ui, "x", 32.0, false, "Close").clicked() {
                         open = false;
                     }
@@ -35,7 +35,7 @@ pub fn show(app: &mut CraftApp, ctx: &egui::Context) {
             if let Some(i) = app.state.toasts.iter().rposition(|(_, error)| *error) {
                 let text = app.state.toasts[i].0.clone();
                 ui.add_space(8.0);
-                ui.horizontal(|ui| {
+                crate::direction::show_row(ui, egui::Align::Center, |ui| {
                     icons::show(ui, "triangle-alert", 16.0, t.danger);
                     ui.add(egui::Label::new(RichText::new(text).color(t.danger)).wrap());
                     if icons::button(ui, "x", 24.0, false, "Dismiss").clicked() {
@@ -44,7 +44,7 @@ pub fn show(app: &mut CraftApp, ctx: &egui::Context) {
                 });
             }
             ui.add_space(12.0);
-            ui.horizontal_top(|ui| {
+            crate::direction::show_row(ui, egui::Align::Min, |ui| {
                 ui.vertical(|ui| {
                     ui.set_width(150.0);
                     for (tab, icon, title) in [
@@ -120,7 +120,7 @@ pub fn show(app: &mut CraftApp, ctx: &egui::Context) {
 
 fn row(ui: &mut Ui, title: &str, sub: &str, add: impl FnOnce(&mut Ui)) {
     let t = Tokens::get(ui.ctx());
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         ui.vertical(|ui| {
             ui.set_width(220.0);
             ui.label(RichText::new(tr(title)).font(theme::medium(theme::SMALL)));
@@ -153,7 +153,7 @@ fn general(app: &mut CraftApp, ui: &mut Ui) {
     });
     let mut remove = None;
     for f in &app.settings.project_folders {
-        ui.horizontal(|ui| {
+        crate::direction::show_row(ui, egui::Align::Center, |ui| {
             ui.add_space(12.0);
             crate::icons::show(ui, "folder", 14.0, Tokens::get(ui.ctx()).text_faint);
             ui.add(egui::Label::new(RichText::new(f.display().to_string()).font(theme::mono(12.0))).truncate());
@@ -309,7 +309,7 @@ fn engines(app: &mut CraftApp, ui: &mut Ui) {
 /// scheduled after drawing, and a failed lookup stays visible until explicitly retried.
 fn model_options_loading(ui: &mut Ui, backend: &str) {
     ui.add_enabled_ui(false, |ui| {
-        ui.horizontal_wrapped(|ui| {
+        crate::direction::show_row_wrapped(ui, |ui| {
             ui.label(tr("Context window"));
             egui::ComboBox::from_id_salt(("model-context", backend)).icon(widgets::combo_icon).selected_text(tr("Default")).show_ui(ui, |_| {});
         });
@@ -346,7 +346,7 @@ fn ai(app: &mut CraftApp, ui: &mut Ui) {
             ui.set_width(ui.available_width());
             // The name and model on their own row (shortened, full text on hover), the buttons on a
             // row below that wraps: nothing overlaps however long the name or narrow the window.
-            ui.horizontal(|ui| {
+            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 icons::show(ui, "bot", 18.0, if b.enabled { t.accent } else { t.text_faint });
                 ui.vertical(|ui| {
                     ui.add(egui::Label::new(RichText::new(&b.name).font(theme::semibold(theme::SMALL))).truncate());
@@ -360,7 +360,7 @@ fn ai(app: &mut CraftApp, ui: &mut Ui) {
                     // where it isn't looked for (#53).
                     if b.kind == BackendKind::AgentCli && b.ssh_host.as_deref().is_none_or(|h| h.trim().is_empty()) {
                         let program = app.backend_options.get(&b.name).and_then(|o| o.command.as_ref());
-                        ui.horizontal_wrapped(|ui| {
+                        crate::direction::show_row_wrapped(ui, |ui| {
                             // The links at the caption's size, so the line reads as one.
                             ui.style_mut().override_font_id = Some(egui::FontId::proportional(theme::CAPTION));
                             let text = program.map_or_else(|| tr("Program: found automatically"), |p| trf("Program: {path}", &[("path", p)]));
@@ -415,7 +415,7 @@ fn ai(app: &mut CraftApp, ui: &mut Ui) {
                         let mut program = ui
                             .data_mut(|d| d.get_temp::<String>(id))
                             .unwrap_or_else(|| app.backend_options.get(&b.name).and_then(|o| o.command.clone()).unwrap_or_default());
-                        ui.horizontal_wrapped(|ui| {
+                        crate::direction::show_row_wrapped(ui, |ui| {
                             ui.label(tr("Remote program"));
                             ui.add(egui::TextEdit::singleline(&mut program).hint_text(&b.model).desired_width(200.0));
                             if widgets::link(ui, "Apply").clicked() {
@@ -442,7 +442,7 @@ fn ai(app: &mut CraftApp, ui: &mut Ui) {
                             } else if apply {
                                 chosen_agent_model = Some((b.name.clone(), picker.model.clone(), picker.thinking));
                             }
-                            ui.horizontal(|ui| {
+                            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                                 if widgets::link(ui, "Reload models").clicked() {
                                     pick_agent_model = Some(b.name.clone());
                                 }
@@ -454,7 +454,7 @@ fn ai(app: &mut CraftApp, ui: &mut Ui) {
                             pick_agent_model = Some(b.name.clone());
                         }
                     } else if let Some(current) = model_in_use {
-                        ui.horizontal_wrapped(|ui| {
+                        crate::direction::show_row_wrapped(ui, |ui| {
                             ui.style_mut().override_font_id = Some(egui::FontId::proportional(theme::CAPTION));
                             ui.add(
                                 egui::Label::new(RichText::new(trf("Model: {model}", &[("model", &current)])).color(t.text_faint).size(theme::CAPTION))
@@ -512,7 +512,7 @@ fn ai(app: &mut CraftApp, ui: &mut Ui) {
                             if let Some(choices) = &draft.choices {
                                 let mut changed = false;
                                 ui.add_enabled_ui(!draft.saving, |ui| {
-                                    ui.horizontal_wrapped(|ui| {
+                                    crate::direction::show_row_wrapped(ui, |ui| {
                                         ui.label(tr("Context window"));
                                         let label = draft
                                             .context
@@ -552,7 +552,7 @@ fn ai(app: &mut CraftApp, ui: &mut Ui) {
                 });
             });
             ui.add_space(6.0);
-            ui.horizontal_wrapped(|ui| {
+            crate::direction::show_row_wrapped(ui, |ui| {
                 ui.add_space(26.0);
                 if app.state.backend.as_ref() == Some(&b.name) {
                     widgets::pill(ui, "In use", t.on_accent, t.accent);
@@ -668,11 +668,11 @@ fn ai(app: &mut CraftApp, ui: &mut Ui) {
         let (providers, harnesses) = crate::detect_tabs::counts(&detected);
         crate::detect_tabs::resolve(app.state.detect_tab, providers, harnesses)
     };
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         widgets::caption(ui, "Found on this computer");
         ui.add_space(12.0);
         tab = crate::detect_tabs::bar(ui, &mut app.state.detect_tab, &detected);
-        ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+        ui.with_layout(crate::direction::row_end(egui::Align::Center), |ui| {
             if app.detecting {
                 ui.add(crate::widgets::Spinner::new().color(t.accent));
             } else if widgets::secondary(ui, Some("radar"), "Detect").clicked() {
@@ -695,12 +695,12 @@ fn ai(app: &mut CraftApp, ui: &mut Ui) {
         let configured = app.backends.iter().any(|b| b.name == d.suggestion.name);
         widgets::panel(&t).show(ui, |ui| {
             ui.set_width(ui.available_width());
-            ui.horizontal(|ui| {
+            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 ui.vertical(|ui| {
                     ui.label(RichText::new(&d.suggestion.name).font(theme::medium(theme::SMALL)));
                     ui.label(RichText::new(&d.reason).color(t.text_faint).size(theme::CAPTION));
                 });
-                ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                ui.with_layout(crate::direction::row_end(egui::Align::Center), |ui| {
                     if configured {
                         widgets::pill(ui, "Added", t.success, t.raised);
                         // Claude Code once more, to give it another account's folder.
@@ -721,7 +721,7 @@ fn ai(app: &mut CraftApp, ui: &mut Ui) {
             // different key can be used without restarting the app.
             let pastable = d.needs_key || d.suggestion.base_url.as_deref().is_some_and(craft_anything_ai::openai::is_opencode_go);
             if pastable && !configured {
-                ui.horizontal(|ui| {
+                crate::direction::show_row(ui, egui::Align::Center, |ui| {
                     let key = app.key_inputs.entry(d.suggestion.name.clone()).or_default();
                     ui.add(
                         egui::TextEdit::singleline(key)
@@ -760,14 +760,14 @@ pub(crate) fn server_form(app: &mut CraftApp, ui: &mut Ui) {
         let r = ui.add(egui::TextEdit::singleline(text).password(secret).hint_text(tr(hint)).desired_width(width).frame(widgets::text_field_frame_compact(&t)));
         widgets::named(r, &tr(name));
     };
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         field(ui, &mut form.name, "name, e.g. Studio box", 150.0, "AI name", false);
         let w = ui.available_width() - FRAME;
         field(ui, &mut form.address, "address, e.g. http://192.168.1.20:11434/v1", w, "Server address", false);
     });
     let ready = !form.name.trim().is_empty() && !form.address.trim().is_empty();
     let mut add = false;
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         field(ui, &mut form.model, "model (optional)", 150.0, "Model", false);
         // Room for the Add button after it.
         let w = (ui.available_width() - FRAME - 90.0).max(120.0);
@@ -863,7 +863,7 @@ fn plugins(app: &mut CraftApp, ui: &mut Ui) {
     let mut changed = false;
     for (i, p) in plugins.iter().enumerate() {
         widgets::panel(&t).show(ui, |ui| {
-            ui.horizontal(|ui| {
+            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 ui.vertical(|ui| {
                     ui.set_width(300.0);
                     ui.label(RichText::new(p.display_name()).font(theme::medium(theme::SMALL)));
@@ -890,7 +890,7 @@ fn plugins(app: &mut CraftApp, ui: &mut Ui) {
     }
     for (i, p) in wasm.iter().enumerate() {
         widgets::panel(&t).show(ui, |ui| {
-            ui.horizontal(|ui| {
+            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 ui.vertical(|ui| {
                     ui.set_width(300.0);
                     ui.label(RichText::new(p.display_name()).font(theme::medium(theme::SMALL)));
@@ -919,7 +919,7 @@ fn plugins(app: &mut CraftApp, ui: &mut Ui) {
     widgets::caption(ui, "Add a plugin");
     ui.add_space(4.0);
     let form = &mut app.state.plugin_form;
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         let id =
             ui.add(egui::TextEdit::singleline(&mut form.id).hint_text(tr("id, e.g. docs")).desired_width(120.0).frame(widgets::text_field_frame_compact(&t)));
         widgets::named(id, "Plugin id");
@@ -959,7 +959,7 @@ fn safety(app: &mut CraftApp, ui: &mut Ui) {
         },
     );
     if !app.settings.ask_before_running {
-        ui.horizontal(|ui| {
+        crate::direction::show_row(ui, egui::Align::Center, |ui| {
             icons::show(ui, "triangle-alert", 15.0, t.warning);
             ui.label(RichText::new(tr("Tools may now run code from what you open without asking. Turn this back on unless you're sure.")).color(t.warning));
         });

@@ -155,7 +155,7 @@ fn target_card(app: &mut CraftApp, ui: &mut Ui) {
         ui.set_width(ui.available_width());
         match app.view.active_target().cloned() {
             Some(target) => {
-                ui.horizontal(|ui| {
+                crate::direction::show_row(ui, egui::Align::Center, |ui| {
                     let (rect, _) = ui.allocate_exact_size(Vec2::splat(48.0), egui::Sense::hover());
                     ui.painter().rect_filled(rect, t.radius, t.accent_soft);
                     icons::paint(ui, rect, crate::kind_icon(target.kind), 26.0, t.accent_ink);
@@ -168,7 +168,7 @@ fn target_card(app: &mut CraftApp, ui: &mut Ui) {
                 widgets::caption(ui, "What is it");
                 ui.label(RichText::new(tr(target.kind.plain())).size(theme::BODY));
                 ui.add_space(10.0);
-                ui.horizontal_wrapped(|ui| {
+                crate::direction::show_row_wrapped(ui, |ui| {
                     if app.view.clean_room {
                         widgets::pill(ui, "Clean room", t.success, t.raised).on_hover_text(tr("Nothing inside it is read."));
                     } else {
@@ -203,7 +203,7 @@ fn target_card(app: &mut CraftApp, ui: &mut Ui) {
         });
     });
     ui.add_space(14.0);
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         widgets::toggle(ui, &mut app.state.explain_new, "Explain like I'm new")
             .on_hover_text(tr("Plain words, short sentences, and every technical word explained."));
     });
@@ -241,7 +241,7 @@ pub fn conversation(app: &mut CraftApp, ui: &mut Ui, dense: bool) {
     });
     ui.add_space(COMPOSER_GAP);
     // Top-aligned: `horizontal` centres in its row, which put the box 12 points below the gap.
-    let r = ui.horizontal_top(|ui| {
+    let r = crate::direction::show_row(ui, egui::Align::Min, |ui| {
         ui.add_space(pad);
         composer(app, ui, max_w, dense);
     });
@@ -260,7 +260,7 @@ pub fn remember_composer_height(ui: &mut Ui, id: egui::Id, used: f32, measured: 
 
 fn history(app: &mut CraftApp, ui: &mut Ui, dense: bool, pad: f32, max_w: f32) {
     egui::ScrollArea::vertical().auto_shrink([false, false]).stick_to_bottom(true).show(ui, |ui| {
-        ui.horizontal(|ui| {
+        crate::direction::show_row(ui, egui::Align::Center, |ui| {
             ui.add_space(pad);
             ui.vertical(|ui| {
                 ui.set_width(max_w);
@@ -399,11 +399,11 @@ fn copy_button(ui: &mut Ui, over: egui::Rect, at: egui::Pos2, text: &str) {
 /// row don't wrap by themselves, so a long prompt would run off the side: wrap it inside the bubble.
 pub(crate) fn user_bubble(ui: &mut Ui, text: &str, dense: bool) {
     let t = Tokens::get(ui.ctx());
-    ui.with_layout(egui::Layout::right_to_left(egui::Align::Min), |ui| {
+    ui.with_layout(crate::direction::row_end(egui::Align::Min), |ui| {
         let shown = bubble(&t, true, dense).show(ui, |ui| {
             ui.set_max_width((ui.available_width() - COPY - 4.0).min(560.0));
-            // The bubble sits on the right; its lines still read from the left.
-            ui.with_layout(egui::Layout::top_down(egui::Align::Min), |ui| {
+            // The bubble sits at the trailing edge; its lines hug the reading edge.
+            ui.with_layout(crate::direction::column(), |ui| {
                 ui.add(egui::Label::new(RichText::new(text).color(t.text)).wrap());
             });
         });
@@ -427,7 +427,7 @@ pub(crate) fn answer_bubble(ui: &mut Ui, dense: bool, text: &str, content: impl 
 /// A one-line activity row (icon and text) that wraps instead of running off the side.
 pub(crate) fn activity_row(ui: &mut Ui, text: RichText) {
     let t = Tokens::get(ui.ctx());
-    ui.horizontal_top(|ui| {
+    crate::direction::show_row(ui, egui::Align::Min, |ui| {
         icons::show(ui, "activity", 14.0, t.accent);
         ui.add(egui::Label::new(text).wrap());
     });
@@ -453,14 +453,14 @@ fn item_ui(ui: &mut Ui, item: &ChatItem, beginner: bool, dense: bool, open: bool
             activity_row(ui, RichText::new(text).italics().color(t.text_dim).size(theme::CAPTION));
         }
         ChatItem::Tool { tool, ok, summary, evidence, .. } => {
-            ui.horizontal_wrapped(|ui| {
+            crate::direction::show_row_wrapped(ui, |ui| {
                 let (icon, col) = match ok {
                     None => ("loader", t.text_faint),
                     Some(true) => ("check", t.success),
                     Some(false) => ("triangle-alert", t.danger),
                 };
                 egui::Frame::new().fill(t.raised).corner_radius(t.r_sm()).inner_margin(Margin::symmetric(10, 3)).show(ui, |ui| {
-                    ui.horizontal(|ui| {
+                    crate::direction::show_row(ui, egui::Align::Center, |ui| {
                         icons::show(ui, icon, 13.0, col);
                         ui.label(RichText::new(tool.replace('_', " ")).font(theme::mono(12.5)).color(t.text_dim));
                     });
@@ -484,7 +484,7 @@ fn item_ui(ui: &mut Ui, item: &ChatItem, beginner: bool, dense: bool, open: bool
         ChatItem::Consent { call_id, title, explanation, answer, .. } => {
             egui::Frame::new().fill(t.card).stroke(egui::Stroke::new(1.5, t.warning)).corner_radius(t.r_lg()).inner_margin(Margin::same(14)).show(ui, |ui| {
                 ui.set_width(ui.available_width());
-                ui.horizontal(|ui| {
+                crate::direction::show_row(ui, egui::Align::Center, |ui| {
                     icons::show(ui, "shield", 18.0, t.warning);
                     ui.label(RichText::new(crate::i18n::trf("May I run \"{title}\"?", &[("title", title)])).font(theme::semibold(theme::BODY)));
                 });
@@ -497,7 +497,7 @@ fn item_ui(ui: &mut Ui, item: &ChatItem, beginner: bool, dense: bool, open: bool
                 ui.add_space(6.0);
                 match answer {
                     None => {
-                        ui.horizontal(|ui| {
+                        crate::direction::show_row(ui, egui::Align::Center, |ui| {
                             if widgets::primary(ui, "Allow once").clicked() {
                                 actions.push(ChatAction::Consent(call_id.clone(), ConsentAnswer::Once));
                             }
@@ -528,7 +528,7 @@ fn item_ui(ui: &mut Ui, item: &ChatItem, beginner: bool, dense: bool, open: bool
                 .inner_margin(Margin::same(12))
                 .show(ui, |ui| {
                     ui.set_width(ui.available_width());
-                    ui.horizontal(|ui| {
+                    crate::direction::show_row(ui, egui::Align::Center, |ui| {
                         icons::show(ui, "triangle-alert", 16.0, t.danger);
                         ui.add(egui::Label::new(RichText::new(message).color(t.text)).wrap());
                     });
@@ -545,7 +545,7 @@ fn item_ui(ui: &mut Ui, item: &ChatItem, beginner: bool, dense: bool, open: bool
         ChatItem::AddBrain => {
             egui::Frame::new().fill(t.accent_soft).corner_radius(t.r_lg()).inner_margin(Margin::same(14)).show(ui, |ui| {
                 ui.set_width(ui.available_width());
-                ui.horizontal(|ui| {
+                crate::direction::show_row(ui, egui::Align::Center, |ui| {
                     icons::show(ui, "sparkles", 20.0, t.accent_ink);
                     ui.vertical(|ui| {
                         ui.label(RichText::new(tr("Want answers in plain words?")).font(theme::semibold(theme::BODY)));

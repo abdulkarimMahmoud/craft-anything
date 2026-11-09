@@ -47,6 +47,22 @@ pub fn show_row<R>(
     ui.with_layout(row(valign), add_contents)
 }
 
+/// Show `add_contents` in a [`row`] layout that wraps to a new line at the edge, like
+/// `Ui::horizontal_wrapped`.
+pub fn show_row_wrapped<R>(
+    ui: &mut egui::Ui,
+    add_contents: impl FnOnce(&mut egui::Ui) -> R,
+) -> egui::InnerResponse<R> {
+    let size = egui::vec2(ui.available_width(), ui.spacing().interact_size.y);
+    ui.allocate_ui_with_layout(size, row(egui::Align::Center).with_main_wrap(true), add_contents)
+}
+
+/// A vertical stack whose lines hug the reading edge: left in a left-to-right interface,
+/// right when mirrored.
+pub fn column() -> egui::Layout {
+    pick(rtl(), egui::Layout::top_down(egui::Align::Min), egui::Layout::top_down(egui::Align::Max))
+}
+
 /// Whether a side panel that sits on `left` in a left-to-right interface stays on the left.
 fn panel_stays_left(left: bool, rtl: bool) -> bool {
     left != rtl

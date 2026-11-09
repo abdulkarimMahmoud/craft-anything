@@ -116,7 +116,7 @@ pub fn rename_modal(app: &mut CraftApp, ui: &mut Ui, root: &Path, close: &mut bo
     let enter = r.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter));
     ui.add(egui::Label::new(RichText::new(tr("Only its name changes; its folder stays where it is.")).color(t.text_faint).size(theme::SMALL)).wrap());
     ui.add_space(12.0);
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         if (widgets::primary_icon(ui, None, "Rename", ok).clicked() || enter) && ok {
             let name = app.state.rename_input.trim().to_string();
             app.rename_project(root, &name);
@@ -134,7 +134,7 @@ pub fn delete_modal(app: &mut CraftApp, ui: &mut Ui, root: &Path, close: &mut bo
         *close = true;
         return;
     };
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         let (rect, _) = ui.allocate_exact_size(Vec2::splat(40.0), egui::Sense::hover());
         ui.painter().rect_filled(rect, t.radius, t.raised);
         icons::paint(ui, rect, "trash-2", 20.0, t.danger);
@@ -153,7 +153,7 @@ pub fn delete_modal(app: &mut CraftApp, ui: &mut Ui, root: &Path, close: &mut bo
     ui.add_space(4.0);
     ui.label(RichText::new(tr("This can't be undone.")).color(t.danger).size(theme::SMALL));
     ui.add_space(12.0);
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         if widgets::secondary(ui, Some("trash-2"), "Delete it").clicked() {
             app.delete_project(root);
             *close = true;

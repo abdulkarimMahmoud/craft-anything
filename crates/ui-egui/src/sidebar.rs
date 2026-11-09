@@ -70,7 +70,7 @@ pub fn show(app: &mut CraftApp, ui: &mut Ui) {
         let again = if fold {
             centred_row(ui, 22.0, refresh)
         } else {
-            ui.horizontal(|ui| {
+            crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 ui.add_space(12.0);
                 widgets::caption(ui, "Projects");
                 ui.with_layout(crate::direction::row_end(egui::Align::Center), refresh).inner
@@ -120,7 +120,7 @@ pub fn show(app: &mut CraftApp, ui: &mut Ui) {
 
 /// A folded section's heading: a row as tall as the open one, with something `width` wide centred.
 pub(crate) fn centred_row<R>(ui: &mut Ui, width: f32, add: impl FnOnce(&mut Ui) -> R) -> R {
-    ui.horizontal(|ui| {
+    crate::direction::show_row(ui, egui::Align::Center, |ui| {
         ui.add_space(((ui.available_width() - width) / 2.0).max(0.0));
         add(ui)
     })
