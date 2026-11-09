@@ -70,7 +70,7 @@ fn step(before: Watch, events: &[egui::Event], held: egui::Modifiers) -> Watch {
 /// (maybe a picture). The same answer for every call in a pass; call it on every pass a box that
 /// takes pictures shows, so no key's press or release is missed.
 pub fn picture_wanted(ctx: &egui::Context) -> bool {
-    let id = egui::Id::new("paste-watch");
+    let id = egui::Id::unique("paste-watch");
     let pass = ctx.cumulative_pass_nr();
     let before: Watch = ctx.data(|d| d.get_temp(id)).unwrap_or_default();
     if before.pass == pass && pass != 0 {

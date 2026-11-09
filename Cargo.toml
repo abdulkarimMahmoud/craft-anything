@@ -36,10 +36,10 @@ bitflags = { version = "2", features = ["serde"] }
 schemars = "1"
 log = "0.4"
 toml = "0.9"
-eframe = { version = "0.36", default-features = false }
-egui = "0.36"
-egui_extras = { version = "0.36", default-features = false }
-egui_kittest = "0.36"
+eframe = { git = "https://github.com/storytold/egui.git", rev = "6d518fc799681571963842f95b55a6b68431b15a", default-features = false }
+egui = { git = "https://github.com/storytold/egui.git", rev = "6d518fc799681571963842f95b55a6b68431b15a" }
+egui_extras = { git = "https://github.com/storytold/egui.git", rev = "6d518fc799681571963842f95b55a6b68431b15a", default-features = false }
+egui_kittest = { git = "https://github.com/storytold/egui.git", rev = "6d518fc799681571963842f95b55a6b68431b15a" }
 rfd = "0.17"
 # Pictures pasted from the clipboard (egui only receives pasted text); egui-winit already uses it.
 arboard = { version = "3.6", default-features = false, features = ["image-data"] }
@@ -97,3 +97,6 @@ panic = "abort"
 # Remove this once the upstream wgpu release picks a Metal version the compiler accepts. See vendor/wgpu-hal/CRAFT_ANYTHING.md.
 [patch.crates-io]
 wgpu-hal = { path = "vendor/wgpu-hal" }
+# storytold/egui 6d518fc needs storytold's winit (extra IME/keyboard APIs); a dependency's
+# own [patch] is ignored, so the top-level workspace repeats it here (PR-1).
+winit = { git = "https://github.com/storytold/winit.git", rev = "a517b3846ee8457d84ee4975110bfda6797c44dc" }

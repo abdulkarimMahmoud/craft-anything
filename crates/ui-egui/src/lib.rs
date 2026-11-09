@@ -1834,7 +1834,7 @@ impl CraftApp {
         let t = theme::Tokens::get(ctx);
         let width = (ctx.content_rect().width() - 32.0).clamp(200.0, 640.0);
         let mut dismiss = None;
-        egui::Area::new(egui::Id::new("toasts")).order(egui::Order::Foreground).anchor(egui::Align2::CENTER_BOTTOM, egui::vec2(0.0, -16.0)).show(ctx, |ui| {
+        egui::Area::new(egui::Id::unique("toasts")).order(egui::Order::Foreground).anchor(egui::Align2::CENTER_BOTTOM, egui::vec2(0.0, -16.0)).show(ctx, |ui| {
             ui.set_width(width);
             for (i, (text, error)) in self.state.toasts.iter().enumerate() {
                 egui::Frame::new()
@@ -1873,7 +1873,7 @@ impl CraftApp {
         }
         let t = theme::Tokens::get(ctx);
         let rect = ctx.content_rect();
-        let painter = ctx.layer_painter(egui::LayerId::new(egui::Order::Foreground, egui::Id::new("drop")));
+        let painter = ctx.layer_painter(egui::LayerId::new(egui::Order::Foreground, egui::Id::unique("drop")));
         painter.rect_filled(rect, 0.0, t.shadow);
         let inner = rect.shrink(40.0);
         painter.rect_stroke(inner, t.radius_lg, egui::Stroke::new(2.0, t.accent), egui::StrokeKind::Inside);
