@@ -97,9 +97,26 @@ also a file location: “غيّر موقع الحفظ”), and neither are bare 
 settings screen is an app, not a website).
 
 Arabic glyphs come from craft-fonts, which the script test in `theme.rs` checks (“مرحبا
-بالعالم”); a build without craft-fonts shows them as boxes. Proper Arabic shaping, bidirectional
-text and the mirrored layout arrive with the right-to-left interface work; until then the catalog
-renders left-to-right.
+بالعالم”); a build without craft-fonts shows them as boxes.
+
+### The mirrored interface
+
+Arabic is the interface's only right-to-left language (`rtl` in the language registry). The
+egui family comes from storytold's patched fork (pinned in the workspace `Cargo.toml`), which
+shapes Arabic properly (harfrust) and lays bidirectional text per UAX #9. Painted interface
+chrome uses an explicit base direction that follows the language (`direction::text_direction`);
+editable and data content keeps the shaper's `Auto` default, which follows each paragraph's
+own first strong character, so hex, paths and digits always read left to right.
+
+Layout goes through `crates/ui-egui/src/direction.rs`: rows start at the reading edge
+(`show_row`, `show_row_wrapped`), trailing controls pack against the other one (`row_end`),
+panels swap sides (`side_panel`), and every painted widget draws from the reading edge. The
+fork's `Style::right_to_left` flag (synced from the language in `theme::apply` and per frame)
+mirrors the toolkit's own chrome: scroll-bar side, menu direction, popups, combo boxes and
+the resize grip. Window buttons, media icons and the game canvas keep their physical sides.
+
+`crates/ui-egui/tests/rtl.rs` pins the behaviour: the direction helpers, the chrome flag, and
+the mirrored title bar (controls left, window buttons right) under Arabic.
 
 ## Scope and format
 
