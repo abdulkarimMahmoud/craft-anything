@@ -1019,6 +1019,7 @@ mod tests {
         app.view.ledger.clear();
         let context = egui::Context::default();
         crate::theme::install_fonts(&context);
+        egui_extras::install_image_loaders(&context);
         let mut output = context.run_ui(egui::RawInput::default(), |ui| ledger(&mut app, ui));
         output.textures_delta.clear();
         let text = output

@@ -188,6 +188,7 @@ mod tests {
     fn prompt_box(attach: bool) -> egui_kittest::Harness<'static, (String, usize)> {
         egui_kittest::Harness::new_ui_state(
             move |ui, (text, pastes): &mut (String, usize)| {
+                egui_extras::install_image_loaders(ui.ctx());
                 let b = crate::prompt_box::PromptBox {
                     name: "Ask for a change",
                     hint: String::new(),

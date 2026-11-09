@@ -906,6 +906,8 @@ fn mode_switch_and_deep_toggle() {
     assert!(wait(&mut h, |a| a.engine.try_session().is_some_and(|s| s.settings.mode == Mode::Experienced)));
     h.state_mut().set_deep(true);
     assert!(wait(&mut h, |a| a.engine.try_session().is_some_and(|s| s.settings.deep_mode && !s.clean_room())));
+    // A dialog's first frame is a sizing pass (invisible): let it paint before asking for it.
+    h.run_steps(2);
     // No Ghidra in the store: Deep mode offers it first. (Hover first, as a mouse does: the
     // dialog's button only takes a click once the pointer has been over it for a frame.)
     h.get_by_label("Not now").hover();
@@ -1080,6 +1082,8 @@ fn clean_room_asks_for_deep_mode_instead_of_opening_a_file() {
     h.state_mut().open_path(std::path::PathBuf::from("/samples/tool.exe"));
     assert!(wait(&mut h, |a| a.state.modal == Some(Modal::DeepMode)), "Clean room never opens the original");
     assert!(!h.state().state.toasts.iter().any(|(_, err)| *err), "no error, a question");
+    // A dialog's first frame is a sizing pass (invisible): let it paint before asking for it.
+    h.run_steps(2);
     h.get_by_label("Looking inside needs Deep mode");
     // Hover first, as a mouse does: a dialog's button takes a click once the pointer was over it.
     h.get_by_label("Not now").hover();

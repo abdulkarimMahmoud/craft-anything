@@ -251,10 +251,9 @@ pub fn show(app: &mut CraftApp, ui: &mut Ui) {
         ui.add_space(if NATIVE_FRAME { NATIVE_BUTTONS_WIDTH } else { 12.0 } * s);
         if crate::direction::rtl() {
             // Mirrored: the controls flow from the left; the leading content and the window
-            // buttons pack from the right, the buttons pinned rightmost.
-            if titlebar_controls(app, ui, s, download) {
-                return;
-            }
+            // buttons pack from the right, the buttons pinned rightmost. The buttons always
+            // render: the controls' early return only ends their own group.
+            titlebar_controls(app, ui, s, download);
             ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                 ui.spacing_mut().item_spacing.x = 0.0;
                 window_buttons(ui, &ctx);

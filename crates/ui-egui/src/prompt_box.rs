@@ -443,6 +443,7 @@ mod tests {
         let files: Vec<PathBuf> = ["a.png", "b.png", "c.png"].map(PathBuf::from).to_vec();
         let mut h = egui_kittest::Harness::new_ui_state(
             move |ui, text: &mut String| {
+                egui_extras::install_image_loaders(ui.ctx());
                 let tex = ui.ctx().load_texture("tile", egui::ColorImage::filled([4, 2], egui::Color32::RED), egui::TextureOptions::LINEAR);
                 let previews = vec![Some(tex); 3];
                 let b = PromptBox {

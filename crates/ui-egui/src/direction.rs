@@ -38,13 +38,16 @@ pub fn row_end(valign: egui::Align) -> egui::Layout {
     pick(rtl(), egui::Layout::right_to_left(valign), egui::Layout::left_to_right(valign))
 }
 
-/// Show `add_contents` in a [`row`] layout.
+/// Show `add_contents` in a [`row`] layout, like `Ui::horizontal`: the row only takes
+/// the height its widgets need, so the cross alignment centres within the row rather
+/// than the whole remaining window.
 pub fn show_row<R>(
     ui: &mut egui::Ui,
     valign: egui::Align,
     add_contents: impl FnOnce(&mut egui::Ui) -> R,
 ) -> egui::InnerResponse<R> {
-    ui.with_layout(row(valign), add_contents)
+    let size = egui::vec2(ui.available_size_before_wrap().x, ui.spacing().interact_size.y);
+    ui.allocate_ui_with_layout(size, row(valign), add_contents)
 }
 
 /// Show `add_contents` in a [`row`] layout that wraps to a new line at the edge, like
@@ -84,15 +87,17 @@ pub fn chevron_collapsed() -> &'static str {
     pick(rtl(), "chevron-right", "chevron-left")
 }
 
-/// Whether the sidebar fold button points into the window (rather than at the edge).
-fn fold_points_inward(folded: bool, rtl: bool) -> bool {
+/// Whether the sidebar fold button points right: the left sidebar's folded state in a
+/// left-to-right interface, and the right sidebar's open state when mirrored. The button
+/// points into the window when folded and at the edge when open, on either side.
+fn fold_points_right(folded: bool, rtl: bool) -> bool {
     folded != rtl
 }
 
 /// The sidebar's fold/unfold chevron: it points into the window when folded and at the
 /// edge when open, on whichever side the sidebar sits.
 pub fn sidebar_fold(folded: bool) -> &'static str {
-    pick(fold_points_inward(folded, rtl()), "chevron-left", "chevron-right")
+    pick(fold_points_right(folded, rtl()), "chevron-left", "chevron-right")
 }
 
 #[cfg(test)]
@@ -116,10 +121,10 @@ mod tests {
     #[test]
     fn fold_chevron_points_into_the_window_when_folded() {
         // Sidebar on the left: folded points right (inward), open points left (at the edge).
-        assert!(fold_points_inward(true, false));
-        assert!(!fold_points_inward(false, false));
+        assert!(fold_points_right(true, false));
+        assert!(!fold_points_right(false, false));
         // Sidebar on the right: folded points left (inward), open points right (at the edge).
-        assert!(fold_points_inward(true, true));
-        assert!(!fold_points_inward(false, true));
+        assert!(!fold_points_right(true, true));
+        assert!(fold_points_right(false, true));
     }
 }

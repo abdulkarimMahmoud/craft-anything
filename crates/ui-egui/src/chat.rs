@@ -732,6 +732,7 @@ mod tests {
         for item in [ChatItem::User(text.into()), ChatItem::Assistant { text: text.into(), backend: None, streaming: false }] {
             let mut h = Harness::builder().build_ui(move |ui| {
                 theme::install_fonts(ui.ctx());
+                egui_extras::install_image_loaders(ui.ctx());
                 item_ui(ui, &item, false, false, false, &mut Vec::new());
             });
             h.get_by_label("Copy the message").click();
