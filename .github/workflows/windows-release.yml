@@ -92,12 +92,12 @@ jobs:
         run: |
           $Version = '${{ steps.version.outputs.version }}'
           $Setup = "dist\release\craft-anything-$Version-windows-x64-setup.exe"
-          $Home = "${env:ProgramFiles}\Craft Anything"
+          $Dest = "${env:ProgramFiles}\Craft Anything"
           Start-Process -Wait -FilePath $Setup -ArgumentList '/S'
-          if (-not (Test-Path "$Home\craft-anything.exe")) { throw 'silent install left no exe' }
-          & "$Home\craft-anything-cli.exe" --version
-          Start-Process -Wait -FilePath "$Home\uninstall.exe" -ArgumentList '/S'
-          if (Test-Path "$Home\craft-anything.exe") { throw 'silent uninstall left the exe behind' }
+          if (-not (Test-Path "$Dest\craft-anything.exe")) { throw 'silent install left no exe' }
+          & "$Dest\craft-anything-cli.exe" --version
+          Start-Process -Wait -FilePath "$Dest\uninstall.exe" -ArgumentList '/S'
+          if (Test-Path "$Dest\craft-anything.exe") { throw 'silent uninstall left the exe behind' }
 
       - name: Upload installers
         uses: actions/upload-artifact@v4
