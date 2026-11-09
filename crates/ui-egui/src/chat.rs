@@ -144,7 +144,7 @@ pub fn ask_screen(app: &mut CraftApp, ui: &mut Ui) {
         .show(ui, |ui| {
         target_card(app, ui);
     });
-    egui::CentralPanel::default().frame(egui::Frame::new().fill(t.canvas).inner_margin(PANE_MARGIN)).show(ui, |ui| {
+    egui::CentralPanel::default().frame(egui::Frame::new().fill(t.canvas).inner_margin(pane_margin())).show(ui, |ui| {
         conversation(app, ui, false);
     });
 }
@@ -214,6 +214,12 @@ fn target_card(app: &mut CraftApp, ui: &mut Ui) {
 }
 
 /// The chat panes' margins: a little more air under the prompt box than at the top.
+/// The chat pane's margins: the wide side holds the scroll bar, which sits on the left
+/// when the interface is mirrored.
+pub fn pane_margin() -> Margin {
+    if crate::direction::rtl() { Margin { left: 20, right: 12, top: 12, bottom: 24 } } else { PANE_MARGIN }
+}
+
 pub const PANE_MARGIN: Margin = Margin { left: 12, right: 20, top: 12, bottom: 24 };
 /// Between the last message and the prompt box.
 pub const COMPOSER_GAP: f32 = 16.0;
@@ -408,7 +414,9 @@ pub(crate) fn user_bubble(ui: &mut Ui, text: &str, dense: bool) {
             });
         });
         let r = shown.response.rect;
-        copy_button(ui, r, egui::pos2(r.left() - COPY - 4.0, r.top() + f32::from(margin(dense).top) - 1.0), text);
+        // The copy button sits outside the bubble, past its leading edge.
+        let copy_x = if crate::direction::rtl() { r.right() + 4.0 } else { r.left() - COPY - 4.0 };
+        copy_button(ui, r, egui::pos2(copy_x, r.top() + f32::from(margin(dense).top) - 1.0), text);
     });
 }
 
@@ -421,7 +429,9 @@ pub(crate) fn answer_bubble(ui: &mut Ui, dense: bool, text: &str, content: impl 
         ui.allocate_ui_with_layout(Vec2::new((ui.available_width() - COPY - 4.0).max(0.0), 0.0), egui::Layout::top_down(egui::Align::Min), content);
     });
     let (r, m) = (shown.response.rect, margin(dense));
-    copy_button(ui, r, egui::pos2(r.right() - f32::from(m.right) - COPY, r.top() + f32::from(m.top) - 1.0), text);
+    // Inside the bubble's padding, against the trailing edge.
+    let copy_x = if crate::direction::rtl() { r.left() + f32::from(m.left) } else { r.right() - f32::from(m.right) - COPY };
+    copy_button(ui, r, egui::pos2(copy_x, r.top() + f32::from(m.top) - 1.0), text);
 }
 
 /// A one-line activity row (icon and text) that wraps instead of running off the side.

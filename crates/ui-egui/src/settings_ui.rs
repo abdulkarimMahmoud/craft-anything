@@ -63,16 +63,19 @@ pub fn show(app: &mut CraftApp, ctx: &egui::Context) {
                         } else if r.hovered() {
                             ui.painter().rect_filled(rect, t.radius, t.hover);
                         }
+                        let rtl = crate::direction::rtl();
+                        let icon_x = if rtl { rect.right() - 10.0 - 16.0 } else { rect.left() + 10.0 };
                         icons::paint(
                             ui,
-                            egui::Rect::from_min_size(egui::pos2(rect.left() + 10.0, rect.center().y - 8.0), Vec2::splat(16.0)),
+                            egui::Rect::from_min_size(egui::pos2(icon_x, rect.center().y - 8.0), Vec2::splat(16.0)),
                             icon,
                             16.0,
                             if on { t.accent_ink } else { t.icon },
                         );
+                        let (text_x, anchor) = if rtl { (rect.right() - 36.0, egui::Align2::RIGHT_CENTER) } else { (rect.left() + 36.0, egui::Align2::LEFT_CENTER) };
                         ui.painter().text(
-                            egui::pos2(rect.left() + 36.0, rect.center().y),
-                            egui::Align2::LEFT_CENTER,
+                            egui::pos2(text_x, rect.center().y),
+                            anchor,
                             tr(title),
                             theme::medium(theme::SMALL),
                             if on { t.text } else { t.text_dim },

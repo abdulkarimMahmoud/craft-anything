@@ -83,7 +83,7 @@ pub fn show(app: &mut CraftApp, ui: &mut Ui) {
         ui.add_space(4.0);
         egui::ScrollArea::vertical().auto_shrink([false, false]).show(ui, |ui| {
             if app.projects.is_empty() && !fold {
-                egui::Frame::new().inner_margin(egui::Margin { left: 12, right: 8, top: 2, bottom: 2 }).show(ui, |ui| {
+                egui::Frame::new().inner_margin(if crate::direction::rtl() { egui::Margin { left: 8, right: 12, top: 2, bottom: 2 } } else { egui::Margin { left: 12, right: 8, top: 2, bottom: 2 } }).show(ui, |ui| {
                     ui.label(RichText::new(tr("Nothing made yet. What you make shows up here.")).color(t.text_faint).size(theme::SMALL));
                 });
                 return;
@@ -149,7 +149,8 @@ pub(crate) fn row(ui: &mut Ui, icon: &str, label: &str, status: Option<(egui::Co
     let ink = if on { t.text } else { theme::mix(t.text_dim, t.text, h) };
     // Project names are shown as written; the app's own rows are translated.
     let text = if status.is_some() { label.to_string() } else { tr(label) };
-    let icon_x = if fold { rect.center().x } else { rect.left() + 22.0 };
+    let rtl = crate::direction::rtl();
+    let icon_x = if fold { rect.center().x } else if rtl { rect.right() - 22.0 } else { rect.left() + 22.0 };
     icons::paint(ui, egui::Rect::from_center_size(egui::pos2(icon_x, rect.center().y), Vec2::splat(16.0)), icon, 16.0, if on { t.text } else { t.icon });
     let name = match status {
         Some((_, s, _)) => format!("{text}, {}", tr(s)),
@@ -160,7 +161,8 @@ pub(crate) fn row(ui: &mut Ui, icon: &str, label: &str, status: Option<(egui::Co
         if let Some((color, _, urgent)) = status
             && urgent
         {
-            ui.painter().circle_filled(egui::pos2(rect.right() - 10.0, rect.top() + 9.0), 4.0, color);
+            let dot_x = if rtl { rect.left() + 10.0 } else { rect.right() - 10.0 };
+            ui.painter().circle_filled(egui::pos2(dot_x, rect.top() + 9.0), 4.0, color);
         }
         widgets::focus_ring(ui, &resp, rect);
         resp.widget_info(|| egui::WidgetInfo::selected(egui::Role::Button, true, on, &name));
@@ -178,15 +180,19 @@ pub(crate) fn row(ui: &mut Ui, icon: &str, label: &str, status: Option<(egui::Co
     job.direction = crate::direction::text_direction();
     job.wrap = egui::text::TextWrapping::truncate_at_width(max_w);
     let g = ui.painter().layout_job(job);
-    ui.painter().galley(egui::pos2(rect.left() + 38.0, rect.center().y - g.size().y / 2.0), g, ink);
+    // Mirrored, the name ends where the icon starts and the pill and dot hug the left.
+    let name_x = if rtl { rect.right() - 38.0 - g.size().x } else { rect.left() + 38.0 };
+    ui.painter().galley(egui::pos2(name_x, rect.center().y - g.size().y / 2.0), g, ink);
     match (pill, status) {
         (Some((color, g)), _) => {
-            let r = egui::Rect::from_min_size(egui::pos2(rect.right() - 10.0 - g.size().x - 12.0, rect.center().y - 10.0), Vec2::new(g.size().x + 12.0, 20.0));
+            let pill_x = if rtl { rect.left() + 10.0 } else { rect.right() - 10.0 - g.size().x - 12.0 };
+            let r = egui::Rect::from_min_size(egui::pos2(pill_x, rect.center().y - 10.0), Vec2::new(g.size().x + 12.0, 20.0));
             ui.painter().rect_filled(r, 10.0, color.gamma_multiply(0.16));
             ui.painter().galley(r.center() - g.size() / 2.0, g, color);
         }
         (None, Some((color, _, _))) => {
-            ui.painter().circle_filled(egui::pos2(rect.right() - 16.0, rect.center().y), 3.5, color);
+            let dot_x = if rtl { rect.left() + 16.0 } else { rect.right() - 16.0 };
+            ui.painter().circle_filled(egui::pos2(dot_x, rect.center().y), 3.5, color);
         }
         (None, None) => {}
     }

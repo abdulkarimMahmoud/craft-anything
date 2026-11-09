@@ -153,14 +153,20 @@ fn archives(app: &mut CraftApp, ui: &mut Ui, w: f32) {
             t.card
         };
         ui.painter().rect_filled(rect, t.radius, fill);
-        let icon_rect = egui::Rect::from_center_size(egui::pos2(rect.left() + 24.0, rect.center().y), Vec2::splat(20.0));
+        // Mirrored, the icon and name lead from the right and the detail hugs the left;
+        // the size inside it still reads left to right (digits never flip).
+        let rtl = crate::direction::rtl();
+        let icon_x = if rtl { rect.right() - 24.0 } else { rect.left() + 24.0 };
+        let icon_rect = egui::Rect::from_center_size(egui::pos2(icon_x, rect.center().y), Vec2::splat(20.0));
         icons::paint(ui, icon_rect, icon, 18.0, if selected { t.accent_ink } else { t.text_dim });
         let name = a["name"].as_str().unwrap_or(path);
-        ui.painter().text(egui::pos2(rect.left() + 46.0, rect.center().y), egui::Align2::LEFT_CENTER, name, theme::medium(theme::SMALL), t.text);
+        let (name_x, name_anchor) = if rtl { (rect.right() - 46.0, egui::Align2::RIGHT_CENTER) } else { (rect.left() + 46.0, egui::Align2::LEFT_CENTER) };
+        ui.painter().text(egui::pos2(name_x, rect.center().y), name_anchor, name, theme::medium(theme::SMALL), t.text);
         let detail = format!("{} · {}", tr(label), crate::human_bytes(a["size"].as_u64().unwrap_or(0) as usize));
+        let (detail_x, detail_anchor) = if rtl { (rect.left() + 14.0, egui::Align2::LEFT_CENTER) } else { (rect.right() - 14.0, egui::Align2::RIGHT_CENTER) };
         ui.painter().text(
-            egui::pos2(rect.right() - 14.0, rect.center().y),
-            egui::Align2::RIGHT_CENTER,
+            egui::pos2(detail_x, rect.center().y),
+            detail_anchor,
             detail,
             egui::FontId::proportional(theme::CAPTION),
             t.text_faint,

@@ -55,12 +55,16 @@ pub fn toggle(ui: &mut Ui, on: &mut bool, label: &str) -> Response {
         resp.mark_changed();
     }
     let how = ui.ctx().animate_bool_with_time(resp.id, *on, 0.12);
-    let sw = egui::Rect::from_min_size(egui::pos2(rect.left(), rect.top() + 3.0), Vec2::new(32.0, 18.0));
+    // Mirrored, the switch sits at the reading edge and the knob rests at the other end.
+    let rtl = crate::direction::rtl();
+    let sw_x = if rtl { rect.right() - 32.0 } else { rect.left() };
+    let sw = egui::Rect::from_min_size(egui::pos2(sw_x, rect.top() + 3.0), Vec2::new(32.0, 18.0));
     ui.painter().rect(sw, 9.0, theme::mix(t.field, t.accent, how), Stroke::new(1.0, theme::mix(t.field_border, t.accent, how)), egui::StrokeKind::Inside);
-    let knob = egui::pos2(egui::lerp(sw.left() + 9.0..=sw.right() - 9.0, how), sw.center().y);
+    let knob = egui::pos2(if rtl { egui::lerp(sw.right() - 9.0..=sw.left() + 9.0, how) } else { egui::lerp(sw.left() + 9.0..=sw.right() - 9.0, how) }, sw.center().y);
     ui.painter().circle_filled(knob, 6.0, theme::mix(t.text_dim, Color32::WHITE, how));
     if let Some(g) = g {
-        ui.painter().galley(egui::pos2(sw.right() + 10.0, rect.center().y - g.size().y / 2.0), g, t.text);
+        let text_x = if rtl { sw.left() - 10.0 - g.size().x } else { sw.right() + 10.0 };
+        ui.painter().galley(egui::pos2(text_x, rect.center().y - g.size().y / 2.0), g, t.text);
     }
     focus_ring(ui, &resp, sw);
     let state = *on;
@@ -103,8 +107,8 @@ pub fn suggestion(ui: &mut Ui, text: &str) -> Response {
         Stroke::new(1.0, theme::mix(t.card_border, t.field_border, h)),
         egui::StrokeKind::Inside,
     );
-    let pos = egui::pos2(rect.left() + 13.0, rect.center().y - g.size().y / 2.0);
-    ui.painter().galley_with_override_text_color(pos, g, theme::mix(t.text_dim, t.text, h));
+    let text_x = if crate::direction::rtl() { rect.right() - 13.0 - g.size().x } else { rect.left() + 13.0 };
+    ui.painter().galley_with_override_text_color(egui::pos2(text_x, rect.center().y - g.size().y / 2.0), g, theme::mix(t.text_dim, t.text, h));
     focus_ring(ui, &resp, rect);
     resp.widget_info(|| egui::WidgetInfo::labeled(egui::Role::Button, true, tr(text)));
     resp.on_hover_cursor(egui::CursorIcon::PointingHand)
@@ -127,16 +131,27 @@ pub fn choice_tile(ui: &mut Ui, size: Vec2, icon: &str, label: &str, blurb: &str
         (theme::mix(Color32::TRANSPARENT, t.hover, h), Stroke::new(1.0, theme::mix(t.field_border, t.text_faint, h)))
     };
     ui.painter().rect(rect, t.radius, fill, stroke, egui::StrokeKind::Inside);
-    let icon_rect = egui::Rect::from_center_size(egui::pos2(rect.left() + 28.0, rect.center().y), Vec2::splat(24.0));
+    let rtl = crate::direction::rtl();
+    let icon_x = if rtl { rect.right() - 28.0 } else { rect.left() + 28.0 };
+    let icon_rect = egui::Rect::from_center_size(egui::pos2(icon_x, rect.center().y), Vec2::splat(24.0));
     icons::paint(ui, icon_rect, icon, 22.0, if on { t.accent_ink } else { t.icon });
-    let top = egui::pos2(icon_rect.right() + 12.0, rect.center().y - text_h / 2.0);
     let title_h = g.size().y;
-    ui.painter().galley(top, g, t.text);
+    // Left-to-right the two lines start together; mirrored they end together.
+    let (gx, sx) = if rtl {
+        let end = icon_rect.left() - 12.0;
+        (end - g.size().x, sub.as_ref().map_or(0.0, |s| end - s.size().x))
+    } else {
+        let start = icon_rect.right() + 12.0;
+        (start, start)
+    };
+    let top = rect.center().y - text_h / 2.0;
+    ui.painter().galley(egui::pos2(gx, top), g, t.text);
     if let Some(s) = sub {
-        ui.painter().galley(top + Vec2::new(0.0, title_h + 3.0), s, t.text_dim);
+        ui.painter().galley(egui::pos2(sx, top + title_h + 3.0), s, t.text_dim);
     }
     if on {
-        icons::paint(ui, egui::Rect::from_center_size(egui::pos2(rect.right() - 20.0, rect.center().y), Vec2::splat(18.0)), "check", 18.0, t.accent_ink);
+        let check_x = if rtl { rect.left() + 20.0 } else { rect.right() - 20.0 };
+        icons::paint(ui, egui::Rect::from_center_size(egui::pos2(check_x, rect.center().y), Vec2::splat(18.0)), "check", 18.0, t.accent_ink);
     }
     focus_ring(ui, &resp, rect);
     resp.widget_info(|| egui::WidgetInfo::selected(egui::Role::RadioButton, true, on, tr(label)));
@@ -261,10 +276,13 @@ pub fn segmented_scaled(ui: &mut Ui, options: &[&str], selected: usize, height: 
     let total: f32 = widths.iter().sum::<f32>() + 2.0 * pad;
     let (rect, _) = ui.allocate_exact_size(Vec2::new(total, height), Sense::hover());
     ui.painter().rect(rect, t.radius, t.raised, Stroke::new(scale, t.card_border), egui::StrokeKind::Inside);
-    let mut x = rect.left() + pad;
+    // Mirrored, the first option sits at the reading edge and the rest run leftwards.
+    let rtl = crate::direction::rtl();
+    let mut x = if rtl { rect.right() - pad } else { rect.left() + pad };
     let mut picked = None;
     for (i, (g, w)) in galleys.into_iter().zip(widths).enumerate() {
-        let seg = egui::Rect::from_min_size(egui::pos2(x, rect.top() + pad), Vec2::new(w, height - 2.0 * pad));
+        let seg_x = if rtl { x - w } else { x };
+        let seg = egui::Rect::from_min_size(egui::pos2(seg_x, rect.top() + pad), Vec2::new(w, height - 2.0 * pad));
         let resp = ui.interact(seg, ui.scope_id().with(("seg", options.get(i).copied().unwrap_or_default())), Sense::click());
         let on = i == selected;
         resp.widget_info(|| egui::WidgetInfo::selected(egui::Role::Button, true, on, tr(options.get(i).copied().unwrap_or_default())));
@@ -280,7 +298,7 @@ pub fn segmented_scaled(ui: &mut Ui, options: &[&str], selected: usize, height: 
         if resp.clicked() && !on {
             picked = Some(i);
         }
-        x += w;
+        x = if rtl { x - w } else { x + w };
     }
     picked
 }
@@ -324,8 +342,11 @@ pub fn confidence_badge(ui: &mut Ui, c: Option<Confidence>) -> Response {
     let (rect, resp) = ui.allocate_exact_size(size, Sense::hover());
     let bg = Color32::from_rgba_unmultiplied(col.r(), col.g(), col.b(), 34);
     ui.painter().rect(rect, t.r_sm(), bg, Stroke::new(1.0, col.gamma_multiply(0.45)), egui::StrokeKind::Inside);
-    ui.painter().circle_filled(egui::pos2(rect.left() + 10.0, rect.center().y), 3.5, col);
-    ui.painter().galley_with_override_text_color(egui::pos2(rect.left() + 18.0, rect.center().y - g.size().y / 2.0), g, col);
+    let rtl = crate::direction::rtl();
+    let dot_x = if rtl { rect.right() - 10.0 } else { rect.left() + 10.0 };
+    let text_x = if rtl { rect.right() - 18.0 - g.size().x } else { rect.left() + 18.0 };
+    ui.painter().circle_filled(egui::pos2(dot_x, rect.center().y), 3.5, col);
+    ui.painter().galley_with_override_text_color(egui::pos2(text_x, rect.center().y - g.size().y / 2.0), g, col);
     let tip = match c {
         Some(Confidence::Observed) => "Seen it: read directly from the file, page or capture.",
         Some(Confidence::Derived) => "Worked it out: computed step by step from things we saw.",
@@ -369,22 +390,27 @@ pub fn big_card(ui: &mut Ui, size: Vec2, icon: &str, title: &str, blurb: &str, b
         ui.painter().add(egui::Shadow { offset: [0, 8], blur: 24, spread: 0, color: t.shadow }.as_shape(rect, t.r_lg()));
     }
     ui.painter().rect(rect, t.radius_lg, fill, stroke, egui::StrokeKind::Inside);
-    let icon_rect = egui::Rect::from_min_size(rect.min + Vec2::new(22.0, 22.0), Vec2::splat(52.0));
+    let rtl = crate::direction::rtl();
+    let icon_x = if rtl { rect.right() - 22.0 - 52.0 } else { rect.left() + 22.0 };
+    let icon_rect = egui::Rect::from_min_size(egui::pos2(icon_x, rect.top() + 22.0), Vec2::splat(52.0));
     ui.painter().rect_filled(icon_rect, t.radius, t.accent_soft);
     icons::paint(ui, icon_rect, icon, 28.0, t.accent_ink);
     if let Some(b) = badge {
         let g = layout_directed_no_wrap(ui.painter(), tr(b), theme::medium(theme::TINY), t.text_dim);
-        let br = egui::Rect::from_min_size(egui::pos2(rect.right() - g.size().x - 34.0, rect.top() + 22.0), g.size() + Vec2::new(16.0, 8.0));
+        let br_x = if rtl { rect.left() + 18.0 } else { rect.right() - g.size().x - 34.0 };
+        let br = egui::Rect::from_min_size(egui::pos2(br_x, rect.top() + 22.0), g.size() + Vec2::new(16.0, 8.0));
         ui.painter().rect_filled(br, t.r_sm(), t.hover);
         ui.painter().galley_with_override_text_color(br.center() - g.size() / 2.0, g, t.text_dim);
     }
-    let title_pos = egui::pos2(rect.left() + 22.0, icon_rect.bottom() + 18.0);
     // Titles wrap: the display face is wide, and translations are longer.
     let title_g = theme::heading_galley(ui.painter(), tr(title), theme::CARD, t.text, rect.width() - 44.0);
     let title_h = title_g.size().y;
-    ui.painter().galley(title_pos, title_g, t.text);
     let wrap = layout_directed(ui.painter(), tr(blurb), egui::FontId::proportional(theme::SMALL), t.text_dim, rect.width() - 44.0);
-    ui.painter().galley(title_pos + Vec2::new(0.0, title_h + 8.0), wrap, t.text_dim);
+    // Mirrored, each block ends at the reading edge (they can be different widths).
+    let title_y = icon_rect.bottom() + 18.0;
+    let (title_x, blurb_x) = if rtl { (rect.right() - 22.0 - title_g.size().x, rect.right() - 22.0 - wrap.size().x) } else { (rect.left() + 22.0, rect.left() + 22.0) };
+    ui.painter().galley(egui::pos2(title_x, title_y), title_g, t.text);
+    ui.painter().galley(egui::pos2(blurb_x, title_y + title_h + 8.0), wrap, t.text_dim);
     focus_ring(ui, &resp, rect);
     resp.widget_info(|| egui::WidgetInfo::labeled(egui::Role::Button, true, tr(title)));
     resp.on_hover_cursor(egui::CursorIcon::PointingHand)
@@ -479,7 +505,8 @@ pub fn thinking(ui: &mut Ui) {
     for i in 0..3 {
         let phase = ((time * 3.0 - i as f64 * 0.5).sin() * 0.5 + 0.5) as f32;
         let c = t.accent.gamma_multiply(0.35 + 0.65 * phase);
-        ui.painter().circle_filled(egui::pos2(rect.left() + 6.0 + i as f32 * 12.0, rect.center().y), 3.5, c);
+        let dx = if crate::direction::rtl() { rect.right() - 6.0 - i as f32 * 12.0 } else { rect.left() + 6.0 + i as f32 * 12.0 };
+        ui.painter().circle_filled(egui::pos2(dx, rect.center().y), 3.5, c);
     }
     animate(ui, FRAME);
 }
@@ -552,7 +579,8 @@ pub fn working_since(ui: &mut Ui, title: &str, detail: Option<&str>, began: Opti
         let (bar, _) = ui.allocate_exact_size(Vec2::new(ui.available_width(), 2.0), Sense::hover());
         ui.painter().rect_filled(bar, 1.0, t.separator);
         let seg = bar.width() * 0.25;
-        let x = bar.left() - seg + (bar.width() + seg) * ((now * 0.6).fract() as f32);
+        // The sweep travels in the reading direction.
+        let x = if crate::direction::rtl() { bar.right() - (bar.width() + seg) * ((now * 0.6).fract() as f32) } else { bar.left() - seg + (bar.width() + seg) * ((now * 0.6).fract() as f32) };
         let lit = egui::Rect::from_x_y_ranges(x.max(bar.left())..=(x + seg).min(bar.right()), bar.y_range());
         ui.painter().rect_filled(lit, 1.0, t.accent);
     });

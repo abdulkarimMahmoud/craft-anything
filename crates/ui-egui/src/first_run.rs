@@ -34,11 +34,17 @@ pub fn show(app: &mut CraftApp, ui: &mut Ui) {
     let label = format!("{:02} / 04   {}", step + 1, tr(names.get(step).copied().unwrap_or_default()));
     let g = widgets::label_galley(ui, &label, 12.0, t.text_dim);
     ui.painter().galley_with_override_text_color(egui::pos2(full.center().x - g.size().x / 2.0, y - g.size().y / 2.0), g, t.text_dim);
+    let rtl = crate::direction::rtl();
     let track = egui::Rect::from_min_size(egui::pos2(full.left(), full.bottom() - 2.0), Vec2::new(full.width(), 2.0));
     ui.painter().rect_filled(track, 0.0, t.separator);
-    ui.painter().rect_filled(egui::Rect::from_min_size(track.min, Vec2::new(track.width() * (step + 1) as f32 / 4.0, 2.0)), 0.0, t.accent);
+    // The fill grows from the reading edge.
+    let fw = track.width() * (step + 1) as f32 / 4.0;
+    let fill = if rtl { egui::Rect::from_min_size(egui::pos2(track.right() - fw, track.min.y), Vec2::new(fw, 2.0)) } else { egui::Rect::from_min_size(track.min, Vec2::new(fw, 2.0)) };
+    ui.painter().rect_filled(fill, 0.0, t.accent);
     if step > 0 && step < 3 {
-        let r = egui::Rect::from_min_size(egui::pos2(full.left() + 24.0, y - 14.0), Vec2::new(120.0, 28.0));
+        // The Arabic catalog already points the arrow the other way ("→ رجوع").
+        let back_x = if rtl { full.right() - 24.0 - 120.0 } else { full.left() + 24.0 };
+        let r = egui::Rect::from_min_size(egui::pos2(back_x, y - 14.0), Vec2::new(120.0, 28.0));
         let resp = ui.interact(r, ui.scope_id().with("fr-back"), egui::Sense::click());
         let g = widgets::label_galley(ui, &tr("← Back"), 12.0, t.text);
         let col = if resp.hovered() { t.text } else { t.text_dim };
@@ -251,13 +257,18 @@ fn option_row(ui: &mut Ui, icon: &str, title: &str, sub: &str, on: bool) -> egui
     let fill = if on { t.accent_soft } else { theme::mix(t.card, t.raised, h) };
     let stroke = if on { egui::Stroke::new(1.0, t.accent) } else { egui::Stroke::new(1.0, theme::mix(t.card_border, t.field_border, h)) };
     ui.painter().rect(rect, t.radius_lg, fill, stroke, egui::StrokeKind::Inside);
-    let ir = egui::Rect::from_min_size(rect.min + Vec2::new(14.0, 12.0), Vec2::splat(40.0));
+    // Mirrored, the icon leads from the right and the tick hugs the left.
+    let rtl = crate::direction::rtl();
+    let ir_x = if rtl { rect.right() - 14.0 - 40.0 } else { rect.left() + 14.0 };
+    let ir = egui::Rect::from_min_size(egui::pos2(ir_x, rect.top() + 12.0), Vec2::splat(40.0));
     ui.painter().rect_filled(ir, t.radius, t.raised);
     icons::paint(ui, ir, icon, 20.0, if on { t.accent_ink } else { t.icon });
-    ui.painter().text(egui::pos2(ir.right() + 14.0, rect.top() + 14.0), Align2::LEFT_TOP, tr(title), theme::semibold(theme::BODY), t.text);
-    ui.painter().text(egui::pos2(ir.right() + 14.0, rect.top() + 35.0), Align2::LEFT_TOP, tr(sub), egui::FontId::proportional(theme::SMALL), t.text_dim);
+    let (text_x, anchor) = if rtl { (ir.left() - 14.0, Align2::RIGHT_TOP) } else { (ir.right() + 14.0, Align2::LEFT_TOP) };
+    ui.painter().text(egui::pos2(text_x, rect.top() + 14.0), anchor, tr(title), theme::semibold(theme::BODY), t.text);
+    ui.painter().text(egui::pos2(text_x, rect.top() + 35.0), anchor, tr(sub), egui::FontId::proportional(theme::SMALL), t.text_dim);
     if on {
-        icons::paint(ui, egui::Rect::from_center_size(egui::pos2(rect.right() - 26.0, rect.center().y), Vec2::splat(20.0)), "check", 18.0, t.accent);
+        let check_x = if rtl { rect.left() + 26.0 } else { rect.right() - 26.0 };
+        icons::paint(ui, egui::Rect::from_center_size(egui::pos2(check_x, rect.center().y), Vec2::splat(20.0)), "check", 18.0, t.accent);
     }
     widgets::focus_ring(ui, &resp, rect);
     resp.widget_info(|| egui::WidgetInfo::selected(egui::Role::Button, true, on, tr(title)));

@@ -887,7 +887,7 @@ pub fn show(app: &mut CraftApp, ui: &mut Ui) {
             .frame(egui::Frame::new().fill(t.canvas).inner_margin(Margin::same(20)))
             .show(ui, |ui| egui::ScrollArea::vertical().show(ui, |ui| side(app, ui, &ws)));
     }
-    egui::CentralPanel::default().frame(egui::Frame::new().fill(t.canvas).inner_margin(chat::PANE_MARGIN)).show(ui, |ui| {
+    egui::CentralPanel::default().frame(egui::Frame::new().fill(t.canvas).inner_margin(chat::pane_margin())).show(ui, |ui| {
         let width = ui.available_width();
         let max_w = width.min(720.0);
         let pad = ((width - max_w) / 2.0).max(0.0);
@@ -1075,7 +1075,10 @@ fn steps(app: &CraftApp, ui: &mut Ui, ws: &Workspace) {
                 None => (false, false, false),
             };
             let (row, resp) = ui.allocate_exact_size(Vec2::new(ui.available_width(), row_h), egui::Sense::hover());
-            let marker = egui::Rect::from_min_size(egui::pos2(row.left(), row.center().y - 12.0), Vec2::splat(24.0));
+            // Mirrored, the marker hugs the reading edge and the name and state swap sides.
+            let rtl = crate::direction::rtl();
+            let marker_x = if rtl { row.right() - 24.0 } else { row.left() };
+            let marker = egui::Rect::from_min_size(egui::pos2(marker_x, row.center().y - 12.0), Vec2::splat(24.0));
             // The line to the next step: ink once this step is done, a hairline before that.
             if i + 1 < Step::ALL.len() {
                 let x = marker.center().x;
@@ -1108,7 +1111,7 @@ fn steps(app: &CraftApp, ui: &mut Ui, ws: &Workspace) {
                 let g = widgets::label_galley(ui, &number, 11.0, t.text_faint);
                 ui.painter().galley_with_override_text_color(marker.center() - g.size() / 2.0, g, t.text_faint);
             }
-            let x = marker.right() + 12.0;
+            let (x, anchor) = if rtl { (marker.left() - 12.0, egui::Align2::RIGHT_CENTER) } else { (marker.right() + 12.0, egui::Align2::LEFT_CENTER) };
             let (font, col) = if now || here {
                 (theme::semibold(theme::SMALL), t.text)
             } else if done {
@@ -1116,7 +1119,7 @@ fn steps(app: &CraftApp, ui: &mut Ui, ws: &Workspace) {
             } else {
                 (theme::medium(theme::SMALL), t.text_faint)
             };
-            ui.painter().text(egui::pos2(x, row.center().y), egui::Align2::LEFT_CENTER, tr(s.label()), font, col);
+            ui.painter().text(egui::pos2(x, row.center().y), anchor, tr(s.label()), font, col);
             // State in words too, so it doesn't rely on colour.
             let state = if now {
                 tr("Now")
@@ -1133,7 +1136,8 @@ fn steps(app: &CraftApp, ui: &mut Ui, ws: &Workspace) {
             if !state.is_empty() {
                 let ink = if now || here { t.accent_ink } else { t.text_faint };
                 let g = widgets::label_galley(ui, &state, theme::CAPTION, ink);
-                let pos = egui::pos2(row.right() - g.size().x, row.center().y - g.size().y / 2.0);
+                let state_x = if rtl { row.left() } else { row.right() - g.size().x };
+                let pos = egui::pos2(state_x, row.center().y - g.size().y / 2.0);
                 ui.painter().galley_with_override_text_color(pos, g, ink);
             }
         }
@@ -1162,7 +1166,10 @@ fn steps(app: &CraftApp, ui: &mut Ui, ws: &Workspace) {
             stat_row(ui, "Likeness", &format!("{sim:.0}%"));
             let (bar, _) = ui.allocate_exact_size(Vec2::new(ui.available_width(), 4.0), egui::Sense::hover());
             ui.painter().rect_filled(bar, 2.0, t.separator);
-            let filled = egui::Rect::from_min_size(bar.min, Vec2::new(bar.width() * (sim / 100.0).clamp(0.0, 1.0) as f32, bar.height()));
+            let fw = bar.width() * (sim / 100.0).clamp(0.0, 1.0) as f32;
+            // The fill grows from the reading edge.
+            let rtl = crate::direction::rtl();
+            let filled = if rtl { egui::Rect::from_min_size(egui::pos2(bar.right() - fw, bar.min.y), Vec2::new(fw, bar.height())) } else { egui::Rect::from_min_size(bar.min, Vec2::new(fw, bar.height())) };
             ui.painter().rect_filled(filled, 2.0, t.accent);
         }
     });

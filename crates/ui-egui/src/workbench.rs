@@ -118,7 +118,7 @@ pub fn show(app: &mut CraftApp, ui: &mut Ui) {
         .resizable(true)
         .default_size(280.0)
         .size_range(120.0..=600.0)
-        .frame(egui::Frame::new().fill(t.chrome).inner_margin(Margin { left: 8, right: 10, top: 4, bottom: 8 }))
+        .frame(egui::Frame::new().fill(t.chrome).inner_margin(if crate::direction::rtl() { Margin { left: 10, right: 8, top: 4, bottom: 8 } } else { Margin { left: 8, right: 10, top: 4, bottom: 8 } }))
         .show_collapsible(ui, &mut open, |ui| crate::guard_ui(ui, "bottom", |ui| bottom(app, ui)));
     app.state.bottom_open = open;
     if !app.state.bottom_open {
@@ -158,7 +158,8 @@ fn rail_icons(app: &mut CraftApp, ui: &mut Ui) {
             let r = icons::button(ui, "hammer", 34.0, false, "Projects and builds");
             if !app.asking.is_empty() {
                 let t = Tokens::get(ui.ctx());
-                ui.painter().circle_filled(r.rect.right_top() + egui::vec2(-7.0, 7.0), 4.5, t.warning);
+                let dot = if crate::direction::rtl() { r.rect.left_top() + egui::vec2(7.0, 7.0) } else { r.rect.right_top() + egui::vec2(-7.0, 7.0) };
+                ui.painter().circle_filled(dot, 4.5, t.warning);
             }
             if r.clicked() {
                 app.state.screen = if app.workspace.is_some() { crate::state::Screen::Project } else { crate::state::Screen::Home };
@@ -282,19 +283,24 @@ fn list_row(ui: &mut Ui, r: &Value, selected: bool, h: f32) -> bool {
     let name = row_name(r).unwrap_or_else(|| truncate(&r.to_string(), 80));
     let addr = row_address(r);
     resp.widget_info(|| egui::WidgetInfo::selected(egui::Role::Button, true, selected, &name));
+    // Mirrored, the address and name end at the reading edge and the detail hugs the left;
+    // the text itself keeps the shaper's Auto direction (hex and paths read left to right).
+    let rtl = crate::direction::rtl();
     let x = rect.left() + 8.0;
     if let Some(a) = &addr {
         let g = ui.painter().layout_no_wrap(a.clone(), theme::mono(11.0), if selected { t.accent_ink } else { t.text_faint });
-        ui.painter().galley(egui::pos2(x, rect.top() + 3.0), g, t.text_faint);
+        let ax = if rtl { rect.right() - 8.0 - g.size().x } else { x };
+        ui.painter().galley(egui::pos2(ax, rect.top() + 3.0), g, t.text_faint);
     }
     let name_y = if addr.is_some() { rect.top() + 17.0 } else { rect.center().y - 8.0 };
     let name_g = ui.painter().layout_no_wrap(truncate(&name, 120), theme::mono(12.5), t.text);
     let clip = rect.shrink2(Vec2::new(6.0, 0.0));
-    ui.painter().with_clip_rect(clip).galley(egui::pos2(x, name_y), name_g, t.text);
+    let nx = if rtl { rect.right() - 8.0 - name_g.size().x } else { x };
+    ui.painter().with_clip_rect(clip).galley(egui::pos2(nx, name_y), name_g, t.text);
     if let Some(d) = row_detail(r) {
         let g = ui.painter().layout_no_wrap(d, egui::FontId::proportional(theme::TINY), t.text_faint);
-        let pos = egui::pos2(rect.right() - g.size().x - 8.0, rect.top() + 4.0);
-        ui.painter().with_clip_rect(clip).galley(pos, g, t.text_faint);
+        let dx = if rtl { rect.left() + 8.0 } else { rect.right() - g.size().x - 8.0 };
+        ui.painter().with_clip_rect(clip).galley(egui::pos2(dx, rect.top() + 4.0), g, t.text_faint);
     }
     resp.clicked()
 }
@@ -333,13 +339,17 @@ fn targets_list(app: &mut CraftApp, ui: &mut Ui) {
         } else if resp.hovered() {
             ui.painter().rect_filled(rect, t.radius, t.hover);
         }
-        let ir = egui::Rect::from_min_size(rect.min + Vec2::new(8.0, 10.0), Vec2::splat(30.0));
+        // Mirrored, the icon leads from the right and the two lines end at the reading edge.
+        let rtl = crate::direction::rtl();
+        let ir_x = if rtl { rect.right() - 8.0 - 30.0 } else { rect.left() + 8.0 };
+        let ir = egui::Rect::from_min_size(egui::pos2(ir_x, rect.top() + 10.0), Vec2::splat(30.0));
         ui.painter().rect_filled(ir, t.radius_sm, t.raised);
         icons::paint(ui, ir, crate::kind_icon(tgt.kind), 16.0, if active { t.accent_ink } else { t.icon });
-        ui.painter().text(egui::pos2(ir.right() + 10.0, rect.top() + 8.0), egui::Align2::LEFT_TOP, &tgt.name, theme::medium(theme::SMALL), t.text);
+        let (text_x, anchor) = if rtl { (ir.left() - 10.0, egui::Align2::RIGHT_TOP) } else { (ir.right() + 10.0, egui::Align2::LEFT_TOP) };
+        ui.painter().text(egui::pos2(text_x, rect.top() + 8.0), anchor, &tgt.name, theme::medium(theme::SMALL), t.text);
         ui.painter().text(
-            egui::pos2(ir.right() + 10.0, rect.top() + 27.0),
-            egui::Align2::LEFT_TOP,
+            egui::pos2(text_x, rect.top() + 27.0),
+            anchor,
             format!("{} · {}", tgt.kind.id(), crate::human_bytes(tgt.bytes.len())),
             egui::FontId::proportional(theme::TINY),
             t.text_faint,
@@ -374,18 +384,22 @@ fn tab_strip(ui: &mut Ui, tabs: &[(&str, &str)], selected: usize) -> Option<usiz
             }
             widgets::focus_ring(ui, &resp, rect.shrink2(Vec2::new(0.0, 3.0)));
             let col = if on { t.text } else { t.text_dim };
-            let mut x = rect.left() + 10.0;
+            // Mirrored, the icon leads from the right and the title ends at the reading edge.
+            let rtl = crate::direction::rtl();
+            let mut x = if rtl { rect.right() - 10.0 } else { rect.left() + 10.0 };
             if !icon.is_empty() {
+                let icon_x = if rtl { x - 14.0 } else { x };
                 icons::paint(
                     ui,
-                    egui::Rect::from_min_size(egui::pos2(x, rect.center().y - 7.0), Vec2::splat(14.0)),
+                    egui::Rect::from_min_size(egui::pos2(icon_x, rect.center().y - 7.0), Vec2::splat(14.0)),
                     icon,
                     14.0,
                     if on { t.accent } else { t.text_faint },
                 );
-                x += 20.0;
+                x = if rtl { x - 20.0 } else { x + 20.0 };
             }
-            ui.painter().galley_with_override_text_color(egui::pos2(x, rect.center().y - g.size().y / 2.0), g, col);
+            let text_x = if rtl { x - g.size().x } else { x };
+            ui.painter().galley_with_override_text_color(egui::pos2(text_x, rect.center().y - g.size().y / 2.0), g, col);
             if on {
                 ui.painter().hline(rect.x_range().shrink(6.0), rect.bottom() - 1.0, egui::Stroke::new(2.0, t.accent));
             }

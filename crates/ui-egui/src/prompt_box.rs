@@ -142,7 +142,7 @@ pub fn show(ui: &mut Ui, text: &mut String, attachments: &[PathBuf], b: PromptBo
         .stroke(stroke)
         .corner_radius(t.r_lg())
         .shadow(egui::Shadow { offset: [0, 2], blur: 12, spread: 0, color: t.shadow })
-        .inner_margin(Margin { left: 16, right: 10, top: 14, bottom: 10 });
+        .inner_margin(if crate::direction::rtl() { Margin { left: 10, right: 16, top: 14, bottom: 10 } } else { Margin { left: 16, right: 10, top: 14, bottom: 10 } });
     // Stacked top to bottom whatever the caller's layout (it's often placed in a row).
     frame.show(ui, |ui| {
         ui.with_layout(crate::direction::column(), |ui| {
@@ -164,7 +164,9 @@ pub fn show(ui: &mut Ui, text: &mut String, attachments: &[PathBuf], b: PromptBo
                                     ui.add(egui::Image::new((tex.id(), fit(tex.size_vec2(), PREVIEW_HOVER))));
                                     ui.label(RichText::new(p.display().to_string()).size(theme::CAPTION));
                                 });
-                                let x = egui::Rect::from_min_size(rect.right_top() + egui::vec2(-26.0, 4.0), egui::Vec2::splat(22.0));
+                                // The remove button sits in the tile's trailing top corner.
+                                let corner = if crate::direction::rtl() { rect.left_top() + egui::vec2(4.0, 4.0) } else { rect.right_top() + egui::vec2(-26.0, 4.0) };
+                                let x = egui::Rect::from_min_size(corner, egui::Vec2::splat(22.0));
                                 ui.painter().circle_filled(x.center(), 10.0, t.card);
                                 // A child of its own, so the row's next tile isn't placed after it.
                                 if icons::button(&mut ui.new_child(egui::UiBuilder::new().max_rect(x)), "x", 22.0, false, &remove).clicked() {
@@ -177,7 +179,7 @@ pub fn show(ui: &mut Ui, text: &mut String, attachments: &[PathBuf], b: PromptBo
                                     .fill(t.raised)
                                     .stroke(egui::Stroke::new(1.0, t.card_border))
                                     .corner_radius(t.r_sm())
-                                    .inner_margin(Margin { left: 8, right: 2, top: 2, bottom: 2 })
+                                    .inner_margin(if crate::direction::rtl() { Margin { left: 2, right: 8, top: 2, bottom: 2 } } else { Margin { left: 8, right: 2, top: 2, bottom: 2 } })
                                     .show(ui, |ui| {
                                         crate::direction::show_row(ui, egui::Align::Center, |ui| {
                                             icons::show(ui, "paperclip", 13.0, t.icon);
