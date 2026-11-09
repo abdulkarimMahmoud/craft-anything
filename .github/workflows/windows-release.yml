@@ -1,0 +1,103 @@
+# Windows release snapshot for the Arabic RTL fork: a native x64 MSVC build, then the
+# MSI (WiX v5 via packaging/windows/package.ps1, which also makes the portable zip),
+# the NSIS setup exe (packaging/windows/craft-anything.nsi), an install/uninstall smoke
+# test of that setup exe, and finally the artifacts — uploaded to a release when told to.
+#
+#   gh workflow run windows-release.yml --ref feature/ar-rtl -f upload-tag=v0.4.0-ar2
+#
+# The dispatched ref selects the code that runs, so pass the branch carrying the work.
+name: Windows release (fork snapshot)
+
+on:
+  workflow_dispatch:
+    inputs:
+      upload-tag:
+        description: "Release tag to upload the installers to (empty = artifacts only)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    env:
+      CARGO_INCREMENTAL: 0
+    steps:
+      - name: Check out ${{ github.ref_name }}
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Check out craft-fonts (embedded Noto Sans Arabic)
+        uses: actions/checkout@v4
+        with:
+          repository: storytold/craft-fonts
+          path: craft-fonts
+
+      - name: Install Rust (MSVC)
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-msvc
+
+      - name: Build and package (MSI + portable zip)
+        shell: pwsh
+        env:
+          CRAFT_FONTS_DIR: ${{ github.workspace }}\craft-fonts
+          DIST: ${{ github.workspace }}\dist\release
+        run: pwsh packaging/windows/package.ps1 -Arch x64
+
+      - name: Read the version
+        id: version
+        shell: pwsh
+        run: |
+          $inPkg = $false; $Version = ''
+          foreach ($line in Get-Content Cargo.toml) {
+            if ($line -match '^\[workspace\.package\]') { $inPkg = $true; continue }
+            if ($inPkg -and $line -match '^\[') { break }
+            if ($inPkg -and $line -match '^\s*version\s*=\s*"([^"]+)"') { $Version = $Matches[1]; break }
+          }
+          if (-not $Version) { throw 'could not read [workspace.package] version from Cargo.toml' }
+          "version=$Version" >> $env:GITHUB_OUTPUT
+
+      - name: Install NSIS
+        shell: pwsh
+        run: choco install nsis -y --no-progress
+
+      - name: Build the NSIS setup exe
+        shell: pwsh
+        run: |
+          $Version = '${{ steps.version.outputs.version }}'
+          $Stage = 'target\windows-package\x64'
+          $Portable = "target\windows-package\craft-anything-$Version-windows-x64-portable"
+          Copy-Item "$Portable\OFL-*.txt" $Stage -ErrorAction SilentlyContinue
+          $cli = if (Test-Path 'apps\craft-anything-cli\Cargo.toml') { '/DHASCLI=1' } else { '' }
+          makensis "/DVERSION=$Version" "/DDISPLAYVERSION=$Version" "/DBINDIR=$Stage" /DROOTDIR=. `
+            "/DOUTFILE=dist\release\craft-anything-$Version-windows-x64-setup.exe" `
+            $cli packaging\windows\craft-anything.nsi
+
+      - name: Smoke-test the setup exe (silent install, run, uninstall)
+        shell: pwsh
+        run: |
+          $Version = '${{ steps.version.outputs.version }}'
+          $Setup = "dist\release\craft-anything-$Version-windows-x64-setup.exe"
+          $Home = "${env:ProgramFiles}\Craft Anything"
+          Start-Process -Wait -FilePath $Setup -ArgumentList '/S'
+          if (-not (Test-Path "$Home\craft-anything.exe")) { throw 'silent install left no exe' }
+          & "$Home\craft-anything-cli.exe" --version
+          Start-Process -Wait -FilePath "$Home\uninstall.exe" -ArgumentList '/S'
+          if (Test-Path "$Home\craft-anything.exe") { throw 'silent uninstall left the exe behind' }
+
+      - name: Upload installers
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-x64
+          path: dist/release/craft-anything-*-windows-x64.*
+
+      - name: Upload to release
+        if: inputs.upload-tag != ''
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ inputs.upload-tag }}" dist/release/craft-anything-*-windows-x64.* --clobber
