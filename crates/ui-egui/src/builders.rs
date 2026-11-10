@@ -398,7 +398,7 @@ pub fn need_builder_modal(app: &mut CraftApp, ui: &mut Ui, start: bool, close: &
         let (rect, _) = ui.allocate_exact_size(Vec2::splat(48.0), egui::Sense::hover());
         ui.painter().rect_filled(rect, t.radius, t.accent_soft);
         icons::paint(ui, rect, "bot", 24.0, t.accent_ink);
-        ui.vertical(|ui| {
+        crate::direction::show_column(ui, |ui| {
             ui.label(theme::heading(tr("Set up a builder"), theme::CARD));
             ui.add(
                 egui::Label::new(
@@ -441,7 +441,7 @@ pub fn need_builder_modal(app: &mut CraftApp, ui: &mut Ui, start: bool, close: &
             ui.set_width(ui.available_width());
             crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 icons::show(ui, "bot", 18.0, t.accent);
-                ui.vertical(|ui| {
+                crate::direction::show_column(ui, |ui| {
                     ui.label(RichText::new(&b.name).font(theme::semibold(theme::SMALL)));
                     ui.label(RichText::new(tr("Found on this computer")).color(t.text_faint).size(theme::CAPTION));
                 });

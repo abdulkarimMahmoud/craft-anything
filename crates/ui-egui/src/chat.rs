@@ -159,7 +159,7 @@ fn target_card(app: &mut CraftApp, ui: &mut Ui) {
                     let (rect, _) = ui.allocate_exact_size(Vec2::splat(48.0), egui::Sense::hover());
                     ui.painter().rect_filled(rect, t.radius, t.accent_soft);
                     icons::paint(ui, rect, crate::kind_icon(target.kind), 26.0, t.accent_ink);
-                    ui.vertical(|ui| {
+                    crate::direction::show_column(ui, |ui| {
                         ui.add(egui::Label::new(theme::heading(&target.name, theme::CARD)).truncate());
                         ui.label(RichText::new(crate::human_bytes(target.bytes.len())).color(t.text_faint).size(theme::CAPTION));
                     });
@@ -268,7 +268,7 @@ fn history(app: &mut CraftApp, ui: &mut Ui, dense: bool, pad: f32, max_w: f32) {
     egui::ScrollArea::vertical().auto_shrink([false, false]).stick_to_bottom(true).show(ui, |ui| {
         crate::direction::show_row(ui, egui::Align::Center, |ui| {
             ui.add_space(pad);
-            ui.vertical(|ui| {
+            crate::direction::show_column(ui, |ui| {
                 ui.set_width(max_w);
                 if app.state.chat.is_empty() {
                     greeting(app, ui, dense);
@@ -557,7 +557,7 @@ fn item_ui(ui: &mut Ui, item: &ChatItem, beginner: bool, dense: bool, open: bool
                 ui.set_width(ui.available_width());
                 crate::direction::show_row(ui, egui::Align::Center, |ui| {
                     icons::show(ui, "sparkles", 20.0, t.accent_ink);
-                    ui.vertical(|ui| {
+                    crate::direction::show_column(ui, |ui| {
                         ui.label(RichText::new(tr("Want answers in plain words?")).font(theme::semibold(theme::BODY)));
                         ui.label(
                             RichText::new(tr("Add an AI brain and I'll read this evidence for you, answer follow-up questions and point at the proof."))

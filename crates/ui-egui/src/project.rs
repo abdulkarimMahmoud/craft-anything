@@ -901,7 +901,7 @@ pub fn show(app: &mut CraftApp, ui: &mut Ui) {
             egui::ScrollArea::vertical().auto_shrink([false, false]).stick_to_bottom(true).show(ui, |ui| {
                 crate::direction::show_row(ui, egui::Align::Center, |ui| {
                     ui.add_space(pad);
-                    ui.vertical(|ui| {
+                    crate::direction::show_column(ui, |ui| {
                         ui.set_width(max_w);
                         if !beside {
                             egui::CollapsingHeader::new(RichText::new(tr("Project details")).font(theme::semibold(theme::BODY)))
@@ -918,7 +918,7 @@ pub fn show(app: &mut CraftApp, ui: &mut Ui) {
         ui.add_space(chat::COMPOSER_GAP);
         let r = crate::direction::show_row(ui, egui::Align::Center, |ui| {
             ui.add_space(pad);
-            ui.vertical(|ui| composer(app, ui, max_w, &t));
+            crate::direction::show_column(ui, |ui| composer(app, ui, max_w, &t));
         });
         chat::remember_composer_height(ui, comp_id, comp_h, r.response.rect.height());
     });
@@ -934,7 +934,7 @@ fn side(app: &mut CraftApp, ui: &mut Ui, ws: &Workspace) {
             let (rect, _) = ui.allocate_exact_size(Vec2::splat(48.0), egui::Sense::hover());
             ui.painter().rect_filled(rect, t.radius, t.accent_soft);
             icons::paint(ui, rect, make::project_icon(m), 24.0, t.accent_ink);
-            ui.vertical(|ui| {
+            crate::direction::show_column(ui, |ui| {
                 ui.add(egui::Label::new(theme::heading(&m.name, theme::CARD)).truncate());
                 let (label, fg, bg) = make::status_shown(app, ws, &t);
                 widgets::pill(ui, label, fg, bg);
@@ -1190,7 +1190,7 @@ fn stat_row(ui: &mut Ui, label: &str, value: &str) -> egui::Response {
         })
         .response
     } else {
-        ui.vertical(|ui| {
+        crate::direction::show_column(ui, |ui| {
             widgets::caption(ui, label);
             ui.with_layout(crate::direction::pick(crate::direction::rtl(), egui::Layout::top_down(egui::Align::Max), egui::Layout::top_down(egui::Align::Min)), |ui| ui.label(text));
         })
@@ -1223,7 +1223,7 @@ fn feed(app: &mut CraftApp, ui: &mut Ui, ws: &Workspace) {
                 let (rect, _) = ui.allocate_exact_size(Vec2::splat(44.0), egui::Sense::hover());
                 ui.painter().rect_filled(rect, t.radius, t.accent_soft);
                 icons::paint(ui, rect, w.icon, 22.0, t.accent_ink);
-                ui.vertical(|ui| {
+                crate::direction::show_column(ui, |ui| {
                     ui.label(theme::heading(tr(w.ready), theme::CARD));
                     ui.label(RichText::new(tr("Try it out, then ask below for any changes.")).color(t.text_dim));
                 });
@@ -1730,7 +1730,7 @@ fn check_card(app: &mut CraftApp, ui: &mut Ui, ctx: &egui::Context, ws: &Workspa
             let w = (ui.available_width() - 12.0) / 2.0;
             crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 for (label, thumb) in shots {
-                    ui.vertical(|ui| {
+                    crate::direction::show_column(ui, |ui| {
                         ui.set_width(w);
                         widgets::caption(ui, label);
                         match thumb {

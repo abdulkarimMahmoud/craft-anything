@@ -153,7 +153,7 @@ fn brain(app: &mut CraftApp, ui: &mut Ui, width: f32) {
                 ui.set_width(ui.available_width());
                 crate::direction::show_row(ui, egui::Align::Center, |ui| {
                     icons::show(ui, "radar", 22.0, t.text_faint);
-                    ui.vertical(|ui| {
+                    crate::direction::show_column(ui, |ui| {
                         ui.label(RichText::new(tr("We didn't find an AI on this computer yet")).font(theme::medium(theme::BODY)));
                         ui.label(RichText::new(tr("You can add a Claude, ChatGPT or OpenRouter key, a local model (Ollama, LM Studio) or an agent you already use, later in Settings → AI.")).color(t.text_dim));
                     });
@@ -208,7 +208,7 @@ fn brain_card(app: &mut CraftApp, ui: &mut Ui, d: &Detected) {
             let (rect, _) = ui.allocate_exact_size(Vec2::splat(40.0), egui::Sense::hover());
             ui.painter().rect_filled(rect, t.radius, t.raised);
             icons::paint(ui, rect, kind_icon(d.suggestion.kind), 20.0, t.accent_ink);
-            ui.vertical(|ui| {
+            crate::direction::show_column(ui, |ui| {
                 ui.label(theme::heading(&name, theme::CARD));
                 ui.label(RichText::new(&d.reason).color(t.text_dim).size(theme::SMALL));
             });

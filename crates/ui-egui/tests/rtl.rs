@@ -95,3 +95,24 @@ fn titlebar_controls_swap_sides_but_the_window_buttons_do_not() {
         assert!(close.rect().center().x > 1000.0, "Close pinned right: {:?}", close.rect());
     }
 }
+
+/// The Arabic settings dialog lays out: its tabs and every row's control keep real room.
+/// A plain vertical inside a mirrored row once stranded the rest of the row with zero
+/// width, collapsing the dialog (a debug panic; overlapped rows in release).
+#[test]
+fn arabic_settings_rows_keep_room_for_their_controls() {
+    let _lang = LANG.lock().unwrap();
+    let mut h = harness(|| arabic_app(Mode::Beginner));
+    h.run_steps(3);
+    h.state_mut().state.settings_open = true;
+    h.run_steps(4);
+    let tab_label = i18n::tr("General");
+    let tab = h.get_by_label(tab_label.as_str());
+    assert!(tab.rect().width() > 100.0, "settings tabs keep their width: {:?}", tab.rect());
+    let change_label = i18n::tr("Change…");
+    let change = h.get_by_label(change_label.as_str());
+    assert!(change.rect().width() > 20.0, "row controls keep their room: {:?}", change.rect());
+    // Mirrored row order: the control sits on the opposite side from its heading, at the
+    // row's left, while the tab it belongs to is at the dialog's right.
+    assert!(change.rect().center().x < tab.rect().center().x, "control left of tabs");
+}

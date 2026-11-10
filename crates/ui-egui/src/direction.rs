@@ -66,6 +66,17 @@ pub fn column() -> egui::Layout {
     pick(rtl(), egui::Layout::top_down(egui::Align::Min), egui::Layout::top_down(egui::Align::Max))
 }
 
+/// Show `add_contents` in a [`column`] layout, like `Ui::vertical`: the stack hugs the
+/// reading edge. Use this (not `Ui::vertical`) for stacks inside a [`show_row`): a plain
+/// vertical hugs the physical left, so in a mirrored row its used rect starts at the
+/// row's left edge and the row's remaining widgets are left with no room at all.
+pub fn show_column<R>(
+    ui: &mut egui::Ui,
+    add_contents: impl FnOnce(&mut egui::Ui) -> R,
+) -> egui::InnerResponse<R> {
+    ui.scope_builder(egui::UiBuilder::new().layout(column()), add_contents)
+}
+
 /// Whether a side panel that sits on `left` in a left-to-right interface stays on the left.
 fn panel_stays_left(left: bool, rtl: bool) -> bool {
     left != rtl

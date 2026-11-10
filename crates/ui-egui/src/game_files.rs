@@ -34,7 +34,7 @@ pub fn show(app: &mut CraftApp, ui: &mut Ui) {
         ui.add_space(40.0);
         crate::direction::show_row(ui, egui::Align::Center, |ui| {
             ui.add_space(pad);
-            ui.vertical(|ui| {
+            crate::direction::show_column(ui, |ui| {
                 ui.set_width(w);
                 ui.label(theme::heading(tr("Game files"), theme::TITLE));
                 ui.add_space(4.0);

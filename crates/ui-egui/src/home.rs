@@ -57,7 +57,7 @@ pub fn show(app: &mut CraftApp, ui: &mut Ui) {
         ui.add_space(24.0);
         crate::direction::show_row(ui, egui::Align::Center, |ui| {
             ui.add_space(pad);
-            ui.vertical(|ui| {
+            crate::direction::show_column(ui, |ui| {
                 ui.set_width(w);
                 crate::make::hero(app, ui, w);
                 ui.add_space(36.0);

@@ -45,7 +45,7 @@ pub fn show(app: &mut CraftApp, ctx: &egui::Context) {
             }
             ui.add_space(12.0);
             crate::direction::show_row(ui, egui::Align::Min, |ui| {
-                ui.vertical(|ui| {
+                crate::direction::show_column(ui, |ui| {
                     ui.set_width(150.0);
                     for (tab, icon, title) in [
                         (SettingsTab::General, "settings", "General"),
@@ -89,7 +89,7 @@ pub fn show(app: &mut CraftApp, ctx: &egui::Context) {
                     }
                 });
                 ui.separator();
-                ui.vertical(|ui| {
+                crate::direction::show_column(ui, |ui| {
                     // Exactly what's left of the window, with room for the scroll bar a long tab
                     // gets, so no tab can widen the window (#68).
                     let w = ui.available_width();
@@ -124,7 +124,7 @@ pub fn show(app: &mut CraftApp, ctx: &egui::Context) {
 fn row(ui: &mut Ui, title: &str, sub: &str, add: impl FnOnce(&mut Ui, &egui::Response)) {
     let t = Tokens::get(ui.ctx());
     crate::direction::show_row(ui, egui::Align::Center, |ui| {
-        let heading = ui.vertical(|ui| {
+        let heading = crate::direction::show_column(ui, |ui| {
             ui.set_width(220.0);
             let title = ui.label(RichText::new(tr(title)).font(theme::medium(theme::SMALL)));
             if !sub.is_empty() {
@@ -364,7 +364,7 @@ fn ai(app: &mut CraftApp, ui: &mut Ui) {
             // row below that wraps: nothing overlaps however long the name or narrow the window.
             crate::direction::show_row(ui, egui::Align::Center, |ui| {
                 icons::show(ui, "bot", 18.0, if b.enabled { t.accent } else { t.text_faint });
-                ui.vertical(|ui| {
+                crate::direction::show_column(ui, |ui| {
                     ui.add(egui::Label::new(RichText::new(&b.name).font(theme::semibold(theme::SMALL))).truncate());
                     let model_in_use = craft_anything_ai::model_in_use(b, app.backend_options.get(&b.name));
                     let live_catalog = b.kind == BackendKind::AgentCli && craft_anything_ai::cli_agents::adapter_for(&b.model).has_model_catalog();
@@ -724,7 +724,7 @@ fn ai(app: &mut CraftApp, ui: &mut Ui) {
         widgets::panel(&t).show(ui, |ui| {
             ui.set_width(ui.available_width());
             crate::direction::show_row(ui, egui::Align::Center, |ui| {
-                ui.vertical(|ui| {
+                crate::direction::show_column(ui, |ui| {
                     ui.label(RichText::new(&d.suggestion.name).font(theme::medium(theme::SMALL)));
                     ui.label(RichText::new(&d.reason).color(t.text_faint).size(theme::CAPTION));
                 });
@@ -897,7 +897,7 @@ fn plugins(app: &mut CraftApp, ui: &mut Ui) {
     for (i, p) in plugins.iter().enumerate() {
         widgets::panel(&t).show(ui, |ui| {
             crate::direction::show_row(ui, egui::Align::Center, |ui| {
-                ui.vertical(|ui| {
+                crate::direction::show_column(ui, |ui| {
                     ui.set_width(300.0);
                     ui.label(RichText::new(p.display_name()).font(theme::medium(theme::SMALL)));
                     ui.label(RichText::new(p.place()).font(theme::mono(theme::CAPTION)).color(t.text_faint));
@@ -924,7 +924,7 @@ fn plugins(app: &mut CraftApp, ui: &mut Ui) {
     for (i, p) in wasm.iter().enumerate() {
         widgets::panel(&t).show(ui, |ui| {
             crate::direction::show_row(ui, egui::Align::Center, |ui| {
-                ui.vertical(|ui| {
+                crate::direction::show_column(ui, |ui| {
                     ui.set_width(300.0);
                     ui.label(RichText::new(p.display_name()).font(theme::medium(theme::SMALL)));
                     ui.label(RichText::new(p.path.display().to_string()).font(theme::mono(theme::CAPTION)).color(t.text_faint));

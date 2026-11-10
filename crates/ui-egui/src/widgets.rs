@@ -563,7 +563,7 @@ pub fn working_since(ui: &mut Ui, title: &str, detail: Option<&str>, began: Opti
             let arc = (0..=20).map(|i| c + radius * Vec2::angled(start + sweep * i as f32 / 20.0)).collect();
             ui.painter().add(egui::Shape::line(arc, Stroke::new(2.5, t.accent)));
             ui.add_space(4.0);
-            ui.vertical(|ui| {
+            crate::direction::show_column(ui, |ui| {
                 ui.label(RichText::new(tr(title)).font(theme::semibold(theme::BODY)).color(t.text));
                 if !sub.is_empty() {
                     ui.add(egui::Label::new(RichText::new(sub).color(t.text_dim).size(theme::SMALL)).wrap());

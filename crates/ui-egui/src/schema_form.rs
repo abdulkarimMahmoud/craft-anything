@@ -132,7 +132,7 @@ pub fn show(ui: &mut Ui, fields: &[Field], values: &mut BTreeMap<String, String>
     }
     egui::Grid::new("schema-form").num_columns(2).spacing([12.0, 8.0]).show(ui, |ui| {
         for f in fields {
-            ui.vertical(|ui| {
+            crate::direction::show_column(ui, |ui| {
                 crate::direction::show_row(ui, egui::Align::Center, |ui| {
                     ui.label(RichText::new(&f.name).font(theme::mono(12.5)));
                     if f.required {
@@ -141,7 +141,7 @@ pub fn show(ui: &mut Ui, fields: &[Field], values: &mut BTreeMap<String, String>
                 });
             });
             let v = values.entry(f.name.clone()).or_default();
-            ui.vertical(|ui| {
+            crate::direction::show_column(ui, |ui| {
                 match f.kind {
                     FieldKind::Bool => {
                         let mut b = v == "true";
